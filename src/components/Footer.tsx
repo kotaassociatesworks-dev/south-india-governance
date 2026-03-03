@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="font-heading text-2xl font-bold mb-4">
-              SRK & <span className="text-gold">Associates</span>
+              KOTA <span className="text-gold">Associates</span>
             </h3>
             <p className="text-primary-foreground/60 text-sm leading-relaxed mb-6">
               Since 1962, delivering structured financial governance, compliance
@@ -61,7 +61,7 @@ const Footer = () => {
       <div className="border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 lg:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-xs text-primary-foreground/40">
-            © {new Date().getFullYear()} SRK & Associates. All rights reserved.
+            © {new Date().getFullYear()} KOTA Associates. All rights reserved.
           </p>
           <p className="text-xs text-primary-foreground/40">
             Governance · Compliance · Growth
