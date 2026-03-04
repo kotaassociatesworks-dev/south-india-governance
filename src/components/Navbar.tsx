@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "E-Way Bill", href: "#eway-bill" },
-  { label: "Industries", href: "#industries" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services", isRoute: true },
+  { label: "E-Way Bill", href: "/services/eway-bill", isRoute: true },
+  { label: "Industries", href: "/#industries" },
+  { label: "Why Us", href: "/#why-us" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
@@ -23,18 +24,28 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase"
-            >
-              {l.label}
-            </a>
-          ))}
+          {navLinks.map((l) =>
+            l.isRoute ? (
+              <Link
+                key={l.href}
+                to={l.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase"
+              >
+                {l.label}
+              </a>
+            )
+          )}
           <a
-            href="#contact"
-            className="ml-2 px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold tracking-wide uppercase hover:bg-navy-medium transition-colors"
+            href="/#contact"
+            className="ml-2 px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold tracking-wide uppercase hover:bg-primary/90 transition-colors"
           >
             Book Consultation
           </a>
@@ -60,18 +71,29 @@ const Navbar = () => {
             className="md:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
-              {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground uppercase tracking-wide"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {navLinks.map((l) =>
+                l.isRoute ? (
+                  <Link
+                    key={l.href}
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground uppercase tracking-wide"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground uppercase tracking-wide"
+                  >
+                    {l.label}
+                  </a>
+                )
+              )}
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className="px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold tracking-wide uppercase text-center"
               >
