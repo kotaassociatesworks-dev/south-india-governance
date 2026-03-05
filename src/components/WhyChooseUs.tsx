@@ -5,13 +5,13 @@ import { Shield, MapPin, ClipboardCheck, FileCheck, Handshake } from "lucide-rea
 const reasons = [
   {
     icon: Shield,
-    title: "60+ Years Legacy",
-    desc: "Six decades of unwavering commitment to financial excellence and client trust since 1962.",
+    title: "70+ Years Legacy",
+    desc: "Seven decades of unwavering commitment to financial excellence and client trust since 1952.",
   },
   {
     icon: MapPin,
     title: "Multi-State Presence",
-    desc: "Operational coverage across 8 states and the entire South Indian region with local expertise.",
+    desc: "Operational coverage across 7 states and the entire South Indian region with local expertise.",
   },
   {
     icon: ClipboardCheck,
@@ -35,7 +35,7 @@ const WhyChooseUs = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="why-us" className="py-24 lg:py-32 bg-primary text-primary-foreground">
+    <section id="why-us" className="py-24 lg:py-32 bg-navy-deep text-primary-foreground">
       <div className="container mx-auto px-4 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
