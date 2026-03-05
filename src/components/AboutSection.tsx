@@ -1,11 +1,10 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import aboutImg from "@/assets/about-cityscape.jpg";
 
 const stats = [
-  { value: "60+", label: "Years of Legacy" },
-  { value: "8", label: "States Covered" },
+  { value: "70+", label: "Years of Legacy" },
+  { value: "7", label: "States Covered" },
   { value: "1000+", label: "Clients Served" },
   { value: "50+", label: "Professional Partners" },
 ];
@@ -33,7 +32,7 @@ const AboutSection = () => {
             />
             <div className="absolute -bottom-6 -right-6 bg-primary p-6 lg:p-8 hidden md:block">
               <p className="font-heading text-3xl font-bold text-primary-foreground">Since</p>
-              <p className="font-heading text-5xl font-bold text-gold">1962</p>
+              <p className="font-heading text-5xl font-bold text-gold">1952</p>
             </div>
           </motion.div>
 
@@ -51,13 +50,13 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed font-body">
               <p>
-                Founded in 1962, we have evolved from a regional taxation practice in
-                Gudur to become one of South India's most trusted financial governance
+                Founded in 1952, Kota Associates has evolved from a regional taxation practice in
+                Gudur to become one of South India's most trusted financial compliance
                 firms — operating across Andhra Pradesh, Telangana, Tamil Nadu,
                 Karnataka, Kerala, Odisha, and Maharashtra.
               </p>
               <p>
-                We are not a conventional tax filing office. We are a structured
+                With decades of professional experience, we are a structured
                 financial governance partner, working alongside businesses to build
                 compliance frameworks, optimise tax positions, and drive sustainable
                 growth through disciplined financial management.

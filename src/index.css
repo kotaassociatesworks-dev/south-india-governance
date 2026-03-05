@@ -6,33 +6,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 215 30% 12%;
+    /* Deep Navy: #0A2540 → hsl(210, 72%, 15%) */
+    /* Royal Blue: #1E3A8A → hsl(224, 64%, 33%) */
+    /* Professional Gold: #C9A227 → hsl(46, 70%, 47%) */
+    /* Soft Gray: #F5F7FA → hsl(216, 33%, 97%) */
+    /* Dark Charcoal: #1F2937 → hsl(215, 28%, 17%) */
 
-    --card: 210 20% 98%;
-    --card-foreground: 215 30% 12%;
+    --background: 0 0% 100%;
+    --foreground: 215 28% 17%;
+
+    --card: 216 33% 97%;
+    --card-foreground: 215 28% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 30% 12%;
+    --popover-foreground: 215 28% 17%;
 
-    --primary: 215 60% 18%;
+    --primary: 224 64% 33%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 15% 95%;
-    --secondary-foreground: 215 30% 12%;
+    --secondary: 216 33% 97%;
+    --secondary-foreground: 215 28% 17%;
 
-    --muted: 210 15% 96%;
-    --muted-foreground: 215 12% 50%;
+    --muted: 216 25% 94%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 40 65% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 46 70% 47%;
+    --accent-foreground: 210 72% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 18% 90%;
-    --input: 210 18% 90%;
-    --ring: 215 60% 18%;
+    --border: 216 20% 90%;
+    --input: 216 20% 90%;
+    --ring: 224 64% 33%;
 
     --radius: 0.25rem;
 
@@ -48,31 +54,31 @@
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Source Sans 3', system-ui, sans-serif;
 
-    --navy-deep: 215 65% 11%;
-    --navy-medium: 215 55% 22%;
-    --gold: 40 65% 50%;
-    --gold-light: 40 50% 70%;
-    --slate-light: 210 20% 97%;
+    --navy-deep: 210 72% 15%;
+    --navy-medium: 224 64% 33%;
+    --gold: 46 70% 47%;
+    --gold-light: 46 50% 70%;
+    --slate-light: 216 33% 97%;
   }
 
   .dark {
-    --background: 215 65% 11%;
+    --background: 210 72% 15%;
     --foreground: 210 40% 98%;
-    --card: 215 55% 15%;
+    --card: 210 60% 18%;
     --card-foreground: 210 40% 98%;
-    --popover: 215 55% 15%;
+    --popover: 210 60% 18%;
     --popover-foreground: 210 40% 98%;
-    --primary: 40 65% 50%;
-    --primary-foreground: 215 65% 11%;
-    --secondary: 215 40% 20%;
+    --primary: 46 70% 47%;
+    --primary-foreground: 210 72% 15%;
+    --secondary: 210 40% 20%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 215 40% 20%;
+    --muted: 210 40% 20%;
     --muted-foreground: 215 20% 65%;
-    --accent: 40 65% 50%;
-    --accent-foreground: 215 65% 11%;
-    --border: 215 30% 25%;
-    --input: 215 30% 25%;
-    --ring: 40 65% 50%;
+    --accent: 46 70% 47%;
+    --accent-foreground: 210 72% 15%;
+    --border: 210 30% 25%;
+    --input: 210 30% 25%;
+    --ring: 46 70% 47%;
   }
 }
 
