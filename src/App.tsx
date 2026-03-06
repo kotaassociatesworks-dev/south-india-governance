@@ -10,6 +10,8 @@ import EWayBillService from "./pages/services/EWayBillService";
 import GSTRegistration from "./pages/services/GSTRegistration";
 import GSTReturnFiling from "./pages/services/GSTReturnFiling";
 import Bookkeeping from "./pages/services/Bookkeeping";
+import DraftingService from "./pages/services/DraftingService";
+import BalanceSheetService from "./pages/services/BalanceSheetService";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import NotFound from "./pages/NotFound";
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/portal/gst-registration" element={<GSTRegistration />} />
           <Route path="/portal/gst-return-filing" element={<GSTReturnFiling />} />
           <Route path="/portal/bookkeeping" element={<Bookkeeping />} />
+          <Route path="/portal/drafting" element={<DraftingService />} />
+          <Route path="/portal/balance-sheet" element={<BalanceSheetService />} />
           <Route path="/services/eway-bill" element={<EWayBillService />} />
           <Route path="/services/gst-registration" element={<GSTRegistration />} />
           <Route path="/services/gst-return-filing" element={<GSTReturnFiling />} />

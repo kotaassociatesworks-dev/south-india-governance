@@ -7,6 +7,7 @@ const navLinks = [
   { label: "About", href: "/#about" },
   { label: "Services", href: "/services", isRoute: true },
   { label: "Client Portal", href: "/portal", isRoute: true },
+  { label: "Partnership", href: "/#partnership", isRoute: false },
   { label: "Industries", href: "/#industries" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -14,7 +15,7 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  const renderLink = (l, extra = "") => {
+  const renderLink = (l: typeof navLinks[0], extra = "") => {
     const cls = `text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase ${extra}`;
     return l.isRoute ? (
       <Link key={l.href} to={l.href} onClick={() => setOpen(false)} className={cls}>
