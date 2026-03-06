@@ -35,7 +35,7 @@ const DraftingService = () => {
 
   return (
     <ServicePageLayout title="Drafting Services" subtitle="Legal Documentation">
-      <StepProgressBar current={step} steps={["Details", "Payment", "Upload", "Confirm"]} />
+      <StepProgressBar currentStep={step} steps={["Details", "Payment", "Upload", "Confirm"]} />
 
       {step === 1 && (
         <div className="bg-background border border-border p-8 space-y-5">
@@ -86,7 +86,7 @@ const DraftingService = () => {
             open={showPayment}
             onClose={() => setShowPayment(false)}
             amount={4999}
-            service="Drafting Service"
+            serviceName="Drafting Service"
             onSuccess={(id) => { setTxnId(id); setStep(3); setShowPayment(false); }}
           />
         </div>
@@ -102,7 +102,7 @@ const DraftingService = () => {
         </div>
       )}
 
-      {step === 4 && <SuccessConfirmation txnId={txnId} service={`Drafting — ${form.draftingType}`} />}
+      {step === 4 && <SuccessConfirmation txnId={txnId} serviceName={`Drafting — ${form.draftingType}`} />}
     </ServicePageLayout>
   );
 };

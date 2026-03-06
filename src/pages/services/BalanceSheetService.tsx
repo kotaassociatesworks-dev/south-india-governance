@@ -25,7 +25,7 @@ const BalanceSheetService = () => {
 
   return (
     <ServicePageLayout title="Trial Balance to Balance Sheet" subtitle="Financial Statements">
-      <StepProgressBar current={step} steps={["Details", "Payment", "Upload", "Confirm"]} />
+      <StepProgressBar currentStep={step} steps={["Details", "Payment", "Upload", "Confirm"]} />
 
       {step === 1 && (
         <div className="bg-background border border-border p-8 space-y-5">
@@ -79,7 +79,7 @@ const BalanceSheetService = () => {
             open={showPayment}
             onClose={() => setShowPayment(false)}
             amount={1599}
-            service="Trial Balance to Balance Sheet"
+            serviceName="Trial Balance to Balance Sheet"
             onSuccess={(id) => { setTxnId(id); setStep(3); setShowPayment(false); }}
           />
         </div>
@@ -97,7 +97,7 @@ const BalanceSheetService = () => {
         </div>
       )}
 
-      {step === 4 && <SuccessConfirmation txnId={txnId} service="Trial Balance to Balance Sheet" />}
+      {step === 4 && <SuccessConfirmation txnId={txnId} serviceName="Trial Balance to Balance Sheet" />}
     </ServicePageLayout>
   );
 };
