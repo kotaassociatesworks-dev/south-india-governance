@@ -2,6 +2,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
+const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hi, can I know about your services?");
+const gmailUrl = "mailto:kotaassociatesworks@gmail.com?subject=" + encodeURIComponent("Enquiry About Services") + "&body=" + encodeURIComponent("Hi Kota Associates,\n\nI would like to know about your services.\n\nPlease share the details regarding:\n- Service offerings\n- Pricing\n- Process & timeline\n\nLooking forward to hearing from you.\n\nThank you.");
+
 const ContactSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -68,15 +71,27 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <a
-              href="https://wa.me/919052878779"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground font-semibold text-sm tracking-[0.1em] uppercase hover:brightness-110 transition"
-            >
-              <MessageCircle className="w-4 h-4" />
-              WhatsApp Us
-            </a>
+            {/* WhatsApp & Gmail CTA buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[hsl(142,70%,40%)] text-white font-semibold text-sm tracking-[0.1em] uppercase hover:brightness-110 transition-all hover:shadow-lg"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp Me
+              </a>
+              <a
+                href={gmailUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-semibold text-sm tracking-[0.1em] uppercase hover:bg-primary/90 transition-all hover:shadow-lg"
+              >
+                <Mail className="w-5 h-5" />
+                Gmail Me
+              </a>
+            </div>
           </motion.div>
 
           {/* Google Map */}

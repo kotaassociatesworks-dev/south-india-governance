@@ -1,48 +1,38 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { FileText, Calculator, Briefcase, Truck, ArrowRight } from "lucide-react";
+import { FileText, Calculator, Briefcase, Truck, Gavel, Receipt, ArrowRight } from "lucide-react";
 
 const serviceCategories = [
   {
     icon: FileText,
     title: "GST & Compliance",
-    services: [
-      "GST Registration",
-      "GST Amendments",
-      "GST Return Filing",
-      "ITC Claims",
-      "GST Refunds",
-      "GST Notices",
-    ],
+    services: ["GST Registration", "GST Amendments", "GST Return Filing", "ITC Claims", "GST Refunds", "GST Notices"],
   },
   {
     icon: Calculator,
     title: "Accounting Services",
-    services: [
-      "Bookkeeping",
-      "Ledger Management",
-      "Payroll Compliance",
-    ],
+    services: ["Bookkeeping", "Ledger Management", "Payroll Compliance"],
+  },
+  {
+    icon: Gavel,
+    title: "Drafting & Legal",
+    services: ["Partnership Deeds", "Rental Agreements", "Mercantile Law Documents", "Power of Attorney"],
+  },
+  {
+    icon: Receipt,
+    title: "Direct Taxes",
+    services: ["TDS/TCS Compliance", "Trial Balance to Balance Sheet", "Income Tax Filing (Coming Soon)"],
   },
   {
     icon: Briefcase,
-    title: "Legal & Business Services",
-    services: [
-      "Partnership Deeds",
-      "Commercial Rental Agreements",
-      "Firm Registrations",
-    ],
+    title: "Business Services",
+    services: ["Partnership Deeds", "Commercial Rental Agreements", "Firm Registrations"],
   },
   {
     icon: Truck,
     title: "E-Way Bill Bulk Upload",
-    services: [
-      "10 E-Way Bills — Contact Us",
-      "25 E-Way Bills — Contact Us",
-      "50 E-Way Bills — Contact Us",
-      "100 E-Way Bills — Contact Us",
-    ],
+    services: ["10 E-Way Bills", "25 E-Way Bills", "50 E-Way Bills", "100 E-Way Bills"],
   },
 ];
 
@@ -66,12 +56,11 @@ const ServicesSection = () => {
             Comprehensive Professional Services
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            End-to-end financial compliance, taxation, and business advisory services.
-            All pricing available on consultation.
+            End-to-end financial compliance, taxation, drafting, and business advisory services.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {serviceCategories.map((cat, i) => {
             const Icon = cat.icon;
             return (
@@ -79,9 +68,11 @@ const ServicesSection = () => {
                 key={cat.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-background p-8 border border-border hover:border-accent/40 transition-colors group"
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="bg-background p-8 border border-border hover:border-accent/40 transition-all group relative overflow-hidden"
               >
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300" />
                 <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/10 transition-colors">
                   <Icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
                 </div>
@@ -91,7 +82,7 @@ const ServicesSection = () => {
                 <ul className="space-y-2 mb-6">
                   {cat.services.map((s) => (
                     <li key={s} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
                       {s}
                     </li>
                   ))}
