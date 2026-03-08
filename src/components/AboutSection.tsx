@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import aboutImg from "@/assets/about-cityscape.jpg";
+import aboutImg from "@/assets/kota_associates.png";
 
 const stats = [
   { value: "70+", label: "Years of Legacy" },
