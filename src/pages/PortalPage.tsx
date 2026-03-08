@@ -196,29 +196,6 @@ const PortalPage = () => {
             </motion.p>
           </div>
 
-          {/* Dashboard Quick Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-20"
-          >
-            {[
-              { icon: FileCheck, label: "Active Requests", value: "—", color: "text-accent" },
-              { icon: Clock, label: "Processing", value: "—", color: "text-royal" },
-              { icon: Bell, label: "Notifications", value: "—", color: "text-accent" },
-              { icon: ShieldCheck, label: "Completed", value: "—", color: "text-accent" },
-            ].map((stat, i) => {
-              const Icon = stat.icon;
-              return (
-                <div key={stat.label} className="bg-background border border-border rounded-lg p-5 text-center">
-                  <Icon className={`w-6 h-6 ${stat.color} mx-auto mb-2`} />
-                  <p className="font-heading text-2xl font-bold text-foreground">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground tracking-wider uppercase mt-1">{stat.label}</p>
-                </div>
-              );
-            })}
-          </motion.div>
 
           {/* One-Shot Services */}
           <SectionHeader
