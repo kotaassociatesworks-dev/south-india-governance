@@ -1,115 +1,417 @@
 import { motion } from "framer-motion";
-import { Building2, User, Landmark, BadgeIndianRupee, Scale, Briefcase } from "lucide-react";
+import {
+  Building2, Users, Landmark, Scale, Briefcase, Shield,
+  ChevronRight, ArrowDown, Gavel, FileText, BadgeIndianRupee
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion, AccordionContent, AccordionItem, AccordionTrigger
+} from "@/components/ui/accordion";
 
-const directTaxOfficers = [
-  { designation: "Central Board of Direct Taxes (CBDT)", role: "Apex body for administration of Direct Tax laws. Formulates policies and supervises all direct tax authorities.", level: "Apex", icon: Landmark },
-  { designation: "Principal Chief Commissioner of Income Tax (Pr. CCIT)", role: "Heads the largest administrative unit (region). Supervises all Chief Commissioners within the region.", level: "Level 1", icon: User },
-  { designation: "Chief Commissioner of Income Tax (CCIT)", role: "Supervises Principal Commissioners and Commissioners. Exercises revisionary and administrative powers.", level: "Level 2", icon: User },
-  { designation: "Principal Commissioner of Income Tax (Pr. CIT)", role: "Supervises Assessing Officers. Has revisionary powers under Section 263 and 264 of the IT Act.", level: "Level 3", icon: User },
-  { designation: "Commissioner of Income Tax (CIT)", role: "Exercises administrative and quasi-judicial functions. Handles appeals under CIT(A) and oversees assessment units.", level: "Level 3", icon: User },
-  { designation: "Commissioner of Income Tax (Appeals) — CIT(A)", role: "First appellate authority for taxpayers against orders of the Assessing Officer under Section 246A.", level: "Appellate", icon: Scale },
-  { designation: "Additional / Joint Commissioner of Income Tax", role: "Assists the Commissioner. Handles cases involving higher assessments and transfer pricing matters.", level: "Level 4", icon: User },
-  { designation: "Deputy Commissioner of Income Tax (DCIT)", role: "Handles assessment of companies and cases with higher income thresholds. Also functions as Assessing Officer.", level: "Level 5", icon: User },
-  { designation: "Assistant Commissioner of Income Tax (ACIT)", role: "Functions as Assessing Officer for specified categories. Conducts assessments and issues orders.", level: "Level 5", icon: User },
-  { designation: "Income Tax Officer (ITO)", role: "Primary Assessing Officer for individual and HUF cases. Conducts scrutiny, assessment, and issues demand notices.", level: "Level 6", icon: User },
-  { designation: "Tax Recovery Officer (TRO)", role: "Responsible for recovery of tax dues under the Second Schedule of the Income Tax Act.", level: "Special", icon: BadgeIndianRupee },
-  { designation: "Inspector of Income Tax", role: "Assists Assessing Officers in surveys (Section 133A), search and seizure operations, and information gathering.", level: "Level 7", icon: User },
+/* ───────── DIRECT TAX STRUCTURE ───────── */
+const directTaxStructure = [
+  {
+    title: "Central Board of Direct Taxes (CBDT)",
+    icon: Landmark,
+    level: "Apex Body",
+    description:
+      "CBDT is the supreme statutory authority for administration of all direct tax laws in India, constituted under the Central Board of Revenue Act, 1963. It functions under the Department of Revenue, Ministry of Finance, Government of India.",
+    functions: [
+      "Formulates tax policy and issues binding circulars under Section 119 of the IT Act",
+      "Issues notifications for rules, exemptions, and rate changes",
+      "Supervises all Principal Chief Commissioners and subordinate authorities",
+      "Coordinates with the Law Ministry on legislative amendments",
+      "Administers the Taxpayer's Charter under Section 119A",
+      "Sets revenue targets and monitors collection across India",
+    ],
+    subUnits: [
+      "Member (Legislation & Computerisation)",
+      "Member (Revenue)",
+      "Member (Investigation)",
+      "Member (Personnel & Vigilance)",
+      "Member (Audit & Judicial)",
+    ],
+  },
+  {
+    title: "Income Tax Department",
+    icon: Building2,
+    level: "Administrative Body",
+    description:
+      "The Income Tax Department is the primary administrative arm under CBDT responsible for the levy, collection, and administration of Income Tax, Corporation Tax, Wealth Tax (now abolished), and Gift Tax (now abolished) across India.",
+    functions: [
+      "Assessment of income and issuance of demand notices",
+      "Processing of returns at CPC Bengaluru under Section 143(1)",
+      "Scrutiny assessments under Sections 143(3) and 144",
+      "Collection and recovery of tax dues",
+      "Investigation and anti-evasion operations",
+      "International taxation and transfer pricing administration",
+    ],
+    subUnits: [
+      "Centralised Processing Centre (CPC), Bengaluru",
+      "TDS-CPC, Vaishali (Ghaziabad)",
+      "Investigation Wings (regional)",
+      "International Taxation Division",
+      "Faceless Assessment Centres",
+    ],
+  },
+  {
+    title: "Assessing Officers (AO)",
+    icon: FileText,
+    level: "Assessment Authority",
+    description:
+      "Assessing Officers are the backbone of the Income Tax Department. They include Deputy/Assistant Commissioners of Income Tax (DCIT/ACIT) and Income Tax Officers (ITO). They are designated as 'Assessing Officers' under Section 2(7A) and are responsible for direct interaction with taxpayers.",
+    functions: [
+      "Issue notices under Sections 142(1), 143(2), and 148",
+      "Conduct scrutiny assessments and pass assessment orders",
+      "Grant or deny deductions, exemptions, and set-off claims",
+      "Initiate penalty proceedings under Sections 270A and 271",
+      "Conduct surveys under Section 133A",
+      "Process rectification applications under Section 154",
+    ],
+    subUnits: [
+      "DCIT/ACIT — Handle corporate and high-value cases",
+      "ITO — Handle individual, HUF, and smaller entity cases",
+      "Tax Recovery Officer (TRO) — Recovery proceedings",
+      "Inspector of Income Tax — Field operations",
+    ],
+  },
+  {
+    title: "Appellate Authorities — First Appeal",
+    icon: Scale,
+    level: "Appellate",
+    description:
+      "The first appellate authority is the Commissioner of Income Tax (Appeals) — CIT(A), now operating under the Faceless Appeal Scheme. Every assessee aggrieved by an order of the Assessing Officer has the right to file an appeal under Section 246A.",
+    functions: [
+      "Hear appeals against assessment orders, penalty orders, and TDS orders",
+      "Power to confirm, reduce, enhance, or annul the assessment",
+      "Admit additional evidence under Rule 46A in exceptional cases",
+      "Pass speaking orders with detailed reasoning",
+      "Now operates through the Joint Commissioner (Appeals) — JC(A) for certain cases",
+    ],
+    subUnits: [
+      "CIT(A) — First appellate authority under Section 246A",
+      "Joint Commissioner (Appeals) — For specified smaller cases",
+      "Faceless Appeal Centre — Digital hearing mechanism",
+    ],
+  },
+  {
+    title: "Income Tax Appellate Tribunal (ITAT)",
+    icon: Gavel,
+    level: "Tribunal",
+    description:
+      "ITAT is the second appellate authority and the final fact-finding authority in income tax matters. Established under Section 252 of the IT Act, it functions as a quasi-judicial body independent of the Income Tax Department. ITAT orders are binding and can only be challenged before the High Court on substantial questions of law.",
+    functions: [
+      "Hear appeals under Section 253 against CIT(A) orders",
+      "Power to stay demand pending appeal",
+      "Final authority on factual disputes — no further fact-finding by courts",
+      "Rectification of mistakes under Section 254(2)",
+      "Cross-appeals and cross-objections",
+      "Benches across India with jurisdictional SMPs and Divisions",
+    ],
+    subUnits: [
+      "President — Administrative head",
+      "Vice Presidents — Zonal heads",
+      "Judicial Members — Retired judges",
+      "Accountant Members — Senior tax professionals",
+      "Single Member Bench (SMP) — For cases below specified limits",
+    ],
+  },
+  {
+    title: "High Court",
+    icon: Scale,
+    level: "Constitutional Court",
+    description:
+      "Under Section 260A of the Income Tax Act, an appeal lies to the High Court against any order of ITAT if it involves a substantial question of law. The High Court exercises writ jurisdiction under Article 226 of the Constitution and can also entertain tax matters under its original jurisdiction.",
+    functions: [
+      "Hear appeals on substantial questions of law under Section 260A",
+      "Writ jurisdiction under Article 226 against arbitrary tax actions",
+      "Power to stay recovery during pendency of appeal",
+      "Reference jurisdiction (historical) under Section 256",
+    ],
+    subUnits: [],
+  },
+  {
+    title: "Supreme Court of India",
+    icon: Landmark,
+    level: "Apex Court",
+    description:
+      "The Supreme Court is the final appellate authority in all tax matters. Appeals lie under Section 261 of the IT Act or through Special Leave Petition under Article 136 of the Constitution. Supreme Court decisions constitute the law of the land under Article 141.",
+    functions: [
+      "Final appeal under Section 261 against High Court orders",
+      "Special Leave Petition under Article 136 of the Constitution",
+      "Decisions binding on all courts and authorities under Article 141",
+      "Power to settle conflicting High Court decisions",
+      "Advisory jurisdiction on presidential reference under Article 143",
+    ],
+    subUnits: [],
+  },
 ];
 
-const directTaxDepartments = [
-  { name: "Income Tax Department", description: "Primary department under the Ministry of Finance responsible for administration and collection of direct taxes including Income Tax, Corporation Tax, and related levies.", ministry: "Ministry of Finance" },
-  { name: "Central Board of Direct Taxes (CBDT)", description: "Statutory authority under the Central Board of Revenue Act, 1963. Functions as the apex body for direct tax policy and administration.", ministry: "Department of Revenue" },
-  { name: "Investigation Wing", description: "Handles search and seizure operations, undisclosed income detection, and anti-tax evasion investigations.", ministry: "Income Tax Department" },
-  { name: "International Taxation Division", description: "Handles Double Taxation Avoidance Agreements (DTAA), Transfer Pricing, and Foreign Tax Credit matters.", ministry: "CBDT" },
-  { name: "Income Tax Appellate Tribunal (ITAT)", description: "Second appellate authority in direct tax matters. Quasi-judicial body independent of the IT Department under Section 252.", ministry: "Ministry of Law" },
-  { name: "TDS Wing", description: "Responsible for administration of Tax Deducted at Source and Tax Collected at Source provisions under Chapter XVII-B.", ministry: "Income Tax Department" },
-  { name: "Faceless Assessment Centre (FAC)", description: "Under Section 144B, handles faceless assessment to ensure transparency and eliminate human interface.", ministry: "CBDT" },
-  { name: "Centralised Processing Centre (CPC)", description: "Located in Bengaluru. Processes all ITRs filed electronically, issues refunds, and generates intimations under Section 143(1).", ministry: "Income Tax Department" },
+/* ───────── INDIRECT TAX STRUCTURE ───────── */
+const indirectTaxStructure = [
+  {
+    title: "GST Council",
+    icon: Landmark,
+    level: "Constitutional Body",
+    description:
+      "The GST Council is a constitutional body established under Article 279A of the Constitution (101st Amendment Act, 2016). It is chaired by the Union Finance Minister and comprises State Finance Ministers. It is the supreme decision-making body for all GST-related matters.",
+    functions: [
+      "Recommend GST rates for goods and services",
+      "Determine threshold limits for registration",
+      "Recommend model GST laws, principles of levy, apportionment of IGST",
+      "Grant exemptions and special provisions for specific states",
+      "Resolve disputes between Centre and States or between States",
+      "Decisions by three-fourths majority (Centre has 1/3 weightage, States 2/3)",
+    ],
+    subUnits: [
+      "Chairperson — Union Finance Minister",
+      "Vice Chairperson — Chosen from among State Finance Ministers",
+      "Members — Finance Ministers of all States and UTs with legislature",
+      "GST Council Secretariat — Administrative support",
+      "Fitment Committee — Rate rationalization",
+      "Law Committee — Legal and procedural recommendations",
+    ],
+  },
+  {
+    title: "Central Board of Indirect Taxes & Customs (CBIC)",
+    icon: Landmark,
+    level: "Apex Administrative Body",
+    description:
+      "CBIC is the apex body for administration of CGST, IGST, Customs, and residual Central Excise. It functions under the Department of Revenue, Ministry of Finance. CBIC implements the policy decisions of the GST Council through circulars, notifications, and administrative orders.",
+    functions: [
+      "Implementation of GST Council recommendations",
+      "Issue of circulars, notifications, and trade notices",
+      "Administrative control over all CGST and Customs officers",
+      "Supervision of DGGI, DRI, DGARM, and other directorates",
+      "Revenue monitoring and anti-evasion coordination",
+      "International customs cooperation and trade facilitation",
+    ],
+    subUnits: [
+      "Chairman CBIC",
+      "Member (GST)",
+      "Member (Customs)",
+      "Member (Budget & Legislation)",
+      "Member (Investigation & IT)",
+      "Member (Administration)",
+    ],
+  },
+  {
+    title: "GST Commissionerates",
+    icon: Building2,
+    level: "Field Formation",
+    description:
+      "GST Commissionerates are the primary field formations of CBIC responsible for administration and collection of CGST and IGST within their territorial jurisdiction. Each Commissionerate is headed by a Commissioner and comprises multiple divisions and ranges.",
+    functions: [
+      "Registration, assessment, and compliance monitoring",
+      "Adjudication of demands under Sections 73 and 74",
+      "Audit of taxpayers under Section 65 and 66",
+      "Anti-evasion and investigation activities",
+      "Refund processing under Section 54",
+      "Enforcement operations including search and seizure under Section 67",
+    ],
+    subUnits: [
+      "Principal Commissioner / Commissioner — Head of Commissionerate",
+      "Additional / Joint Commissioner — Divisional heads",
+      "Deputy / Assistant Commissioner — Range officers",
+      "Superintendent — Compliance and audit",
+      "Inspector — Field operations and verification",
+      "GST Audit Commissionerates — Dedicated audit formations",
+    ],
+  },
+  {
+    title: "GST Officers & Proper Officers",
+    icon: Users,
+    level: "Operational Level",
+    description:
+      "Under Section 3 and 4 of the CGST Act, 2017, the Government appoints officers of Central Tax. Each officer is designated as a 'proper officer' for specific functions such as registration, assessment, refund, and recovery. State GST officers are similarly appointed under respective SGST Acts.",
+    functions: [
+      "Registration under Section 25 — Assistant Commissioner as proper officer",
+      "Assessment and scrutiny of returns under Section 61",
+      "Demand and recovery under Sections 73, 74, and 79",
+      "Refund processing under Section 54",
+      "Inspection, search, and seizure under Section 67",
+      "Provisional attachment of property under Section 83",
+      "Arrest and prosecution under Section 69 and 132",
+    ],
+    subUnits: [
+      "Central Tax Officers (CGST) — Appointed by Central Government",
+      "State Tax Officers (SGST) — Appointed by respective State Governments",
+      "UT Tax Officers — For Union Territories without legislature",
+    ],
+  },
+  {
+    title: "Adjudicating Authorities",
+    icon: Gavel,
+    level: "Quasi-Judicial",
+    description:
+      "Adjudicating authorities under GST law are the officers empowered to pass orders on demands, penalties, confiscation, and other proceedings. The jurisdiction of each adjudicating authority is determined by the monetary threshold of the case as prescribed by CBIC.",
+    functions: [
+      "Commissioner — Adjudicates cases involving duty > ₹2 crores (cases of fraud/suppression)",
+      "Additional / Joint Commissioner — Cases involving duty between ₹50 lakhs and ₹2 crores",
+      "Deputy / Assistant Commissioner — Cases involving duty up to ₹50 lakhs",
+      "Pass speaking orders with detailed reasoning",
+      "Impose penalties under Sections 122 to 138",
+      "Order confiscation of goods under Section 130",
+    ],
+    subUnits: [],
+  },
+  {
+    title: "Appellate Authorities",
+    icon: Scale,
+    level: "Appellate Hierarchy",
+    description:
+      "The GST appellate framework provides multi-tier remedies to aggrieved taxpayers. The hierarchy ensures that every order can be challenged through a structured mechanism from the first appellate authority to the Supreme Court.",
+    functions: [
+      "Appellate Authority (Commissioner Appeals) — First appeal under Section 107 within 3 months",
+      "GST Appellate Tribunal (GSTAT) — Second appeal under Section 112",
+      "High Court — Appeal on substantial questions of law under Section 117",
+      "Supreme Court — Final appeal under Section 118",
+      "Pre-deposit requirements: 10% for first appeal, 20% for GSTAT (capped at ₹25 crore each)",
+      "Power of stay, remand, and modification at each level",
+    ],
+    subUnits: [
+      "Appellate Authority — Commissioner (Appeals) at each Commissionerate",
+      "GSTAT National Bench — New Delhi (for IGST/place of supply disputes)",
+      "GSTAT State Benches — In each state for CGST/SGST disputes",
+      "GSTAT Area Benches — In states with high litigation volume",
+    ],
+  },
+  {
+    title: "Specialized Directorates",
+    icon: Shield,
+    level: "Investigation & Intelligence",
+    description:
+      "CBIC operates several specialized directorates for intelligence gathering, investigation, data analytics, and audit across the indirect tax spectrum. These directorates work independently of commissionerates and report directly to CBIC.",
+    functions: [
+      "DGGI — Directorate General of GST Intelligence: anti-evasion, fake invoice detection, ITC fraud investigation",
+      "DRI — Directorate of Revenue Intelligence: anti-smuggling, commercial fraud, undervaluation",
+      "DGARM — Directorate General of Analytics & Risk Management: data analytics and risk profiling",
+      "DG Audit — Directorate General of Audit: taxpayer and customs audits",
+      "DG Systems — IT infrastructure, GSTN coordination, and e-governance",
+      "NACIN — National Academy of Customs, Indirect Taxes & Narcotics: training and capacity building",
+    ],
+    subUnits: [],
+  },
 ];
 
-const indirectTaxOfficers = [
-  { designation: "Central Board of Indirect Taxes & Customs (CBIC)", role: "Apex body for administration of GST, Customs, and Central Excise. Formulates all indirect tax policies.", level: "Apex", icon: Landmark },
-  { designation: "Principal Chief Commissioner (GST & Customs)", role: "Heads the zonal administration. Supervises all Chief Commissioners within the zone.", level: "Level 1", icon: User },
-  { designation: "Chief Commissioner (GST & Customs)", role: "Supervises Principal Commissioners and Commissioners. Exercises administrative control over the commissionerate.", level: "Level 2", icon: User },
-  { designation: "Principal Commissioner (GST / Customs)", role: "Heads a commissionerate. Has adjudication powers for high-value cases and supervisory control.", level: "Level 3", icon: User },
-  { designation: "Commissioner (GST / Customs)", role: "Primary adjudicating authority for major cases. Heads commissionerate-level administration.", level: "Level 3", icon: User },
-  { designation: "Commissioner (Appeals)", role: "First appellate authority under Section 107 of CGST Act. Hears appeals against orders of adjudicating authorities below Commissioner.", level: "Appellate", icon: Scale },
-  { designation: "Additional / Joint Commissioner", role: "Assists Commissioner. Adjudicates cases involving duty/tax demands within specified monetary limits.", level: "Level 4", icon: User },
-  { designation: "Deputy Commissioner", role: "Handles assessment, audit, and adjudication of cases within prescribed limits. Issues show cause notices.", level: "Level 5", icon: User },
-  { designation: "Assistant Commissioner", role: "Functions as proper officer for registration, refunds, and assessment. Primary point of contact for taxpayers.", level: "Level 5", icon: User },
-  { designation: "Superintendent (GST / Customs)", role: "Handles day-to-day compliance monitoring, scrutiny of returns, audit, and anti-evasion activities.", level: "Level 6", icon: User },
-  { designation: "Inspector (GST / Customs)", role: "Conducts physical verification, inspection of goods, and assists in search and seizure operations.", level: "Level 7", icon: User },
-  { designation: "GST Appellate Tribunal (GSTAT)", role: "Second appellate authority under Section 109 of CGST Act. National and State benches for dispute resolution.", level: "Tribunal", icon: Scale },
-];
+/* ───────── SHARED COMPONENTS ───────── */
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};
 
-const indirectTaxDepartments = [
-  { name: "Central Board of Indirect Taxes & Customs (CBIC)", description: "Apex body under the Department of Revenue, Ministry of Finance. Administers GST, Customs, and residual Central Excise.", ministry: "Ministry of Finance" },
-  { name: "Directorate General of GST Intelligence (DGGI)", description: "Intelligence and anti-evasion arm for GST. Handles detection of tax evasion, fake invoicing, and ITC fraud.", ministry: "CBIC" },
-  { name: "Directorate General of Analytics & Risk Management (DGARM)", description: "Provides data analytics support, risk profiling, and identifies high-risk taxpayers for scrutiny.", ministry: "CBIC" },
-  { name: "Directorate General of Audit (DG Audit)", description: "Conducts GST and Customs audit of taxpayers and importers/exporters to verify compliance.", ministry: "CBIC" },
-  { name: "Directorate General of Systems & Data Management", description: "Manages the GSTN IT infrastructure, e-filing systems, and technology backbone for indirect taxes.", ministry: "CBIC" },
-  { name: "Customs Department", description: "Administers Customs Act, 1962. Handles import/export duties, prohibited goods, anti-smuggling, and trade facilitation.", ministry: "CBIC" },
-  { name: "Directorate of Revenue Intelligence (DRI)", description: "Premier anti-smuggling intelligence agency. Handles gold smuggling, narcotics, commercial fraud, and under-invoicing.", ministry: "CBIC" },
-  { name: "State GST Department (SGST)", description: "Each state has its own GST department to administer SGST. Works in coordination with CGST authorities for integrated tax administration.", ministry: "State Government" },
-  { name: "GST Council", description: "Constitutional body under Article 279A. Recommends GST rates, exemptions, and policies. Chaired by the Union Finance Minister.", ministry: "Constitutional Body" },
-  { name: "GST Network (GSTN)", description: "IT backbone for GST. Manages the GST portal for return filing, registration, payment, and taxpayer services.", ministry: "Public-Private Entity" },
-];
-
-const OfficerCard = ({ officer, index }: { officer: typeof directTaxOfficers[0]; index: number }) => {
-  const Icon = officer.icon;
+const HierarchyCard = ({
+  item,
+  index,
+  total,
+}: {
+  item: (typeof directTaxStructure)[0];
+  index: number;
+  total: number;
+}) => {
+  const Icon = item.icon;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.04, duration: 0.4 }}
-      className="bg-background border border-border p-6 hover:border-accent/40 transition-colors group"
-    >
-      <div className="flex items-start gap-4">
-        <div className="w-10 h-10 bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors">
-          <Icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
+    <div className="relative">
+      {/* Connector line */}
+      {index < total - 1 && (
+        <div className="absolute left-[29px] top-full w-[2px] h-6 bg-accent/30 z-0 hidden lg:block" />
+      )}
+      <motion.div {...fadeUp} transition={{ delay: index * 0.05, duration: 0.45 }}>
+        <AccordionItem
+          value={`hier-${index}`}
+          className="border border-border bg-background overflow-hidden"
+        >
+          <AccordionTrigger className="hover:no-underline px-6 py-5">
+            <div className="flex items-center gap-4 text-left w-full">
+              <div className="w-11 h-11 bg-accent/10 flex items-center justify-center flex-shrink-0 z-10 relative">
+                <Icon className="w-5 h-5 text-accent" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="font-heading font-bold text-foreground block text-sm lg:text-base">
+                  {item.title}
+                </span>
+                <span className="text-[10px] font-bold tracking-wider uppercase text-accent">
+                  {item.level}
+                </span>
+              </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="px-6 pb-6">
+            <div className="pl-[60px] space-y-5">
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+
+              {/* Functions */}
+              <div className="border-l-2 border-accent/40 pl-4 space-y-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">
+                  Functions & Powers
+                </p>
+                {item.functions.map((fn) => (
+                  <div key={fn} className="flex items-start gap-2">
+                    <ChevronRight className="w-3 h-3 text-accent mt-1 flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground">{fn}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sub-units */}
+              {item.subUnits.length > 0 && (
+                <div className="bg-secondary/50 border border-border p-4">
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary mb-3">
+                    Key Constituents / Sub-Units
+                  </p>
+                  <div className="grid gap-2">
+                    {item.subUnits.map((su) => (
+                      <div key={su} className="flex items-start gap-2">
+                        <ArrowDown className="w-3 h-3 text-primary mt-1 flex-shrink-0" />
+                        <span className="text-sm text-muted-foreground">{su}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </motion.div>
+      {index < total - 1 && (
+        <div className="flex justify-center py-2 lg:hidden">
+          <ArrowDown className="w-4 h-4 text-accent/50" />
         </div>
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <h3 className="font-heading font-semibold text-foreground text-sm">{officer.designation}</h3>
-            <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 bg-accent/10 text-accent">{officer.level}</span>
-          </div>
-          <p className="text-xs text-muted-foreground">{officer.role}</p>
-        </div>
-      </div>
-    </motion.div>
+      )}
+    </div>
   );
 };
 
-const DepartmentCard = ({ dept, index }: { dept: typeof directTaxDepartments[0]; index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.05, duration: 0.4 }}
-    className="bg-background border border-border p-6 hover:border-accent/40 transition-colors"
-  >
-    <div className="flex items-center gap-2 mb-2">
-      <Building2 className="w-5 h-5 text-primary" />
-      <h3 className="font-heading font-semibold text-foreground text-sm">{dept.name}</h3>
+const SectionBanner = ({
+  tag,
+  title,
+  subtitle,
+}: {
+  tag: string;
+  title: string;
+  subtitle: string;
+}) => (
+  <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="mb-10">
+    <div className="border-l-4 border-accent pl-6 py-2">
+      <p className="text-xs font-bold tracking-[0.2em] uppercase text-accent mb-1">{tag}</p>
+      <h2 className="font-heading text-xl lg:text-2xl font-bold text-foreground mb-1">{title}</h2>
+      <p className="text-sm text-muted-foreground">{subtitle}</p>
     </div>
-    <p className="text-xs text-muted-foreground mb-3">{dept.description}</p>
-    <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 bg-muted text-muted-foreground">
-      {dept.ministry}
-    </span>
   </motion.div>
 );
 
+/* ───────── MAIN PAGE ───────── */
 const KnowTaxationPage = () => {
   return (
     <main>
       <Navbar />
       <section className="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-secondary min-h-screen">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          {/* Hero */}
+          <div className="text-center mb-20">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -128,83 +430,67 @@ const KnowTaxationPage = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-muted-foreground max-w-3xl mx-auto"
+              className="text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             >
-              Complete directory of government officers and departments responsible for administration of
-              Direct and Indirect Taxes in India.
+              Complete structural overview of India's Direct and Indirect Tax administration —
+              from apex bodies to field formations, appellate authorities, and specialized
+              directorates.
             </motion.p>
           </div>
 
-          <Tabs defaultValue="direct" className="max-w-5xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 mb-8 h-12">
-              <TabsTrigger value="direct" className="text-sm font-semibold tracking-wide uppercase">
-                Direct Taxes
+          {/* Tabs */}
+          <Tabs defaultValue="direct" className="max-w-4xl mx-auto">
+            <TabsList className="grid w-full grid-cols-2 mb-10 h-12">
+              <TabsTrigger
+                value="direct"
+                className="text-sm font-semibold tracking-wide uppercase"
+              >
+                Direct Tax Structure
               </TabsTrigger>
-              <TabsTrigger value="indirect" className="text-sm font-semibold tracking-wide uppercase">
-                Indirect Taxes
+              <TabsTrigger
+                value="indirect"
+                className="text-sm font-semibold tracking-wide uppercase"
+              >
+                Indirect Tax Structure
               </TabsTrigger>
             </TabsList>
 
+            {/* ─── DIRECT TAX ─── */}
             <TabsContent value="direct">
-              {/* Officers */}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-12">
-                <div className="flex items-center gap-3 mb-6">
-                  <Briefcase className="w-6 h-6 text-accent" />
-                  <h2 className="font-heading text-2xl font-bold text-foreground">Government Officers — Direct Taxes</h2>
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Hierarchy of officers under the Income Tax Act, 1961 as per Section 116, from CBDT to Inspector level.
-                </p>
-                <div className="grid gap-3">
-                  {directTaxOfficers.map((officer, i) => (
-                    <OfficerCard key={officer.designation} officer={officer} index={i} />
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Departments */}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <div className="flex items-center gap-3 mb-6">
-                  <Building2 className="w-6 h-6 text-accent" />
-                  <h2 className="font-heading text-2xl font-bold text-foreground">Departments — Direct Taxes</h2>
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {directTaxDepartments.map((dept, i) => (
-                    <DepartmentCard key={dept.name} dept={dept} index={i} />
-                  ))}
-                </div>
-              </motion.div>
+              <SectionBanner
+                tag="Administrative Hierarchy"
+                title="Direct Tax Department Structure"
+                subtitle="Complete hierarchy from CBDT to Assessing Officers, and the appellate chain from CIT(A) to the Supreme Court of India."
+              />
+              <Accordion type="single" collapsible className="space-y-2">
+                {directTaxStructure.map((item, i) => (
+                  <HierarchyCard
+                    key={item.title}
+                    item={item}
+                    index={i}
+                    total={directTaxStructure.length}
+                  />
+                ))}
+              </Accordion>
             </TabsContent>
 
+            {/* ─── INDIRECT TAX ─── */}
             <TabsContent value="indirect">
-              {/* Officers */}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-12">
-                <div className="flex items-center gap-3 mb-6">
-                  <Briefcase className="w-6 h-6 text-accent" />
-                  <h2 className="font-heading text-2xl font-bold text-foreground">Government Officers — Indirect Taxes</h2>
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Hierarchy of officers under CGST Act, 2017 and Customs Act, 1962, from CBIC to Inspector level.
-                </p>
-                <div className="grid gap-3">
-                  {indirectTaxOfficers.map((officer, i) => (
-                    <OfficerCard key={officer.designation} officer={officer} index={i} />
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Departments */}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <div className="flex items-center gap-3 mb-6">
-                  <Building2 className="w-6 h-6 text-accent" />
-                  <h2 className="font-heading text-2xl font-bold text-foreground">Departments — Indirect Taxes</h2>
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {indirectTaxDepartments.map((dept, i) => (
-                    <DepartmentCard key={dept.name} dept={dept} index={i} />
-                  ))}
-                </div>
-              </motion.div>
+              <SectionBanner
+                tag="Administrative Hierarchy"
+                title="Indirect Tax Department Structure"
+                subtitle="Complete hierarchy from GST Council and CBIC to Commissionerates, adjudicating authorities, appellate bodies, and specialized directorates."
+              />
+              <Accordion type="single" collapsible className="space-y-2">
+                {indirectTaxStructure.map((item, i) => (
+                  <HierarchyCard
+                    key={item.title}
+                    item={item}
+                    index={i}
+                    total={indirectTaxStructure.length}
+                  />
+                ))}
+              </Accordion>
             </TabsContent>
           </Tabs>
         </div>
