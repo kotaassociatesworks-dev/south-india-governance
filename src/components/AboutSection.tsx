@@ -47,7 +47,7 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -60, rotateY: -15 }}
             animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ rotateY: 5, scale: 1.02, transition: { duration: 0.3 } }}
             className="relative"
             style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
