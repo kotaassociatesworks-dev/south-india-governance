@@ -8,6 +8,8 @@ const navLinks = [
   { label: "Services", href: "/services", isRoute: true },
   { label: "Client Portal", href: "/portal", isRoute: true },
   { label: "Enterprise Services", href: "/large-scale-services", isRoute: true },
+  { label: "Know Your Rights", href: "/know-your-rights", isRoute: true },
+  { label: "Know Taxation", href: "/know-taxation", isRoute: true },
   { label: "Tools", href: "/tools", isRoute: true },
   { label: "Blog", href: "/blog", isRoute: true },
   { label: "Partnership", href: "/partnership", isRoute: true },

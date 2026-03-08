@@ -21,6 +21,8 @@ import BlogPage from "./pages/BlogPage";
 import AdminPage from "./pages/AdminPage";
 import PartnershipPage from "./pages/PartnershipPage";
 import LargeScaleServicesPage from "./pages/LargeScaleServicesPage";
+import KnowYourRightsPage from "./pages/KnowYourRightsPage";
+import KnowTaxationPage from "./pages/KnowTaxationPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,6 +50,8 @@ const AnimatedRoutes = () => {
         <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
         <Route path="/partnership" element={<PageTransition><PartnershipPage /></PageTransition>} />
         <Route path="/large-scale-services" element={<PageTransition><LargeScaleServicesPage /></PageTransition>} />
+        <Route path="/know-your-rights" element={<PageTransition><KnowYourRightsPage /></PageTransition>} />
+        <Route path="/know-taxation" element={<PageTransition><KnowTaxationPage /></PageTransition>} />
         <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
         <Route path="/signup" element={<PageTransition><SignupPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
