@@ -34,7 +34,7 @@ const DocumentVaultPage = () => {
   const handleUpload = (e) => {
     const files = e.target.files;
     if (!files) return;
-    const newDocs = Array.from(files).map((f, i) => ({
+    const newDocs = Array.from(files).map((f: File, i: number) => ({
       id: Date.now() + i,
       name: f.name,
       category: "Other",

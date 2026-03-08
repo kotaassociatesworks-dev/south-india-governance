@@ -91,7 +91,7 @@ const TaxRiskAnalyzerPage = () => {
   const [answers, setAnswers] = useState({});
   const [showResult, setShowResult] = useState(false);
 
-  const totalScore = Object.values(answers).reduce((sum, s) => sum + s, 0);
+  const totalScore = Object.values(answers).reduce((sum: number, s: number) => sum + s, 0) as number;
   const progress = ((Object.keys(answers).length) / questions.length) * 100;
 
   const handleSelect = (questionId, score) => {
