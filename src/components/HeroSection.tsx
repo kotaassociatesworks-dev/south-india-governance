@@ -238,7 +238,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ delay: 1.6, duration: 0.8 }}
+            transition={{ delay: 0.7, duration: 0.4 }}
             className="font-body text-lg md:text-xl text-primary-foreground/70 mb-12 tracking-wide"
           >
             Delivering Quality and Assured Services Across South India
