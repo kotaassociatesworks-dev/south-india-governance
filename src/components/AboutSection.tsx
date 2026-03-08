@@ -144,7 +144,7 @@ const AboutSection = () => {
               className="text-center"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+              transition={{ delay: 0.3 + i * 0.05, duration: 0.3 }}
               whileHover={{ scale: 1.1, y: -5, transition: { duration: 0.2 } }}
             >
               <motion.p
