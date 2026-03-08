@@ -121,6 +121,12 @@ const HeroSection = () => {
             >
               Client Portal
             </Link>
+            <Link
+              to="/tools"
+              className="px-8 py-3.5 border border-accent/40 text-accent font-semibold text-sm tracking-[0.15em] uppercase hover:bg-accent/10 transition"
+            >
+              Free Compliance Tools
+            </Link>
           </motion.div>
         </motion.div>
 

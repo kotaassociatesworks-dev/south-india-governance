@@ -7,15 +7,16 @@ const navLinks = [
   { label: "About", href: "/#about" },
   { label: "Services", href: "/services", isRoute: true },
   { label: "Client Portal", href: "/portal", isRoute: true },
-  { label: "Partnership", href: "/#partnership", isRoute: false },
-  { label: "Industries", href: "/#industries" },
+  { label: "Tools", href: "/tools", isRoute: true },
+  { label: "Blog", href: "/blog", isRoute: true },
+  { label: "Partnership", href: "/partnership", isRoute: true },
   { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  const renderLink = (l: typeof navLinks[0], extra = "") => {
+  const renderLink = (l, extra = "") => {
     const cls = `text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase ${extra}`;
     return l.isRoute ? (
       <Link key={l.href} to={l.href} onClick={() => setOpen(false)} className={cls}>
@@ -36,7 +37,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((l) => renderLink(l))}
           <Link
             to="/login"
@@ -48,7 +49,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-foreground"
+          className="lg:hidden text-foreground"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -63,7 +64,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border overflow-hidden"
+            className="lg:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((l) => renderLink(l))}
