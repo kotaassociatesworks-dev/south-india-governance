@@ -57,29 +57,14 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
-  const [showSplash, setShowSplash] = useState(true);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <AnimatePresence>
-          {showSplash && (
-            <motion.div
-              key="splash"
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <SplashScreen onComplete={() => setShowSplash(false)} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-        {!showSplash && (
-          <BrowserRouter>
-            <AnimatedRoutes />
-          </BrowserRouter>
-        )}
+        <BrowserRouter>
+          <AnimatedRoutes />
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );
