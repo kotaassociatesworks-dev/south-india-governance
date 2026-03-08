@@ -1,19 +1,21 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-corporate.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
+      {/* Video Background */}
       <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Corporate boardroom meeting"
+        <video
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover"
-          loading="eager"
         />
-        <div className="absolute inset-0 bg-navy-deep/90" />
+        <div className="absolute inset-0 bg-navy-deep/80" />
       </div>
 
       {/* Animated 3D background shapes */}
