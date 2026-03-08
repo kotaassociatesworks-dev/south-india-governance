@@ -12,6 +12,19 @@ const navStructure = [
       { label: "All Services", href: "/services", isRoute: true, desc: "View our complete service catalog" },
       { label: "Client Portal", href: "/portal", isRoute: true, desc: "Self-service compliance portal" },
       { label: "Enterprise Services", href: "/large-scale-services", isRoute: true, desc: "Solutions for M.S.M.E & M.N.C" },
+      { label: "Service Marketplace", href: "/service-marketplace", isRoute: true, desc: "Browse & book services instantly" },
+      { label: "Subscription Plans", href: "/subscription-plans", isRoute: true, desc: "Recurring compliance packages" },
+    ],
+  },
+  {
+    label: "Platform",
+    children: [
+      { label: "Tax Risk Analyzer", href: "/tax-risk-analyzer", isRoute: true, desc: "Assess your compliance risk score" },
+      { label: "Notice Upload", href: "/notice-upload", isRoute: true, desc: "Upload tax notices for expert review" },
+      { label: "Startup Wizard", href: "/startup-wizard", isRoute: true, desc: "Business registration roadmap" },
+      { label: "Compliance Calendar", href: "/compliance-calendar", isRoute: true, desc: "Never miss a filing deadline" },
+      { label: "Document Vault", href: "/document-vault", isRoute: true, desc: "Secure document storage" },
+      { label: "Litigation Tracker", href: "/litigation-tracker", isRoute: true, desc: "Track tax dispute status" },
     ],
   },
   {
