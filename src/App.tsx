@@ -14,6 +14,10 @@ import DraftingService from "./pages/services/DraftingService";
 import BalanceSheetService from "./pages/services/BalanceSheetService";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import ToolsPage from "./pages/ToolsPage";
+import BlogPage from "./pages/BlogPage";
+import AdminPage from "./pages/AdminPage";
+import PartnershipPage from "./pages/PartnershipPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +42,10 @@ const App = () => (
           <Route path="/services/gst-registration" element={<GSTRegistration />} />
           <Route path="/services/gst-return-filing" element={<GSTReturnFiling />} />
           <Route path="/services/bookkeeping" element={<Bookkeeping />} />
+          <Route path="/tools" element={<ToolsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/partnership" element={<PartnershipPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<NotFound />} />
