@@ -216,10 +216,40 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.2 }}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6"
             style={{ perspective: "1000px" }}
           >
-            <AnimatedText text="Kota Associates" className="block mb-2" />
+            <span className="block mb-2" style={{ perspective: "1000px", display: "inline-block" }}>
+              <motion.span
+                className="inline-block"
+                style={{
+                  fontFamily: "'Cinzel', serif",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textShadow: "0 2px 30px rgba(184, 150, 46, 0.3), 0 1px 3px rgba(0,0,0,0.4)",
+                }}
+                initial={{ opacity: 0, y: 40, rotateX: -60 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                KOTA
+              </motion.span>
+              <motion.span
+                className="inline-block ml-3 md:ml-5"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  fontStyle: "italic",
+                  letterSpacing: "0.04em",
+                  textShadow: "0 2px 30px rgba(184, 150, 46, 0.3), 0 1px 3px rgba(0,0,0,0.4)",
+                }}
+                initial={{ opacity: 0, y: 40, rotateX: -60 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                Associates
+              </motion.span>
+            </span>
             <motion.span
               className="gradient-text animate-shimmer inline-block"
               style={{
