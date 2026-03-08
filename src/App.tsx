@@ -32,6 +32,9 @@ import ComplianceCalendarPage from "./pages/ComplianceCalendarPage";
 import DocumentVaultPage from "./pages/DocumentVaultPage";
 import ServiceMarketplacePage from "./pages/ServiceMarketplacePage";
 import LitigationTrackerPage from "./pages/LitigationTrackerPage";
+import IndustryGuidesPage from "./pages/IndustryGuidesPage";
+import ComplianceHealthPage from "./pages/ComplianceHealthPage";
+import TaxAssistantPage from "./pages/TaxAssistantPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
