@@ -52,7 +52,7 @@ const draftingServices = [
     icon: Gavel,
     title: "Rental Agreement Drafting",
     description: "Commercial and residential rental agreements with stamp duty guidance.",
-    price: "Starting ₹4,999*",
+    price: "Contact Us",
     href: "/portal/drafting",
     available: true,
   },
