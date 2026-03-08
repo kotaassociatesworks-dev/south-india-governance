@@ -197,7 +197,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotateX: -40 }}
             animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: "800px" }}
             className="inline-block mb-6 px-5 py-2 border border-gold/40 text-gold font-body text-sm tracking-[0.3em] uppercase animate-pulse-glow relative overflow-hidden"
           >
