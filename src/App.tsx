@@ -21,6 +21,8 @@ import BlogPage from "./pages/BlogPage";
 import AdminPage from "./pages/AdminPage";
 import PartnershipPage from "./pages/PartnershipPage";
 import LargeScaleServicesPage from "./pages/LargeScaleServicesPage";
+import KnowYourRightsPage from "./pages/KnowYourRightsPage";
+import KnowTaxationPage from "./pages/KnowTaxationPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
