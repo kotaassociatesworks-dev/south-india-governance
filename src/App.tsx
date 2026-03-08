@@ -24,6 +24,14 @@ import LargeScaleServicesPage from "./pages/LargeScaleServicesPage";
 import KnowYourRightsPage from "./pages/KnowYourRightsPage";
 import KnowTaxationPage from "./pages/KnowTaxationPage";
 import TaxNoticeHelpPage from "./pages/TaxNoticeHelpPage";
+import TaxRiskAnalyzerPage from "./pages/TaxRiskAnalyzerPage";
+import NoticeUploadPage from "./pages/NoticeUploadPage";
+import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
+import StartupWizardPage from "./pages/StartupWizardPage";
+import ComplianceCalendarPage from "./pages/ComplianceCalendarPage";
+import DocumentVaultPage from "./pages/DocumentVaultPage";
+import ServiceMarketplacePage from "./pages/ServiceMarketplacePage";
+import LitigationTrackerPage from "./pages/LitigationTrackerPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +62,14 @@ const AnimatedRoutes = () => {
         <Route path="/know-your-rights" element={<PageTransition><KnowYourRightsPage /></PageTransition>} />
         <Route path="/know-taxation" element={<PageTransition><KnowTaxationPage /></PageTransition>} />
         <Route path="/tax-notice-help" element={<PageTransition><TaxNoticeHelpPage /></PageTransition>} />
+        <Route path="/tax-risk-analyzer" element={<PageTransition><TaxRiskAnalyzerPage /></PageTransition>} />
+        <Route path="/notice-upload" element={<PageTransition><NoticeUploadPage /></PageTransition>} />
+        <Route path="/subscription-plans" element={<PageTransition><SubscriptionPlansPage /></PageTransition>} />
+        <Route path="/startup-wizard" element={<PageTransition><StartupWizardPage /></PageTransition>} />
+        <Route path="/compliance-calendar" element={<PageTransition><ComplianceCalendarPage /></PageTransition>} />
+        <Route path="/document-vault" element={<PageTransition><DocumentVaultPage /></PageTransition>} />
+        <Route path="/service-marketplace" element={<PageTransition><ServiceMarketplacePage /></PageTransition>} />
+        <Route path="/litigation-tracker" element={<PageTransition><LitigationTrackerPage /></PageTransition>} />
         <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
         <Route path="/signup" element={<PageTransition><SignupPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
