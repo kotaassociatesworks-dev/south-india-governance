@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle, MessageCircle, Phone, Send, X } from "lucide-react";
 
-const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I need help with GST compliance.");
+const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hello, I would like to inquire about taxation and compliance services.");
 
 const StickyHelpButton = () => {
   const [open, setOpen] = useState(false);
