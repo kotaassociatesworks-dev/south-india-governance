@@ -106,8 +106,8 @@ const Footer = () => {
             <h4 className="font-heading text-lg font-semibold mb-4">Operating Regions</h4>
             <ul className="space-y-2">
               {[
-                "Andhra Pradesh", "Telangana", "Tamil Nadu",
-                "Karnataka", "Kerala", "Odisha", "Maharashtra",
+                "Andhra Pradesh", "Telangana (online)", "Tamil Nadu (online)",
+                "Karnataka", "Kerala", "Odisha (online)", "Maharashtra (online)",
               ].map((r, i) => (
                 <motion.li
                   key={r}
