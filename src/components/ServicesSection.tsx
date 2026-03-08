@@ -77,7 +77,7 @@ const ServicesSection = () => {
             className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3"
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           >
             What We Do
           </motion.p>
