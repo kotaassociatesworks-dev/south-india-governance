@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import kotaLogoHero from "@/assets/kota-logo-hero.png";
 
 const letterVariants = {
   hidden: { opacity: 0, y: 50, rotateX: -90 },
@@ -212,95 +213,73 @@ const HeroSection = () => {
           </motion.div>
 
           {/* 3D Letter-by-letter headline */}
+          {/* Logo Image with premium animations */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mb-6 inline-block"
+          >
+            {/* Outer glow pulse */}
+            <motion.div
+              className="absolute inset-0 -m-4 rounded-sm"
+              animate={{
+                boxShadow: [
+                  "0 0 30px 5px rgba(212, 175, 55, 0.0)",
+                  "0 0 60px 15px rgba(212, 175, 55, 0.15)",
+                  "0 0 30px 5px rgba(212, 175, 55, 0.0)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            {/* Light sweep across the image */}
+            <div className="relative overflow-hidden inline-block">
+              <motion.div
+                className="absolute inset-0 z-10 pointer-events-none"
+                style={{
+                  background: "linear-gradient(105deg, transparent 40%, rgba(245, 230, 163, 0.25) 45%, rgba(245, 230, 163, 0.4) 50%, rgba(245, 230, 163, 0.25) 55%, transparent 60%)",
+                }}
+                animate={{ x: ["-150%", "250%"] }}
+                transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+              />
+              <motion.img
+                src={kotaLogoHero}
+                alt="Kota Associates - Trusted Financial Compliance Since 1952"
+                className="h-20 md:h-28 lg:h-36 xl:h-44 w-auto object-contain relative z-0"
+                style={{
+                  filter: "drop-shadow(0 4px 20px rgba(212, 175, 55, 0.4)) drop-shadow(0 8px 40px rgba(0, 0, 0, 0.3))",
+                }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.15, duration: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6"
-            style={{ perspective: "1000px" }}
+            transition={{ delay: 0.5, duration: 0.2 }}
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6 sr-only"
           >
-            <span className="block mb-2" style={{ perspective: "1000px", display: "inline-block" }}>
-              {/* KOTA - wrapped for glow */}
-              <span className="relative inline-block" style={{ filter: "drop-shadow(0 3px 15px rgba(212, 175, 55, 0.5))" }}>
-                <motion.span
-                  className="inline-block"
-                  style={{
-                    fontFamily: "'Cinzel', serif",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                    background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
-                    backgroundSize: "400% 400%",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                  initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    opacity: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    y: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    rotateX: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
-                  }}
-                >
-                  KOTA
-                </motion.span>
-              </span>
-              {/* Associates - wrapped for glow */}
-              <span className="relative inline-block ml-3 md:ml-5" style={{ filter: "drop-shadow(0 3px 15px rgba(212, 175, 55, 0.5))" }}>
-                <motion.span
-                  className="inline-block"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 700,
-                    fontStyle: "italic",
-                    letterSpacing: "0.06em",
-                    background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
-                    backgroundSize: "400% 400%",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                  initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    opacity: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    y: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    rotateX: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
-                  }}
-                >
-                  Associates
-                </motion.span>
-              </span>
-            </span>
-            <motion.span
-              className="gradient-text animate-shimmer inline-block"
-              style={{
-                backgroundSize: "200% auto",
-                background: "linear-gradient(90deg, hsl(44 60% 45%), hsl(44 45% 65%), hsl(44 60% 50%), hsl(44 60% 45%))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-              initial={{ opacity: 0, y: 30, rotateX: -30 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.5, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Trusted Financial Compliance Since 1952
-            </motion.span>
+            Kota Associates
           </motion.h1>
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-heading text-xl md:text-2xl lg:text-3xl mb-4"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              fontStyle: "italic",
+              letterSpacing: "0.04em",
+              color: "#D4AF37",
+              textShadow: "0 2px 20px rgba(212, 175, 55, 0.3)",
+            }}
+          >
+            Trusted Financial Compliance Since 1952
+          </motion.p>
 
           {/* Subtitle with typewriter-like reveal */}
           <motion.p
