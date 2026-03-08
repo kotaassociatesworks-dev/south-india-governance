@@ -93,7 +93,7 @@ const ServicesSection = () => {
             className="text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
           >
             End-to-end financial compliance, taxation, drafting, and business advisory services.
           </motion.p>
