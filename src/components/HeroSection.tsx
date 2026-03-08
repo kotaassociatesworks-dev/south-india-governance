@@ -199,14 +199,16 @@ const HeroSection = () => {
             animate={{ opacity: 1, scale: 1, rotateX: 0 }}
             transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: "800px" }}
-            className="inline-block mb-6 px-5 py-2 border border-gold/40 text-gold font-body text-sm tracking-[0.3em] uppercase animate-pulse-glow relative overflow-hidden"
+            className="inline-block mb-6 px-8 py-3 border-2 border-gold/60 bg-gold/5 backdrop-blur-sm text-gold font-heading text-base lg:text-lg tracking-[0.35em] uppercase animate-pulse-glow relative overflow-hidden shadow-[0_0_30px_-5px_hsl(var(--gold)/0.25)]"
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/10 to-transparent"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/15 to-transparent"
               animate={{ x: ["-100%", "100%"] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
             />
-            Established 1952
+            <span className="relative z-10 font-bold" style={{ textShadow: "0 0 20px hsl(var(--gold) / 0.4), 0 2px 4px rgba(0,0,0,0.3)" }}>
+              ✦ Established 1952 ✦
+            </span>
           </motion.div>
 
           {/* 3D Letter-by-letter headline */}
