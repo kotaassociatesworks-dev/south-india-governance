@@ -32,6 +32,9 @@ import ComplianceCalendarPage from "./pages/ComplianceCalendarPage";
 import DocumentVaultPage from "./pages/DocumentVaultPage";
 import ServiceMarketplacePage from "./pages/ServiceMarketplacePage";
 import LitigationTrackerPage from "./pages/LitigationTrackerPage";
+import IndustryGuidesPage from "./pages/IndustryGuidesPage";
+import ComplianceHealthPage from "./pages/ComplianceHealthPage";
+import TaxAssistantPage from "./pages/TaxAssistantPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -72,6 +75,9 @@ const AnimatedRoutes = () => {
         <Route path="/litigation-tracker" element={<PageTransition><LitigationTrackerPage /></PageTransition>} />
         <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
         <Route path="/signup" element={<PageTransition><SignupPage /></PageTransition>} />
+        <Route path="/industry-guides" element={<PageTransition><IndustryGuidesPage /></PageTransition>} />
+        <Route path="/compliance-health" element={<PageTransition><ComplianceHealthPage /></PageTransition>} />
+        <Route path="/tax-assistant" element={<PageTransition><TaxAssistantPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>

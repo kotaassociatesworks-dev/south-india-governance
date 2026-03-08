@@ -20,6 +20,8 @@ const navStructure = [
     label: "Platform",
     children: [
       { label: "Tax Risk Analyzer", href: "/tax-risk-analyzer", isRoute: true, desc: "Assess your compliance risk score" },
+      { label: "Compliance Health", href: "/compliance-health", isRoute: true, desc: "Full compliance health dashboard" },
+      { label: "Tax Assistant", href: "/tax-assistant", isRoute: true, desc: "Ask tax questions instantly" },
       { label: "Notice Upload", href: "/notice-upload", isRoute: true, desc: "Upload tax notices for expert review" },
       { label: "Startup Wizard", href: "/startup-wizard", isRoute: true, desc: "Business registration roadmap" },
       { label: "Compliance Calendar", href: "/compliance-calendar", isRoute: true, desc: "Never miss a filing deadline" },
@@ -34,6 +36,7 @@ const navStructure = [
       { label: "Know Taxation", href: "/know-taxation", isRoute: true, desc: "Tax department structure & hierarchy" },
       { label: "Tax Notice Help", href: "/tax-notice-help", isRoute: true, desc: "GST & Income Tax notice guidance" },
       { label: "Blog & Insights", href: "/blog", isRoute: true, desc: "Articles, updates & compliance tips" },
+      { label: "Industry Guides", href: "/industry-guides", isRoute: true, desc: "Tax compliance by industry" },
     ],
   },
   { label: "Tools", href: "/tools", isRoute: true },
