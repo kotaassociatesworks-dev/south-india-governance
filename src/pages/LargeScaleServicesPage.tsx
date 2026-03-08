@@ -52,7 +52,7 @@ const tiers = [
     highlights: [
       "Dedicated enterprise account team",
       
-      "Multi-state compliance coordination",
+      
       
       "24/7 priority support line",
       
