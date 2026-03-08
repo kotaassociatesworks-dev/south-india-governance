@@ -68,7 +68,7 @@ const AboutSection = () => {
               className="absolute -bottom-6 -right-6 bg-primary p-6 lg:p-8 hidden md:block"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <p className="font-heading text-3xl font-bold text-primary-foreground">Since</p>
