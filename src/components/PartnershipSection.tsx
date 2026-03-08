@@ -116,13 +116,13 @@ const PartnershipSection = () => {
               ))}
             </div>
 
-            <a
-              href="/#contact"
+            <Link
+              to="/large-scale-services"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-gold text-accent-foreground font-semibold text-sm tracking-[0.15em] uppercase hover:brightness-110 transition"
             >
               <Handshake className="w-5 h-5" />
-              Contact Us for Special Price <ArrowRight className="w-4 h-4" />
-            </a>
+              Explore Packages <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </motion.div>
       </div>
