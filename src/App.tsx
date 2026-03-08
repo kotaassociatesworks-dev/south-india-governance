@@ -23,6 +23,7 @@ import PartnershipPage from "./pages/PartnershipPage";
 import LargeScaleServicesPage from "./pages/LargeScaleServicesPage";
 import KnowYourRightsPage from "./pages/KnowYourRightsPage";
 import KnowTaxationPage from "./pages/KnowTaxationPage";
+import TaxNoticeHelpPage from "./pages/TaxNoticeHelpPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
