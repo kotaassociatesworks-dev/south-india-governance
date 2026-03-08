@@ -7,10 +7,10 @@ const navLinks = [
   { label: "About", href: "/#about" },
   { label: "Services", href: "/services", isRoute: true },
   { label: "Client Portal", href: "/portal", isRoute: true },
+  { label: "Large Scale", href: "/large-scale-services", isRoute: true },
   { label: "Tools", href: "/tools", isRoute: true },
   { label: "Blog", href: "/blog", isRoute: true },
   { label: "Partnership", href: "/partnership", isRoute: true },
-  { label: "Large Scale", href: "/large-scale-services", isRoute: true },
   { label: "Contact", href: "/#contact" },
 ];
 
