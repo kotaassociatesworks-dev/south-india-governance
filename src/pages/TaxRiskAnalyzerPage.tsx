@@ -88,7 +88,7 @@ const recommendations = {
 
 const TaxRiskAnalyzerPage = () => {
   const [currentQ, setCurrentQ] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResult, setShowResult] = useState(false);
 
   const totalScore = Object.values(answers).reduce((sum: number, s: number) => sum + s, 0) as number;
