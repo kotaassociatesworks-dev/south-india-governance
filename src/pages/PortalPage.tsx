@@ -44,7 +44,7 @@ const draftingServices = [
     icon: Gavel,
     title: "Partnership Deed Drafting",
     description: "Legally compliant partnership deed as per Indian Partnership Act, 1932.",
-    price: "Starting ₹4,999*",
+    price: "Contact Us",
     href: "/portal/drafting",
     available: true,
   },
