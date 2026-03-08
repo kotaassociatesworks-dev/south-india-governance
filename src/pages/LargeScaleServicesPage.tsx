@@ -36,7 +36,7 @@ const tiers = [
     highlights: [
       "Dedicated compliance manager",
       "Priority processing for all filings",
-      "Monthly compliance health reports",
+      
       "Quarterly business advisory sessions",
       "Special bulk pricing on E-Way Bills",
       "Annual compliance audit included",
