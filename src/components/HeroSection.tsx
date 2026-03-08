@@ -5,18 +5,9 @@ import heroVideo from "@/assets/hero-video.mp4";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0">
-        <video
-          src={heroVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-deep/80" />
-      </div>
+      {/* Professional Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-[#0f2847] to-navy-deep" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/40 to-transparent" />
 
       {/* Animated 3D background shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
