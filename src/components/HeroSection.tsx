@@ -10,7 +10,7 @@ const letterVariants = {
     transition: {
       delay: 0.6 + i * 0.04,
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   }),
 };
