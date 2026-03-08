@@ -299,12 +299,30 @@ const HeroSection = () => {
                 Client Portal
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>
+            <motion.div
+              whileHover={{ scale: 1.08, y: -4 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow: [
+                  "0 0 0px hsl(44 60% 45% / 0)",
+                  "0 0 20px hsl(44 60% 45% / 0.3)",
+                  "0 0 0px hsl(44 60% 45% / 0)",
+                ],
+              }}
+              transition={{
+                boxShadow: { duration: 2, repeat: Infinity },
+              }}
+            >
               <Link
                 to="/tools"
-                className="block px-8 py-3.5 border border-accent/40 text-accent font-semibold text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-accent/10 hover:border-accent/60"
+                className="block px-8 py-3.5 bg-gradient-to-r from-accent via-accent/80 to-accent text-accent-foreground font-bold text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-2xl hover:shadow-accent/40 relative overflow-hidden"
               >
-                Free Compliance Tools
+                <motion.span
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{ x: ["-100%", "200%"] }}
+                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2 }}
+                />
+                <span className="relative z-10">⚡ Free Compliance Tools</span>
               </Link>
             </motion.div>
           </motion.div>
