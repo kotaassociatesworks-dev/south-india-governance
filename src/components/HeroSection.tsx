@@ -213,7 +213,7 @@ const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.3 }}
+            transition={{ delay: 0.15, duration: 0.2 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6"
             style={{ perspective: "1000px" }}
           >
