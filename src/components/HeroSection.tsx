@@ -225,12 +225,26 @@ const HeroSection = () => {
                 style={{
                   fontFamily: "'Cinzel', serif",
                   fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  textShadow: "0 2px 30px rgba(184, 150, 46, 0.3), 0 1px 3px rgba(0,0,0,0.4)",
+                  letterSpacing: "0.12em",
+                  background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
+                  backgroundSize: "400% 400%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  filter: "drop-shadow(0 3px 12px rgba(212, 175, 55, 0.6)) drop-shadow(0 6px 30px rgba(197, 150, 44, 0.25))",
                 }}
                 initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  rotateX: 0,
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  opacity: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                  y: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                  rotateX: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                  backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
+                }}
               >
                 KOTA
               </motion.span>
@@ -241,11 +255,11 @@ const HeroSection = () => {
                   fontWeight: 700,
                   fontStyle: "italic",
                   letterSpacing: "0.06em",
-                  background: "linear-gradient(135deg, hsl(44 60% 55%), hsl(44 45% 70%), hsl(44 60% 50%), hsl(44 50% 40%))",
-                  backgroundSize: "300% 300%",
+                  background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
+                  backgroundSize: "400% 400%",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
-                  filter: "drop-shadow(0 2px 8px rgba(184, 150, 46, 0.5)) drop-shadow(0 4px 20px rgba(184, 150, 46, 0.2))",
+                  filter: "drop-shadow(0 3px 12px rgba(212, 175, 55, 0.6)) drop-shadow(0 6px 30px rgba(197, 150, 44, 0.25))",
                 }}
                 initial={{ opacity: 0, y: 40, rotateX: -60 }}
                 animate={{
@@ -258,7 +272,7 @@ const HeroSection = () => {
                   opacity: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
                   y: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
                   rotateX: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  backgroundPosition: { duration: 4, repeat: Infinity, ease: "linear" },
+                  backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
                 }}
               >
                 Associates
