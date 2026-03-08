@@ -60,7 +60,7 @@ const draftingServices = [
     icon: Gavel,
     title: "Mercantile Law Documents",
     description: "Sale of Goods Act, Negotiable Instruments Act, and related commercial documentation.",
-    price: "Starting ₹4,999*",
+    price: "Contact Us",
     href: "/portal/drafting",
     available: true,
   },
