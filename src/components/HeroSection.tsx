@@ -112,34 +112,15 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mb-8 inline-block"
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary-foreground mb-6 tracking-tight leading-[1.1]"
           >
-            <div className="relative overflow-hidden inline-block">
-              <motion.div
-                className="absolute inset-0 z-10 pointer-events-none"
-                style={{
-                  background: "linear-gradient(105deg, transparent 40%, rgba(201, 162, 39, 0.2) 45%, rgba(201, 162, 39, 0.35) 50%, rgba(201, 162, 39, 0.2) 55%, transparent 60%)",
-                }}
-                animate={{ x: ["-150%", "250%"] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" }}
-              />
-              <img
-                src={kotaLogoHero}
-                alt="Kota Associates - Trusted Financial Compliance Since 1952"
-                className="h-20 md:h-28 lg:h-36 xl:h-44 w-auto object-contain relative z-0"
-                style={{
-                  filter: "drop-shadow(0 4px 20px rgba(201, 162, 39, 0.35)) drop-shadow(0 8px 40px rgba(0, 0, 0, 0.3))",
-                }}
-              />
-            </div>
-          </motion.div>
-
-          <h1 className="sr-only">Kota Associates - Trusted Financial Compliance Since 1952</h1>
+            Kota Associates
+          </motion.h1>
 
           {/* Tagline */}
           <motion.p
