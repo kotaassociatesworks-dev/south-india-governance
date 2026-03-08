@@ -107,7 +107,7 @@ const ServicesSection = () => {
                 key={cat.title}
                 initial={{ opacity: 0, y: 40, rotateX: -10 }}
                 animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
                 whileHover={{
                   y: -8,
                   scale: 1.02,
