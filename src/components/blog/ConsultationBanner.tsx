@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Phone, MessageCircle, Shield } from "lucide-react";
 
-const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hi, I need professional assistance with tax compliance.");
+const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I need professional assistance with tax compliance.");
 
 const ConsultationBanner = () => (
   <motion.div
