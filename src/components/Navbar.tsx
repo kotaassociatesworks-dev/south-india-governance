@@ -20,6 +20,8 @@ const navStructure = [
     label: "Platform",
     children: [
       { label: "Tax Risk Analyzer", href: "/tax-risk-analyzer", isRoute: true, desc: "Assess your compliance risk score" },
+      { label: "Compliance Health", href: "/compliance-health", isRoute: true, desc: "Full compliance health dashboard" },
+      { label: "Tax Assistant", href: "/tax-assistant", isRoute: true, desc: "Ask tax questions instantly" },
       { label: "Notice Upload", href: "/notice-upload", isRoute: true, desc: "Upload tax notices for expert review" },
       { label: "Startup Wizard", href: "/startup-wizard", isRoute: true, desc: "Business registration roadmap" },
       { label: "Compliance Calendar", href: "/compliance-calendar", isRoute: true, desc: "Never miss a filing deadline" },
