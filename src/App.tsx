@@ -18,6 +18,7 @@ import ToolsPage from "./pages/ToolsPage";
 import BlogPage from "./pages/BlogPage";
 import AdminPage from "./pages/AdminPage";
 import PartnershipPage from "./pages/PartnershipPage";
+import LargeScaleServicesPage from "./pages/LargeScaleServicesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/partnership" element={<PartnershipPage />} />
+          <Route path="/large-scale-services" element={<LargeScaleServicesPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<NotFound />} />

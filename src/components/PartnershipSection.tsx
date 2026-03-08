@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Building, Factory, Handshake, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const allServices = [
   "GST Registration",
@@ -51,13 +52,13 @@ const PartnershipSection = () => {
           className="text-center mb-16"
         >
           <p className="text-sm font-semibold tracking-[0.25em] uppercase text-gold mb-3">
-            Collaborate With Us
+            Enterprise Solutions
           </p>
           <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-4">
-            Partnership With Us
+            Large Scale Services
           </h2>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto">
-            Whether you're an MSME or MNC, we offer tailored compliance packages with special pricing for our partners.
+            Whether you're an MSME or MNC, we offer tailored compliance packages with special pricing for large-scale engagements.
           </p>
         </motion.div>
 
@@ -115,13 +116,13 @@ const PartnershipSection = () => {
               ))}
             </div>
 
-            <a
-              href="/#contact"
+            <Link
+              to="/large-scale-services"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-gold text-accent-foreground font-semibold text-sm tracking-[0.15em] uppercase hover:brightness-110 transition"
             >
               <Handshake className="w-5 h-5" />
-              Contact Us for Special Price <ArrowRight className="w-4 h-4" />
-            </a>
+              Explore Packages <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </motion.div>
       </div>
