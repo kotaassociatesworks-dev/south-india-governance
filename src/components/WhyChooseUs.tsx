@@ -88,7 +88,7 @@ const WhyChooseUs = () => {
             className="text-sm font-semibold tracking-[0.25em] uppercase text-gold mb-3"
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           >
             Our Distinction
           </motion.p>
