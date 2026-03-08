@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle, MessageCircle, Phone, Send, X } from "lucide-react";
 
-const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hi, I need help with GST compliance.");
+const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I need help with GST compliance.");
 
 const StickyHelpButton = () => {
   const [open, setOpen] = useState(false);
@@ -33,10 +33,10 @@ const StickyHelpButton = () => {
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp Chat
               </a>
-              <a
-                href="tel:+919052878779"
-                className="flex items-center gap-2 p-3 bg-primary text-primary-foreground text-sm font-semibold transition-all hover:opacity-90"
-              >
+               <a
+                 href="tel:+919849847973"
+                 className="flex items-center gap-2 p-3 bg-primary text-primary-foreground text-sm font-semibold transition-all hover:opacity-90"
+               >
                 <Phone className="w-4 h-4" />
                 Call Now
               </a>

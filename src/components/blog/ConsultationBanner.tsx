@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Phone, MessageCircle, Shield } from "lucide-react";
 
-const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hi, I need professional assistance with tax compliance.");
+const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I need professional assistance with tax compliance.");
 
 const ConsultationBanner = () => (
   <motion.div
@@ -48,9 +48,9 @@ const ConsultationBanner = () => (
           </a>
         </motion.div>
       </div>
-      <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground">
-        <span>📞 9052878779</span>
-        <span>✉️ kotaassociatesworks@gmail.com</span>
+       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground">
+         <span>📞 9849847973</span>
+         <span>✉️ kotaassociatesworks@gmail.com</span>
       </div>
     </div>
   </motion.div>

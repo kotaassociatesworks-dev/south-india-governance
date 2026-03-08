@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
-const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hi, can I know about your services?");
+const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, can I know about your services?");
 const gmailUrl = "mailto:kotaassociatesworks@gmail.com?subject=" + encodeURIComponent("Enquiry About Services") + "&body=" + encodeURIComponent("Hi Kota Associates,\n\nI would like to know about your services.\n\nPlease share the details regarding:\n- Service offerings\n- Pricing\n- Process & timeline\n\nLooking forward to hearing from you.\n\nThank you.");
 
 const ContactSection = () => {
@@ -13,7 +13,7 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: <a href="tel:+919052878779" className="text-muted-foreground hover:text-accent transition-colors">+91 90528 78779</a>,
+      content: <a href="tel:+919849847973" className="text-muted-foreground hover:text-accent transition-colors">+91 98498 47973</a>,
     },
     {
       icon: Mail,
@@ -23,7 +23,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: "Office",
-      content: <p className="text-muted-foreground">Gudur, Andhra Pradesh<br />Operations across South India</p>,
+      content: <p className="text-muted-foreground">5/134, Patel Street, East Gudur Rural<br />Andhra Pradesh 524101, India</p>,
     },
   ];
 
@@ -152,8 +152,8 @@ const ContactSection = () => {
             style={{ perspective: "800px" }}
           >
             <iframe
-              title="Kota Associates Gudur Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.5!2d79.85!3d14.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDA5JzAwLjAiTiA3OcKwNTEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+              title="Kota Associates East Gudur Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.632!2d79.847!3d14.157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4c1234567890ab%3A0x1234567890abcdef!2sKota%20Associates%2C%205%2F134%20Patel%20Street%2C%20East%20Gudur%20Rural%2C%20Andhra%20Pradesh%20524101!5e0!3m2!1sen!2sin!4v1700000000000"
               width="100%"
               height="400"
               style={{ border: 0 }}
