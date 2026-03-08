@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 
-const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hi, I'm interested in Large Scale Services from Kota Associates.");
+const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I'm interested in Large Scale Services from Kota Associates.");
 
 const allServices = [
   { name: "GST Registration", icon: FileText },
