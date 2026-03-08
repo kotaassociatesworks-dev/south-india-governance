@@ -77,7 +77,7 @@ const ServicesSection = () => {
             className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3"
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           >
             What We Do
           </motion.p>
@@ -85,7 +85,7 @@ const ServicesSection = () => {
             className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4"
             initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
             animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
           >
             Comprehensive Professional Services
           </motion.h2>
@@ -93,7 +93,7 @@ const ServicesSection = () => {
             className="text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
           >
             End-to-end financial compliance, taxation, drafting, and business advisory services.
           </motion.p>
@@ -107,7 +107,7 @@ const ServicesSection = () => {
                 key={cat.title}
                 initial={{ opacity: 0, y: 40, rotateX: -10 }}
                 animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
                 whileHover={{
                   y: -8,
                   scale: 1.02,
@@ -169,7 +169,7 @@ const ServicesSection = () => {
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.4, duration: 0.3 }}
         >
           <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>
             <Link

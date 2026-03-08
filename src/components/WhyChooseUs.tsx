@@ -88,7 +88,7 @@ const WhyChooseUs = () => {
             className="text-sm font-semibold tracking-[0.25em] uppercase text-gold mb-3"
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           >
             Our Distinction
           </motion.p>
@@ -96,7 +96,7 @@ const WhyChooseUs = () => {
             className="font-heading text-3xl lg:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
           >
             Why Leading Businesses Choose Us
           </motion.h2>
@@ -110,7 +110,7 @@ const WhyChooseUs = () => {
                 key={r.title}
                 initial={{ opacity: 0, y: 40, rotateY: -15 }}
                 animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.12 }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
                 whileHover={{
                   y: -10,
                   scale: 1.08,

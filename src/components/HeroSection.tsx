@@ -8,8 +8,8 @@ const letterVariants = {
     y: 0,
     rotateX: 0,
     transition: {
-      delay: 0.6 + i * 0.04,
-      duration: 0.6,
+      delay: 0.2 + i * 0.02,
+      duration: 0.3,
       ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   }),
@@ -190,14 +190,14 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
           className="max-w-4xl mx-auto"
         >
           {/* Badge with shimmer */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotateX: -40 }}
             animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: "800px" }}
             className="inline-block mb-6 px-5 py-2 border border-gold/40 text-gold font-body text-sm tracking-[0.3em] uppercase animate-pulse-glow relative overflow-hidden"
           >
@@ -213,7 +213,7 @@ const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.3 }}
+            transition={{ delay: 0.15, duration: 0.2 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6"
             style={{ perspective: "1000px" }}
           >
@@ -228,7 +228,7 @@ const HeroSection = () => {
               }}
               initial={{ opacity: 0, y: 30, rotateX: -30 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.5, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               Trusted Financial Compliance Since 1952
             </motion.span>
@@ -238,7 +238,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ delay: 1.6, duration: 0.8 }}
+            transition={{ delay: 0.7, duration: 0.4 }}
             className="font-body text-lg md:text-xl text-primary-foreground/70 mb-12 tracking-wide"
           >
             Delivering Quality and Assured Services Across South India
@@ -248,7 +248,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 0.6 }}
+            transition={{ delay: 0.9, duration: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>

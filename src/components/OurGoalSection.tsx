@@ -46,7 +46,7 @@ const OurGoalSection = () => {
             className="text-sm font-semibold tracking-[0.25em] uppercase text-gold mb-3"
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           >
             Our Commitment
           </motion.p>
@@ -54,7 +54,7 @@ const OurGoalSection = () => {
             className="font-heading text-3xl lg:text-4xl font-bold mb-8"
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
           >
             Our Goal
           </motion.h2>
@@ -62,7 +62,7 @@ const OurGoalSection = () => {
             className="text-lg lg:text-xl text-primary-foreground/80 leading-relaxed mb-12"
             initial={{ opacity: 0, y: 15 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
           >
             <motion.span
               animate={inView ? { color: ["hsl(60 20% 97% / 0.8)", "hsl(44 60% 45%)", "hsl(60 20% 97% / 0.8)"] } : {}}
@@ -85,7 +85,7 @@ const OurGoalSection = () => {
                   key={item.title}
                   initial={{ opacity: 0, y: 30, rotateX: -20 }}
                   animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
+                  transition={{ duration: 0.3, delay: 0.2 + i * 0.08 }}
                   whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.25 } }}
                   className="text-center"
                   style={{ perspective: "600px" }}

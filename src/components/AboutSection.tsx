@@ -47,7 +47,7 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -60, rotateY: -15 }}
             animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ rotateY: 5, scale: 1.02, transition: { duration: 0.3 } }}
             className="relative"
             style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
@@ -68,7 +68,7 @@ const AboutSection = () => {
               className="absolute -bottom-6 -right-6 bg-primary p-6 lg:p-8 hidden md:block"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <p className="font-heading text-3xl font-bold text-primary-foreground">Since</p>
@@ -86,13 +86,13 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
           >
             <motion.p
               className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3"
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{ delay: 0.15, duration: 0.3 }}
             >
               About Us
             </motion.p>
@@ -100,7 +100,7 @@ const AboutSection = () => {
               className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-6 leading-tight"
               initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
               animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ delay: 0.4, duration: 0.7 }}
+              transition={{ delay: 0.2, duration: 0.35 }}
             >
               A Legacy of Financial Governance &{" "}
               <motion.span
@@ -122,7 +122,7 @@ const AboutSection = () => {
                   key={i}
                   initial={{ opacity: 0, y: 15 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.5 + i * 0.15, duration: 0.5 }}
+                  transition={{ delay: 0.25 + i * 0.07, duration: 0.3 }}
                 >
                   {text}
                 </motion.p>
@@ -135,7 +135,7 @@ const AboutSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-border"
         >
           {stats.map((s, i) => (
@@ -144,7 +144,7 @@ const AboutSection = () => {
               className="text-center"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+              transition={{ delay: 0.3 + i * 0.05, duration: 0.3 }}
               whileHover={{ scale: 1.1, y: -5, transition: { duration: 0.2 } }}
             >
               <motion.p
