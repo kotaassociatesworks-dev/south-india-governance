@@ -8,8 +8,8 @@ const letterVariants = {
     y: 0,
     rotateX: 0,
     transition: {
-      delay: 0.6 + i * 0.04,
-      duration: 0.6,
+      delay: 0.2 + i * 0.02,
+      duration: 0.3,
       ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   }),
