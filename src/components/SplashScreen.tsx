@@ -11,7 +11,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4 }}
         onAnimationComplete={() => {
-          setTimeout(onComplete, 2000);
+          setTimeout(onComplete, 5000);
         }}
       >
         {/* Background image */}
