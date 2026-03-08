@@ -62,7 +62,7 @@ const OurGoalSection = () => {
             className="text-lg lg:text-xl text-primary-foreground/80 leading-relaxed mb-12"
             initial={{ opacity: 0, y: 15 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
           >
             <motion.span
               animate={inView ? { color: ["hsl(60 20% 97% / 0.8)", "hsl(44 60% 45%)", "hsl(60 20% 97% / 0.8)"] } : {}}
