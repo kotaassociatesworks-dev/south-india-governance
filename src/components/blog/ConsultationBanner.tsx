@@ -48,9 +48,9 @@ const ConsultationBanner = () => (
           </a>
         </motion.div>
       </div>
-      <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground">
-        <span>📞 9052878779</span>
-        <span>✉️ kotaassociatesworks@gmail.com</span>
+       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground">
+         <span>📞 9849847973</span>
+         <span>✉️ kotaassociatesworks@gmail.com</span>
       </div>
     </div>
   </motion.div>
