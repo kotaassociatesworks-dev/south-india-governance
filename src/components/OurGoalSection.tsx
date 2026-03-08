@@ -54,7 +54,7 @@ const OurGoalSection = () => {
             className="font-heading text-3xl lg:text-4xl font-bold mb-8"
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
           >
             Our Goal
           </motion.h2>
