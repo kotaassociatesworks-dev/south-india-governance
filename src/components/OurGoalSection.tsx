@@ -85,7 +85,7 @@ const OurGoalSection = () => {
                   key={item.title}
                   initial={{ opacity: 0, y: 30, rotateX: -20 }}
                   animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
+                  transition={{ duration: 0.3, delay: 0.2 + i * 0.08 }}
                   whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.25 } }}
                   className="text-center"
                   style={{ perspective: "600px" }}

@@ -110,7 +110,7 @@ const WhyChooseUs = () => {
                 key={r.title}
                 initial={{ opacity: 0, y: 40, rotateY: -15 }}
                 animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.12 }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
                 whileHover={{
                   y: -10,
                   scale: 1.08,
