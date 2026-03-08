@@ -36,6 +36,7 @@ const navStructure = [
       { label: "Know Taxation", href: "/know-taxation", isRoute: true, desc: "Tax department structure & hierarchy" },
       { label: "Tax Notice Help", href: "/tax-notice-help", isRoute: true, desc: "GST & Income Tax notice guidance" },
       { label: "Blog & Insights", href: "/blog", isRoute: true, desc: "Articles, updates & compliance tips" },
+      { label: "Industry Guides", href: "/industry-guides", isRoute: true, desc: "Tax compliance by industry" },
     ],
   },
   { label: "Tools", href: "/tools", isRoute: true },
