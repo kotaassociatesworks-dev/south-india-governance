@@ -9,7 +9,7 @@ const oneShotServices = [
     icon: FileText,
     title: "E-Way Bill Generation",
     description: "Generate E-Way Bills with structured compliance. Upload invoices and receive processed bills directly.",
-    price: "₹40 per Bill",
+    price: "instantly contact us",
     href: "/portal/eway-bill",
     available: true,
   },
