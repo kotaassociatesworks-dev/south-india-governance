@@ -220,63 +220,71 @@ const HeroSection = () => {
             style={{ perspective: "1000px" }}
           >
             <span className="block mb-2" style={{ perspective: "1000px", display: "inline-block" }}>
-              <motion.span
-                className="inline-block"
-                style={{
-                  fontFamily: "'Cinzel', serif",
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
-                  backgroundSize: "400% 400%",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  filter: "drop-shadow(0 3px 12px rgba(212, 175, 55, 0.6)) drop-shadow(0 6px 30px rgba(197, 150, 44, 0.25))",
-                }}
-                initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  rotateX: 0,
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{
-                  opacity: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  y: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  rotateX: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
-                }}
-              >
-                KOTA
-              </motion.span>
-              <motion.span
-                className="inline-block ml-3 md:ml-5 relative"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 700,
-                  fontStyle: "italic",
-                  letterSpacing: "0.06em",
-                  background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
-                  backgroundSize: "400% 400%",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  filter: "drop-shadow(0 3px 12px rgba(212, 175, 55, 0.6)) drop-shadow(0 6px 30px rgba(197, 150, 44, 0.25))",
-                }}
-                initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  rotateX: 0,
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{
-                  opacity: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  y: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  rotateX: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                  backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
-                }}
-              >
-                Associates
-              </motion.span>
+              {/* KOTA - wrapped for glow */}
+              <span className="relative inline-block" style={{ filter: "drop-shadow(0 3px 15px rgba(212, 175, 55, 0.5))" }}>
+                <motion.span
+                  className="inline-block"
+                  style={{
+                    fontFamily: "'Cinzel', serif",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
+                    backgroundSize: "400% 400%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                  initial={{ opacity: 0, y: 40, rotateX: -60 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    opacity: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    y: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    rotateX: { delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
+                  }}
+                >
+                  KOTA
+                </motion.span>
+              </span>
+              {/* Associates - wrapped for glow */}
+              <span className="relative inline-block ml-3 md:ml-5" style={{ filter: "drop-shadow(0 3px 15px rgba(212, 175, 55, 0.5))" }}>
+                <motion.span
+                  className="inline-block"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 700,
+                    fontStyle: "italic",
+                    letterSpacing: "0.06em",
+                    background: "linear-gradient(135deg, #D4AF37, #F5E6A3, #C5962C, #E8D48B, #B8862D, #F0DC82)",
+                    backgroundSize: "400% 400%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                  initial={{ opacity: 0, y: 40, rotateX: -60 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    opacity: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    y: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    rotateX: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
+                  }}
+                >
+                  Associates
+                </motion.span>
+              </span>
             </span>
             <motion.span
               className="gradient-text animate-shimmer inline-block"
