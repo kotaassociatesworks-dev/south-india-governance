@@ -351,12 +351,12 @@ const AppointmentBooking = () => {
           <p className="text-sm text-muted-foreground mb-4">Prefer to speak directly?</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <motion.a
-              href="tel:+919849847973"
+              href="tel:+919052878779"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground text-sm font-semibold hover:border-accent/40 transition"
             >
-              <Phone className="w-4 h-4 text-accent" /> Call: 9849847973
+              <Phone className="w-4 h-4 text-accent" /> Call: 9052878779
             </motion.a>
             <motion.a
               href={whatsappUrl}

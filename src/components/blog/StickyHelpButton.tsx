@@ -34,7 +34,7 @@ const StickyHelpButton = () => {
                 WhatsApp Chat
               </a>
                <a
-                 href="tel:+919849847973"
+                 href="tel:+919052878779"
                  className="flex items-center gap-2 p-3 bg-primary text-primary-foreground text-sm font-semibold transition-all hover:opacity-90"
                >
                 <Phone className="w-4 h-4" />

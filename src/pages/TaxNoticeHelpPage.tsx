@@ -321,7 +321,7 @@ const ProfessionalCTA = () => (
         </motion.a>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground">
-        <span>📞 9849847973</span>
+        <span>📞 9052878779</span>
         <span>✉️ kotaassociatesworks@gmail.com</span>
       </div>
     </div>
