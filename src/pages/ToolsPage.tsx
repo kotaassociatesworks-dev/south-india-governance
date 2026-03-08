@@ -171,14 +171,156 @@ const IncomeTaxCalc = () => {
   );
 };
 
+// Indian PIN code → approximate lat/lng database (major pin ranges)
+const pinDatabase: Record<string, { lat: number; lng: number; city: string }> = {
+  // Andhra Pradesh
+  "524101": { lat: 14.15, lng: 79.85, city: "Gudur" },
+  "524201": { lat: 14.42, lng: 79.97, city: "Nellore" },
+  "520001": { lat: 16.51, lng: 80.63, city: "Vijayawada" },
+  "530001": { lat: 17.69, lng: 83.21, city: "Visakhapatnam" },
+  "515001": { lat: 15.48, lng: 78.49, city: "Anantapur" },
+  "516001": { lat: 14.68, lng: 78.83, city: "Cuddapah" },
+  "518001": { lat: 15.83, lng: 78.05, city: "Kurnool" },
+  "522001": { lat: 16.31, lng: 80.44, city: "Guntur" },
+  "517001": { lat: 13.63, lng: 79.42, city: "Tirupati" },
+  "533001": { lat: 16.99, lng: 81.78, city: "Rajahmundry" },
+  "534001": { lat: 16.58, lng: 81.53, city: "Eluru" },
+  "523001": { lat: 15.51, lng: 80.05, city: "Ongole" },
+  // Telangana
+  "500001": { lat: 17.38, lng: 78.49, city: "Hyderabad" },
+  "500081": { lat: 17.44, lng: 78.35, city: "Kukatpally" },
+  "501001": { lat: 17.39, lng: 78.08, city: "Sangareddy" },
+  "502001": { lat: 17.60, lng: 78.11, city: "Medak" },
+  "503001": { lat: 18.33, lng: 78.54, city: "Nizamabad" },
+  "504001": { lat: 19.17, lng: 79.27, city: "Adilabad" },
+  "505001": { lat: 18.67, lng: 79.50, city: "Karimnagar" },
+  "506001": { lat: 17.98, lng: 79.59, city: "Warangal" },
+  "507001": { lat: 17.33, lng: 80.62, city: "Khammam" },
+  "508001": { lat: 16.75, lng: 79.45, city: "Nalgonda" },
+  "509001": { lat: 16.73, lng: 78.08, city: "Mahbubnagar" },
+  // Tamil Nadu
+  "600001": { lat: 13.08, lng: 80.27, city: "Chennai" },
+  "600017": { lat: 13.04, lng: 80.24, city: "T Nagar" },
+  "641001": { lat: 11.00, lng: 76.96, city: "Coimbatore" },
+  "625001": { lat: 9.92, lng: 78.12, city: "Madurai" },
+  "620001": { lat: 10.79, lng: 78.69, city: "Trichy" },
+  "636001": { lat: 11.65, lng: 78.16, city: "Salem" },
+  "628001": { lat: 8.76, lng: 78.14, city: "Tuticorin" },
+  "627001": { lat: 8.73, lng: 77.69, city: "Tirunelveli" },
+  "632001": { lat: 12.92, lng: 79.13, city: "Vellore" },
+  "630001": { lat: 10.36, lng: 79.14, city: "Sivaganga" },
+  "613001": { lat: 10.79, lng: 79.14, city: "Thanjavur" },
+  "642001": { lat: 10.79, lng: 76.65, city: "Pollachi" },
+  // Karnataka
+  "560001": { lat: 12.97, lng: 77.59, city: "Bangalore" },
+  "570001": { lat: 12.30, lng: 76.64, city: "Mysore" },
+  "580001": { lat: 15.36, lng: 75.12, city: "Hubli-Dharwad" },
+  "590001": { lat: 15.85, lng: 74.50, city: "Belgaum" },
+  "575001": { lat: 12.87, lng: 74.88, city: "Mangalore" },
+  // Kerala
+  "682001": { lat: 9.98, lng: 76.28, city: "Kochi" },
+  "695001": { lat: 8.50, lng: 76.95, city: "Thiruvananthapuram" },
+  "673001": { lat: 11.25, lng: 75.77, city: "Kozhikode" },
+  "680001": { lat: 10.52, lng: 76.21, city: "Thrissur" },
+  // Maharashtra
+  "400001": { lat: 18.93, lng: 72.83, city: "Mumbai" },
+  "411001": { lat: 18.52, lng: 73.85, city: "Pune" },
+  "440001": { lat: 21.15, lng: 79.09, city: "Nagpur" },
+  "431001": { lat: 19.88, lng: 75.34, city: "Aurangabad" },
+  "422001": { lat: 19.99, lng: 73.79, city: "Nashik" },
+  // Odisha
+  "751001": { lat: 20.30, lng: 85.83, city: "Bhubaneswar" },
+  "753001": { lat: 20.46, lng: 85.88, city: "Cuttack" },
+  "769001": { lat: 22.26, lng: 84.79, city: "Rourkela" },
+  // Delhi
+  "110001": { lat: 28.63, lng: 77.22, city: "New Delhi" },
+  // Gujarat
+  "380001": { lat: 23.02, lng: 72.57, city: "Ahmedabad" },
+  "395001": { lat: 21.17, lng: 72.83, city: "Surat" },
+  // Rajasthan
+  "302001": { lat: 26.92, lng: 75.78, city: "Jaipur" },
+  "342001": { lat: 26.29, lng: 73.02, city: "Jodhpur" },
+  // West Bengal
+  "700001": { lat: 22.57, lng: 88.36, city: "Kolkata" },
+  // Uttar Pradesh
+  "226001": { lat: 26.85, lng: 80.95, city: "Lucknow" },
+  "201001": { lat: 28.67, lng: 77.41, city: "Ghaziabad" },
+  // Madhya Pradesh
+  "462001": { lat: 23.26, lng: 77.41, city: "Bhopal" },
+  "452001": { lat: 22.72, lng: 75.86, city: "Indore" },
+};
+
+// City name → lat/lng lookup
+const cityDatabase: Record<string, { lat: number; lng: number }> = {};
+Object.values(pinDatabase).forEach((v) => {
+  cityDatabase[v.city.toLowerCase()] = { lat: v.lat, lng: v.lng };
+});
+
+const haversineDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLng = ((lng2 - lng1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  // Multiply by 1.3 to approximate road distance
+  return Math.round(R * c * 1.3);
+};
+
+const resolveLocation = (input: string): { lat: number; lng: number; label: string } | null => {
+  const trimmed = input.trim();
+  // Try as PIN code
+  if (pinDatabase[trimmed]) {
+    const p = pinDatabase[trimmed];
+    return { lat: p.lat, lng: p.lng, label: `${p.city} (${trimmed})` };
+  }
+  // Try as city name
+  const cityKey = trimmed.toLowerCase();
+  if (cityDatabase[cityKey]) {
+    return { lat: cityDatabase[cityKey].lat, lng: cityDatabase[cityKey].lng, label: trimmed };
+  }
+  // Try partial match on city
+  const partial = Object.entries(pinDatabase).find(([, v]) =>
+    v.city.toLowerCase().includes(cityKey)
+  );
+  if (partial) {
+    return { lat: partial[1].lat, lng: partial[1].lng, label: `${partial[1].city} (${partial[0]})` };
+  }
+  return null;
+};
+
 const EWayDistanceCalc = () => {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
-  const [distance, setDistance] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<{
+    originLabel: string;
+    destLabel: string;
+    distance: number;
+    validity: number;
+    partBRequired: boolean;
+  } | null>(null);
+  const [error, setError] = useState("");
 
   const calculate = () => {
-    const km = parseFloat(distance) || 0;
+    setError("");
+    setResult(null);
+
+    const orig = resolveLocation(origin);
+    const dest = resolveLocation(destination);
+
+    if (!orig) {
+      setError(`Could not find location: "${origin}". Try a PIN code (e.g. 524101) or city name (e.g. Gudur).`);
+      return;
+    }
+    if (!dest) {
+      setError(`Could not find location: "${destination}". Try a PIN code (e.g. 600001) or city name (e.g. Chennai).`);
+      return;
+    }
+
+    const km = haversineDistance(orig.lat, orig.lng, dest.lat, dest.lng);
+
     let validity;
     if (km <= 100) validity = 1;
     else if (km <= 300) validity = 3;
@@ -186,7 +328,13 @@ const EWayDistanceCalc = () => {
     else if (km <= 1000) validity = 10;
     else validity = Math.ceil(km / 100);
 
-    setResult({ distance: km, validity, partBRequired: km > 50 });
+    setResult({
+      originLabel: orig.label,
+      destLabel: dest.label,
+      distance: km,
+      validity,
+      partBRequired: km > 50,
+    });
   };
 
   const fieldClass = "w-full h-11 px-4 border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring";
@@ -195,24 +343,44 @@ const EWayDistanceCalc = () => {
     <div className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-semibold text-foreground mb-1.5">Origin City/PIN</label>
-          <input type="text" value={origin} onChange={(e) => setOrigin(e.target.value)} placeholder="e.g. Gudur" className={fieldClass} />
+          <label className="block text-sm font-semibold text-foreground mb-1.5">Origin (PIN Code or City)</label>
+          <input
+            type="text"
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && calculate()}
+            placeholder="e.g. 524101 or Gudur"
+            className={fieldClass}
+          />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-foreground mb-1.5">Destination City/PIN</label>
-          <input type="text" value={destination} onChange={(e) => setDestination(e.target.value)} placeholder="e.g. Chennai" className={fieldClass} />
+          <label className="block text-sm font-semibold text-foreground mb-1.5">Destination (PIN Code or City)</label>
+          <input
+            type="text"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && calculate()}
+            placeholder="e.g. 600001 or Chennai"
+            className={fieldClass}
+          />
         </div>
       </div>
-      <div>
-        <label className="block text-sm font-semibold text-foreground mb-1.5">Approximate Distance (KM)</label>
-        <input type="number" value={distance} onChange={(e) => setDistance(e.target.value)} placeholder="Enter distance in KM" className={fieldClass} />
-      </div>
+      <p className="text-xs text-muted-foreground">
+        Enter a 6-digit PIN code or city name. Distance is auto-calculated using built-in coordinates.
+      </p>
       <button onClick={calculate} className="w-full py-3 bg-primary text-primary-foreground font-semibold text-sm tracking-[0.1em] uppercase hover:bg-primary/90 transition-colors">
-        Check E-Way Bill Validity
+        Calculate Distance & Validity
       </button>
+      {error && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-destructive/10 border border-destructive/30 p-4 text-sm text-destructive">
+          {error}
+        </motion.div>
+      )}
       {result && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-accent/10 border border-accent/30 p-6 space-y-2">
-          <p className="text-sm"><span className="font-semibold">Distance:</span> {result.distance} KM</p>
+          <p className="text-sm"><span className="font-semibold">From:</span> {result.originLabel}</p>
+          <p className="text-sm"><span className="font-semibold">To:</span> {result.destLabel}</p>
+          <p className="text-sm"><span className="font-semibold">Approx. Road Distance:</span> {result.distance} KM</p>
           <p className="text-sm"><span className="font-semibold">E-Way Bill Validity:</span> {result.validity} day(s)</p>
           <p className="text-sm"><span className="font-semibold">Part-B Required:</span> {result.partBRequired ? "Yes" : "No (within 50 KM)"}</p>
         </motion.div>
