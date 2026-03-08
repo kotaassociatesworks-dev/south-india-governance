@@ -235,17 +235,31 @@ const HeroSection = () => {
                 KOTA
               </motion.span>
               <motion.span
-                className="inline-block ml-3 md:ml-5"
+                className="inline-block ml-3 md:ml-5 relative"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 600,
+                  fontWeight: 700,
                   fontStyle: "italic",
-                  letterSpacing: "0.04em",
-                  textShadow: "0 2px 30px rgba(184, 150, 46, 0.3), 0 1px 3px rgba(0,0,0,0.4)",
+                  letterSpacing: "0.06em",
+                  background: "linear-gradient(135deg, hsl(44 60% 55%), hsl(44 45% 70%), hsl(44 60% 50%), hsl(44 50% 40%))",
+                  backgroundSize: "300% 300%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  filter: "drop-shadow(0 2px 8px rgba(184, 150, 46, 0.5)) drop-shadow(0 4px 20px rgba(184, 150, 46, 0.2))",
                 }}
                 initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  rotateX: 0,
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  opacity: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                  y: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                  rotateX: { delay: 0.35, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                  backgroundPosition: { duration: 4, repeat: Infinity, ease: "linear" },
+                }}
               >
                 Associates
               </motion.span>
