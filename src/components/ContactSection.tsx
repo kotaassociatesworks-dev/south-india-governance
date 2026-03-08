@@ -152,8 +152,8 @@ const ContactSection = () => {
             style={{ perspective: "800px" }}
           >
             <iframe
-              title="Kota Associates Gudur Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.5!2d79.85!3d14.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDA5JzAwLjAiTiA3OcKwNTEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+              title="Kota Associates East Gudur Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.632!2d79.847!3d14.157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4c1234567890ab%3A0x1234567890abcdef!2sKota%20Associates%2C%205%2F134%20Patel%20Street%2C%20East%20Gudur%20Rural%2C%20Andhra%20Pradesh%20524101!5e0!3m2!1sen!2sin!4v1700000000000"
               width="100%"
               height="400"
               style={{ border: 0 }}
