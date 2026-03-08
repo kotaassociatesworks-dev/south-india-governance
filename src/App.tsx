@@ -18,6 +18,7 @@ import ToolsPage from "./pages/ToolsPage";
 import BlogPage from "./pages/BlogPage";
 import AdminPage from "./pages/AdminPage";
 import PartnershipPage from "./pages/PartnershipPage";
+import LargeScaleServicesPage from "./pages/LargeScaleServicesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
