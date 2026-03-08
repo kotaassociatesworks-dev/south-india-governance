@@ -263,21 +263,23 @@ const HeroSection = () => {
           >
             Kota Associates
           </motion.h1>
-            <motion.span
-              className="gradient-text animate-shimmer inline-block"
-              style={{
-                backgroundSize: "200% auto",
-                background: "linear-gradient(90deg, hsl(44 60% 45%), hsl(44 45% 65%), hsl(44 60% 50%), hsl(44 60% 45%))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-              initial={{ opacity: 0, y: 30, rotateX: -30 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.5, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Trusted Financial Compliance Since 1952
-            </motion.span>
-          </motion.h1>
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-heading text-xl md:text-2xl lg:text-3xl mb-4"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              fontStyle: "italic",
+              letterSpacing: "0.04em",
+              color: "#D4AF37",
+              textShadow: "0 2px 20px rgba(212, 175, 55, 0.3)",
+            }}
+          >
+            Trusted Financial Compliance Since 1952
+          </motion.p>
 
           {/* Subtitle with typewriter-like reveal */}
           <motion.p
