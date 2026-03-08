@@ -51,7 +51,7 @@ const tiers = [
     description: "Enterprise-grade compliance infrastructure with dedicated account management, SLA-backed turnaround times, and volume-based pricing across all states.",
     highlights: [
       "Dedicated enterprise account team",
-      "SLA-backed turnaround times",
+      
       "Multi-state compliance coordination",
       "Custom reporting dashboards",
       "24/7 priority support line",
