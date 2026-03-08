@@ -122,7 +122,7 @@ const AboutSection = () => {
                   key={i}
                   initial={{ opacity: 0, y: 15 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.5 + i * 0.15, duration: 0.5 }}
+                  transition={{ delay: 0.25 + i * 0.07, duration: 0.3 }}
                 >
                   {text}
                 </motion.p>
