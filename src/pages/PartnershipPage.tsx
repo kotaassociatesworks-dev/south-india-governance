@@ -5,7 +5,7 @@ import { Handshake, Users, MapPin, Building2, ArrowRight, CheckCircle, Phone, Ma
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I'm interested in partnership/franchise opportunities with Kota Associates.");
+const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hello, I would like to inquire about taxation and compliance services.");
 const gmailUrl = "mailto:kotaassociatesworks@gmail.com?subject=" + encodeURIComponent("Partnership Inquiry") + "&body=" + encodeURIComponent("Hi Kota Associates,\n\nI am interested in exploring partnership/franchise opportunities.\n\nMy Details:\n- Name: \n- Location: \n- Current Practice/Firm: \n- Areas of Interest: \n\nPlease share the details.\n\nThank you.");
 
 const partnerTypes = [

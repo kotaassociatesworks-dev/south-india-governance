@@ -14,7 +14,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AppointmentBooking from "@/components/AppointmentBooking";
 
-const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I need help with a GST/Tax notice.");
+const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hello, I would like to inquire about taxation and compliance services.");
 
 /* ─── GST NOTICE DATA ─── */
 const gstNotices = [
@@ -321,7 +321,7 @@ const ProfessionalCTA = () => (
         </motion.a>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground">
-        <span>📞 9849847973</span>
+        <span>📞 9052878779</span>
         <span>✉️ kotaassociatesworks@gmail.com</span>
       </div>
     </div>

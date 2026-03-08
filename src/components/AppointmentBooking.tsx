@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Clock, Phone, Mail, MessageCircle, CheckCircle, CreditCard, User, IndianRupee } from "lucide-react";
 
-const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I'd like to book a consultation appointment.");
+const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hello, I would like to inquire about taxation and compliance services.");
 
 const timeSlots = [
   "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
@@ -351,12 +351,12 @@ const AppointmentBooking = () => {
           <p className="text-sm text-muted-foreground mb-4">Prefer to speak directly?</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <motion.a
-              href="tel:+919849847973"
+              href="tel:+919052878779"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground text-sm font-semibold hover:border-accent/40 transition"
             >
-              <Phone className="w-4 h-4 text-accent" /> Call: 9849847973
+              <Phone className="w-4 h-4 text-accent" /> Call: 9052878779
             </motion.a>
             <motion.a
               href={whatsappUrl}

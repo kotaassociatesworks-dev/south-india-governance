@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 
-const whatsappUrl = "https://wa.me/919849847973?text=" + encodeURIComponent("Hi, I'm interested in Large Scale Services from Kota Associates.");
+const whatsappUrl = "https://wa.me/919052878779?text=" + encodeURIComponent("Hello, I would like to inquire about taxation and compliance services.");
 
 const allServices = [
   { name: "GST Registration", icon: FileText },
@@ -200,8 +200,8 @@ const LargeScaleServicesPage = () => {
                       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-accent-foreground font-semibold text-sm tracking-wider uppercase hover:brightness-110 transition">
                         <MessageCircle className="w-4 h-4" /> WhatsApp Us
                       </a>
-                       <a href="tel:+919849847973" className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary-foreground/30 text-primary-foreground font-semibold text-sm tracking-wider uppercase hover:bg-primary-foreground/10 transition">
-                         <Phone className="w-4 h-4" /> Call: 9849847973
+                       <a href="tel:+919052878779" className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary-foreground/30 text-primary-foreground font-semibold text-sm tracking-wider uppercase hover:bg-primary-foreground/10 transition">
+                         <Phone className="w-4 h-4" /> Call: 9052878779
                        </a>
                     </div>
                   </div>
