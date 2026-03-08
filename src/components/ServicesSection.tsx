@@ -41,23 +41,62 @@ const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="services" className="py-24 lg:py-32 bg-secondary">
-      <div className="container mx-auto px-4 lg:px-8" ref={ref}>
+    <section id="services" className="py-24 lg:py-32 bg-secondary relative overflow-hidden">
+      {/* Animated background */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        animate={{
+          background: [
+            "radial-gradient(ellipse at 30% 20%, hsl(216 60% 26% / 0.04) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 70% 80%, hsl(44 60% 45% / 0.04) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 30% 20%, hsl(216 60% 26% / 0.04) 0%, transparent 50%)",
+          ],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Grid pattern */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "linear-gradient(hsl(216 60% 26% / 0.02) 1px, transparent 1px), linear-gradient(90deg, hsl(216 60% 26% / 0.02) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+        animate={{ opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 5, repeat: Infinity }}
+      />
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3">
+          <motion.p
+            className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3"
+            initial={{ opacity: 0, letterSpacing: "0.1em" }}
+            animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             What We Do
-          </p>
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          </motion.p>
+          <motion.h2
+            className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4"
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ delay: 0.3, duration: 0.7 }}
+          >
             Comprehensive Professional Services
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="text-muted-foreground max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
             End-to-end financial compliance, taxation, drafting, and business advisory services.
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -66,25 +105,53 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={cat.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                initial={{ opacity: 0, y: 40, rotateX: -10 }}
+                animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{
+                  y: -8,
+                  scale: 1.02,
+                  boxShadow: "0 20px 40px -15px hsl(214 65% 12% / 0.15)",
+                  transition: { duration: 0.25 },
+                }}
                 className="bg-background p-8 border border-border hover:border-accent/40 transition-all group relative overflow-hidden"
+                style={{ perspective: "800px" }}
               >
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300" />
-                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/10 transition-colors">
+                {/* Animated shimmer on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent opacity-0 group-hover:opacity-100"
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                />
+                <motion.div
+                  className="absolute bottom-0 left-0 w-full h-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300"
+                  whileHover={{ scaleX: [0, 1], transition: { duration: 0.4 } }}
+                />
+                <motion.div
+                  className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-accent/10 transition-colors"
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                >
                   <Icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
-                </div>
+                </motion.div>
                 <h3 className="font-heading text-xl font-semibold text-foreground mb-4">
                   {cat.title}
                 </h3>
                 <ul className="space-y-2 mb-6">
-                  {cat.services.map((s) => (
-                    <li key={s} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                  {cat.services.map((s, si) => (
+                    <motion.li
+                      key={s}
+                      className="text-sm text-muted-foreground flex items-start gap-2"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.3 + i * 0.1 + si * 0.05, duration: 0.3 }}
+                    >
+                      <motion.span
+                        className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0"
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: si * 0.3 }}
+                      />
                       {s}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
                 <a
@@ -98,14 +165,21 @@ const ServicesSection = () => {
           })}
         </div>
 
-        <div className="text-center mt-12">
-          <Link
-            to="/services"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold text-sm tracking-[0.15em] uppercase hover:bg-primary/90 transition-colors"
-          >
-            View All Services <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        >
+          <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold text-sm tracking-[0.15em] uppercase hover:bg-primary/90 transition-colors"
+            >
+              View All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
