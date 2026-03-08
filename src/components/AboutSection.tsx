@@ -92,7 +92,7 @@ const AboutSection = () => {
               className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3"
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{ delay: 0.15, duration: 0.3 }}
             >
               About Us
             </motion.p>
