@@ -134,8 +134,8 @@ const Footer = () => {
             <h4 className="font-heading text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-4">
               {[
-                { icon: MapPin, text: "Gudur, Andhra Pradesh", href: undefined },
-                { icon: Phone, text: "+91 90528 78779", href: "tel:+919052878779" },
+               { icon: MapPin, text: "5/134, Patel Street, East Gudur Rural, Andhra Pradesh 524101", href: undefined },
+                { icon: Phone, text: "+91 98498 47973", href: "tel:+919849847973" },
                 { icon: Mail, text: "kotaassociatesworks@gmail.com", href: "mailto:kotaassociatesworks@gmail.com" },
               ].map((item, i) => {
                 const Icon = item.icon;
