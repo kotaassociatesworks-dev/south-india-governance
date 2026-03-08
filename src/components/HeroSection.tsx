@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import kotaLogoHero from "@/assets/kota-logo-hero.png";
 
 const letterVariants = {
   hidden: { opacity: 0, y: 50, rotateX: -90 },
