@@ -51,13 +51,13 @@ const PartnershipSection = () => {
           className="text-center mb-16"
         >
           <p className="text-sm font-semibold tracking-[0.25em] uppercase text-gold mb-3">
-            Collaborate With Us
+            Enterprise Solutions
           </p>
           <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-4">
-            Partnership With Us
+            Large Scale Services
           </h2>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto">
-            Whether you're an MSME or MNC, we offer tailored compliance packages with special pricing for our partners.
+            Whether you're an MSME or MNC, we offer tailored compliance packages with special pricing for large-scale engagements.
           </p>
         </motion.div>
 
