@@ -1,34 +1,117 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const navLinks = [
+const navStructure = [
+  { label: "Home", href: "/", isRoute: true },
   { label: "About", href: "/#about" },
-  { label: "Services", href: "/services", isRoute: true },
-  { label: "Client Portal", href: "/portal", isRoute: true },
-  { label: "Enterprise Services", href: "/large-scale-services", isRoute: true },
-  { label: "Know Your Rights", href: "/know-your-rights", isRoute: true },
-  { label: "Know Taxation", href: "/know-taxation", isRoute: true },
-  { label: "Tax Notice Help", href: "/tax-notice-help", isRoute: true },
+  {
+    label: "Services",
+    children: [
+      { label: "All Services", href: "/services", isRoute: true, desc: "View our complete service catalog" },
+      { label: "Client Portal", href: "/portal", isRoute: true, desc: "Self-service compliance portal" },
+      { label: "Enterprise Services", href: "/large-scale-services", isRoute: true, desc: "Solutions for M.S.M.E & M.N.C" },
+    ],
+  },
+  {
+    label: "Knowledge",
+    children: [
+      { label: "Know Your Rights", href: "/know-your-rights", isRoute: true, desc: "Taxpayer rights under Indian law" },
+      { label: "Know Taxation", href: "/know-taxation", isRoute: true, desc: "Tax department structure & hierarchy" },
+      { label: "Tax Notice Help", href: "/tax-notice-help", isRoute: true, desc: "GST & Income Tax notice guidance" },
+      { label: "Blog & Insights", href: "/blog", isRoute: true, desc: "Articles, updates & compliance tips" },
+    ],
+  },
   { label: "Tools", href: "/tools", isRoute: true },
-  { label: "Blog", href: "/blog", isRoute: true },
   { label: "Partnership", href: "/partnership", isRoute: true },
   { label: "Contact", href: "/#contact" },
 ];
 
+const DropdownMenu = ({ items, onClose }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    exit={{ opacity: 0, y: 8, scale: 0.97 }}
+    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
+  >
+    <div className="bg-background/98 backdrop-blur-xl border border-border shadow-2xl min-w-[280px]">
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 -translate-y-full w-3 h-3 bg-background border-l border-t border-border rotate-45" />
+      <div className="py-2">
+        {items.map((item, i) => (
+          <motion.div
+            key={item.href}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.04 }}
+          >
+            <Link
+              to={item.href}
+              onClick={onClose}
+              className="flex flex-col px-5 py-3 hover:bg-accent/5 transition-colors group"
+            >
+              <span className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                {item.label}
+              </span>
+              {item.desc && (
+                <span className="text-xs text-muted-foreground mt-0.5">{item.desc}</span>
+              )}
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+      <div className="h-[2px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+    </div>
+  </motion.div>
+);
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileExpanded, setMobileExpanded] = useState(null);
+  const dropdownTimeout = useRef(null);
+  const location = useLocation();
 
-  const renderLink = (l: typeof navLinks[0], i: number, extra = "") => {
-    const cls = `text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase relative ${extra}`;
+  useEffect(() => { setOpen(false); setActiveDropdown(null); }, [location]);
+
+  const handleMouseEnter = (label) => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setActiveDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setActiveDropdown(null), 150);
+  };
+
+  const renderDesktopItem = (item, i) => {
+    if (item.children) {
+      return (
+        <div
+          key={item.label}
+          className="relative"
+          onMouseEnter={() => handleMouseEnter(item.label)}
+          onMouseLeave={handleMouseLeave}
+        >
+          <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase">
+            <motion.span whileHover={{ y: -2 }} transition={{ duration: 0.2 }} className="inline-flex items-center gap-1">
+              {item.label}
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === item.label ? "rotate-180" : ""}`} />
+            </motion.span>
+          </button>
+          <AnimatePresence>
+            {activeDropdown === item.label && (
+              <DropdownMenu items={item.children} onClose={() => setActiveDropdown(null)} />
+            )}
+          </AnimatePresence>
+        </div>
+      );
+    }
+
+    const cls = "text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase";
     const inner = (
-      <motion.span
-        className="relative inline-block"
-        whileHover={{ y: -2 }}
-        transition={{ duration: 0.2 }}
-      >
-        {l.label}
+      <motion.span className="relative inline-block" whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+        {item.label}
         <motion.span
           className="absolute bottom-0 left-0 w-full h-[2px] bg-accent origin-left"
           initial={{ scaleX: 0 }}
@@ -38,14 +121,68 @@ const Navbar = () => {
       </motion.span>
     );
 
-    return l.isRoute ? (
-      <Link key={l.href} to={l.href} onClick={() => setOpen(false)} className={cls}>
-        {inner}
-      </Link>
+    return item.isRoute ? (
+      <Link key={item.href} to={item.href} className={cls}>{inner}</Link>
     ) : (
-      <a key={l.href} href={l.href} onClick={() => setOpen(false)} className={cls}>
-        {inner}
-      </a>
+      <a key={item.href} href={item.href} className={cls}>{inner}</a>
+    );
+  };
+
+  const renderMobileItem = (item, i) => {
+    if (item.children) {
+      return (
+        <motion.div
+          key={item.label}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: i * 0.05, duration: 0.3 }}
+        >
+          <button
+            onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+            className="w-full flex items-center justify-between text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase py-1"
+          >
+            {item.label}
+            <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} />
+          </button>
+          <AnimatePresence>
+            {mobileExpanded === item.label && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden pl-4 border-l border-accent/20 ml-2 mt-1"
+              >
+                {item.children.map((child) => (
+                  <Link
+                    key={child.href}
+                    to={child.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      );
+    }
+
+    const cls = "text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase";
+    return (
+      <motion.div
+        key={item.href || item.label}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: i * 0.05, duration: 0.3 }}
+      >
+        {item.isRoute ? (
+          <Link to={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</Link>
+        ) : (
+          <a href={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</a>
+        )}
+      </motion.div>
     );
   };
 
@@ -78,7 +215,7 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-6">
-          {navLinks.map((l, i) => renderLink(l, i))}
+          {navStructure.map((item, i) => renderDesktopItem(item, i))}
           <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
             <Link
               to="/login"
@@ -110,16 +247,7 @@ const Navbar = () => {
             className="lg:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
-              {navLinks.map((l, i) => (
-                <motion.div
-                  key={l.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
-                >
-                  {renderLink(l, i)}
-                </motion.div>
-              ))}
+              {navStructure.map((item, i) => renderMobileItem(item, i))}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
