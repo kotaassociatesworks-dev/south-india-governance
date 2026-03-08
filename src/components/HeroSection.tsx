@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Zap, Shield, BarChart3 } from "lucide-react";
-import kotaLogoHero from "@/assets/kota-logo-hero.png";
 
 const HeroSection = () => {
   return (
