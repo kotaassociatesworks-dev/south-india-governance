@@ -13,7 +13,7 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: <a href="tel:+919052878779" className="text-muted-foreground hover:text-accent transition-colors">+91 90528 78779</a>,
+      content: <a href="tel:+919849847973" className="text-muted-foreground hover:text-accent transition-colors">+91 98498 47973</a>,
     },
     {
       icon: Mail,
@@ -23,7 +23,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: "Office",
-      content: <p className="text-muted-foreground">Gudur, Andhra Pradesh<br />Operations across South India</p>,
+      content: <p className="text-muted-foreground">5/134, Patel Street, East Gudur Rural<br />Andhra Pradesh 524101, India</p>,
     },
   ];
 
