@@ -24,11 +24,7 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: (
-        <div className="space-y-1">
-          <a href="tel:+919052878779" className="block text-muted-foreground hover:text-accent transition-colors text-sm">+91 90528 78779</a>
-        </div>
-      ),
+      content: <a href="tel:+919052878779" className="block text-muted-foreground hover:text-accent transition-colors text-sm">+91 90528 78779</a>,
     },
     {
       icon: Mail,
@@ -49,56 +45,19 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background relative overflow-hidden">
-      {/* Animated background */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{
-          background: [
-            "radial-gradient(ellipse at 0% 50%, hsl(216 60% 26% / 0.03) 0%, transparent 50%)",
-            "radial-gradient(ellipse at 100% 50%, hsl(44 60% 45% / 0.04) 0%, transparent 50%)",
-            "radial-gradient(ellipse at 0% 50%, hsl(216 60% 26% / 0.03) 0%, transparent 50%)",
-          ],
-        }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-
-      <motion.div
-        className="absolute top-10 right-[10%] w-16 h-16 border border-accent/10 rounded-full pointer-events-none"
-        animate={{ y: [0, -15, 0], rotate: [0, 180, 360] }}
-        transition={{ duration: 12, repeat: Infinity }}
-      />
-
       <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <motion.p
-            className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3"
-            initial={{ opacity: 0, letterSpacing: "0.1em" }}
-            animate={inView ? { opacity: 1, letterSpacing: "0.25em" } : {}}
-            transition={{ delay: 0.2, duration: 0.7 }}
-          >
-            Get In Touch
-          </motion.p>
-          <motion.h2
-            className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4"
-            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            Contact Us
-          </motion.h2>
-          <motion.p
-            className="text-muted-foreground max-w-lg mx-auto"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.4 }}
-          >
-            Reach out for professional tax compliance and advisory services. We're here to help.
-          </motion.p>
+          <p className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3">Get In Touch</p>
+          <h2 className="font-heading text-3xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">Contact Us</h2>
+          <div className="section-divider mt-4 mb-6" />
+          <p className="text-muted-foreground max-w-lg mx-auto text-lg">
+            Reach out for professional tax compliance and advisory services.
+          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -106,32 +65,23 @@ const ContactSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-6"
           >
-            {/* Office Card */}
-            <div className="bg-card border border-border p-6 lg:p-8 space-y-6">
+            <div className="bg-card border border-border rounded-lg p-6 lg:p-8 space-y-6">
               {contactItems.map((item, i) => {
                 const Icon = item.icon;
                 return (
                   <motion.div
                     key={item.title}
                     className="flex items-start gap-4"
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -15 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.3 + i * 0.12, duration: 0.5 }}
-                    whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                    transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
                   >
-                    <motion.div
-                      className="w-11 h-11 bg-primary/10 flex items-center justify-center shrink-0"
-                      whileHover={{ scale: 1.1, backgroundColor: "hsl(44 60% 45% / 0.15)" }}
-                      animate={{
-                        boxShadow: ["0 0 0px hsl(216 60% 26% / 0)", "0 0 15px hsl(216 60% 26% / 0.1)", "0 0 0px hsl(216 60% 26% / 0)"],
-                      }}
-                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                    >
-                      <Icon className="w-5 h-5 text-primary" />
-                    </motion.div>
+                    <div className="w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-accent" />
+                    </div>
                     <div>
                       <h3 className="font-heading text-base font-semibold text-foreground mb-1">{item.title}</h3>
                       {item.content}
@@ -146,24 +96,24 @@ const ContactSection = () => {
               className="grid sm:grid-cols-3 gap-3"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.7, duration: 0.5 }}
+              transition={{ delay: 0.6, duration: 0.4 }}
             >
               <motion.a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-[hsl(142,70%,40%)] text-white font-semibold text-sm tracking-[0.08em] uppercase transition-all"
-                whileHover={{ scale: 1.04, y: -3, boxShadow: "0 10px 25px -5px hsl(142 70% 40% / 0.3)" }}
-                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-[hsl(142,70%,40%)] text-white font-semibold text-sm tracking-wider uppercase rounded-lg transition-all"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp
               </motion.a>
               <motion.a
                 href="tel:+919052878779"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-primary text-primary-foreground font-semibold text-sm tracking-[0.08em] uppercase transition-all"
-                whileHover={{ scale: 1.04, y: -3, boxShadow: "0 10px 25px -5px hsl(216 60% 26% / 0.3)" }}
-                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-primary text-primary-foreground font-semibold text-sm tracking-wider uppercase rounded-lg transition-all"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Phone className="w-4 h-4" />
                 Call Now
@@ -172,9 +122,9 @@ const ContactSection = () => {
                 href={gmailUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 border-2 border-primary text-primary font-semibold text-sm tracking-[0.08em] uppercase transition-all hover:bg-primary hover:text-primary-foreground"
-                whileHover={{ scale: 1.04, y: -3 }}
-                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 border-2 border-primary text-primary font-semibold text-sm tracking-wider uppercase rounded-lg transition-all hover:bg-primary hover:text-primary-foreground"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Mail className="w-4 h-4" />
                 Email
@@ -184,13 +134,11 @@ const ContactSection = () => {
 
           {/* Google Map */}
           <motion.div
-            initial={{ opacity: 0, x: 40, rotateY: 10 }}
-            animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="space-y-0"
-            style={{ perspective: "800px" }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="bg-card border border-border overflow-hidden">
+            <div className="bg-card border border-border rounded-lg overflow-hidden">
               <div className="p-4 border-b border-border flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-accent" />
                 <div>
@@ -198,19 +146,17 @@ const ContactSection = () => {
                   <p className="text-xs text-muted-foreground">Gudur, Andhra Pradesh</p>
                 </div>
               </div>
-              <motion.div whileHover={{ scale: 1.01, transition: { duration: 0.3 } }}>
-                <iframe
-                  title="Kota Associates Office Location - Gudur, Andhra Pradesh"
-                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Kota+Associates,+Gudur,+Andhra+Pradesh&zoom=15"
-                  width="100%"
-                  height="380"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-[380px]"
-                />
-              </motion.div>
+              <iframe
+                title="Kota Associates Office Location - Gudur, Andhra Pradesh"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Kota+Associates,+Gudur,+Andhra+Pradesh&zoom=15"
+                width="100%"
+                height="380"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-[380px]"
+              />
               <a
                 href="https://maps.app.goo.gl/MwoXPQXTaKDWfnM58"
                 target="_blank"

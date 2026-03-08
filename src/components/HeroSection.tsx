@@ -1,188 +1,94 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowRight, Zap, Shield, BarChart3 } from "lucide-react";
 import kotaLogoHero from "@/assets/kota-logo-hero.png";
-
-const letterVariants = {
-  hidden: { opacity: 0, y: 50, rotateX: -90 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: {
-      delay: 0.2 + i * 0.02,
-      duration: 0.3,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    },
-  }),
-};
-
-const AnimatedText = ({ text, className }: { text: string; className?: string }) => (
-  <span className={className} style={{ perspective: "1000px", display: "inline-block" }}>
-    {text.split("").map((char, i) => (
-      <motion.span
-        key={i}
-        custom={i}
-        variants={letterVariants}
-        initial="hidden"
-        animate="visible"
-        style={{ display: "inline-block", transformOrigin: "bottom" }}
-      >
-        {char === " " ? "\u00A0" : char}
-      </motion.span>
-    ))}
-  </span>
-);
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Gradient Background */}
+      {/* Deep animated gradient */}
       <motion.div
         className="absolute inset-0"
         animate={{
           background: [
-            "linear-gradient(135deg, hsl(214 65% 12%) 0%, hsl(216 60% 26%) 50%, hsl(214 65% 14%) 100%)",
-            "linear-gradient(225deg, hsl(214 65% 10%) 0%, hsl(220 55% 20%) 50%, hsl(216 60% 26%) 100%)",
-            "linear-gradient(315deg, hsl(216 60% 26%) 0%, hsl(214 65% 12%) 50%, hsl(220 50% 18%) 100%)",
-            "linear-gradient(135deg, hsl(214 65% 12%) 0%, hsl(216 60% 26%) 50%, hsl(214 65% 14%) 100%)",
+            "linear-gradient(135deg, hsl(210 72% 12%) 0%, hsl(224 64% 25%) 40%, hsl(210 72% 18%) 100%)",
+            "linear-gradient(225deg, hsl(210 72% 10%) 0%, hsl(224 64% 28%) 40%, hsl(210 72% 15%) 100%)",
+            "linear-gradient(315deg, hsl(224 64% 25%) 0%, hsl(210 72% 12%) 40%, hsl(224 64% 20%) 100%)",
+            "linear-gradient(135deg, hsl(210 72% 12%) 0%, hsl(224 64% 25%) 40%, hsl(210 72% 18%) 100%)",
           ],
         }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Color shifting overlay */}
+      {/* Noise texture overlay */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+      }} />
+
+      {/* Gradient orbs */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[120px]"
         animate={{
           background: [
-            "radial-gradient(ellipse at 20% 50%, hsl(44 60% 45% / 0.08) 0%, transparent 60%)",
-            "radial-gradient(ellipse at 80% 30%, hsl(44 60% 45% / 0.12) 0%, transparent 60%)",
-            "radial-gradient(ellipse at 50% 80%, hsl(44 60% 45% / 0.06) 0%, transparent 60%)",
-            "radial-gradient(ellipse at 20% 50%, hsl(44 60% 45% / 0.08) 0%, transparent 60%)",
+            "radial-gradient(circle, hsl(46 70% 47% / 0.06) 0%, transparent 70%)",
+            "radial-gradient(circle, hsl(46 70% 47% / 0.1) 0%, transparent 70%)",
+            "radial-gradient(circle, hsl(46 70% 47% / 0.06) 0%, transparent 70%)",
           ],
+          x: [0, 50, 0],
+          y: [0, -30, 0],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
+      <motion.div
+        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[100px]"
+        animate={{
+          background: [
+            "radial-gradient(circle, hsl(224 64% 33% / 0.15) 0%, transparent 70%)",
+            "radial-gradient(circle, hsl(224 64% 45% / 0.2) 0%, transparent 70%)",
+            "radial-gradient(circle, hsl(224 64% 33% / 0.15) 0%, transparent 70%)",
+          ],
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-      {/* 3D Animated Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ perspective: "1200px" }}>
-        {/* 3D Rotating cube wireframe */}
-        <motion.div
-          className="absolute top-[15%] right-[12%] w-32 h-32 border border-gold/15"
-          style={{ transformStyle: "preserve-3d" }}
-          animate={{
-            rotateX: [0, 360],
-            rotateY: [0, 360],
-            rotateZ: [0, 180],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute top-[15%] right-[12%] w-32 h-32 border border-gold/10"
-          style={{ transformStyle: "preserve-3d" }}
-          animate={{
-            rotateX: [0, -360],
-            rotateY: [180, -180],
-            rotateZ: [90, -90],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
+      {/* Grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        style={{
+          backgroundImage: "linear-gradient(hsl(46 70% 47%) 1px, transparent 1px), linear-gradient(90deg, hsl(46 70% 47%) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
 
-        {/* 3D Rotating rings */}
+      {/* Floating geometric elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-20 -right-20 w-[500px] h-[500px] border border-gold/10 rounded-full"
-          style={{ transformStyle: "preserve-3d" }}
-          animate={{ rotateX: [0, 30, 0], rotateY: [0, 360], rotateZ: [0, 15, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[12%] right-[10%] w-40 h-40 border border-gold/10 rounded-2xl"
+          animate={{ rotateZ: [0, 90, 0], y: [0, -20, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -bottom-32 -left-32 w-[400px] h-[400px] border border-gold/8 rounded-full"
-          style={{ transformStyle: "preserve-3d" }}
-          animate={{ rotateX: [20, -20, 20], rotateY: [-360, 0], rotateZ: [-10, 10, -10] }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* 3D floating diamond */}
-        <motion.div
-          className="absolute top-[60%] left-[8%] w-16 h-16 border border-gold/20"
-          style={{ transformStyle: "preserve-3d", transformOrigin: "center" }}
-          animate={{
-            rotateX: [45, 225, 45],
-            rotateY: [45, 225, 45],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Pulsing color orbs */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl"
-          animate={{
-            background: [
-              "radial-gradient(circle, hsl(44 60% 45% / 0.04) 0%, transparent 70%)",
-              "radial-gradient(circle, hsl(44 60% 45% / 0.08) 0%, transparent 70%)",
-              "radial-gradient(circle, hsl(44 60% 45% / 0.04) 0%, transparent 70%)",
-            ],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[20%] left-[8%] w-24 h-24 border border-gold/8 rounded-full"
+          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-3xl"
-          animate={{
-            background: [
-              "radial-gradient(circle, hsl(216 60% 26% / 0.15) 0%, transparent 70%)",
-              "radial-gradient(circle, hsl(216 60% 40% / 0.2) 0%, transparent 70%)",
-              "radial-gradient(circle, hsl(216 60% 26% / 0.15) 0%, transparent 70%)",
-            ],
-          }}
+          className="absolute top-[55%] right-[25%] w-3 h-3 bg-gold/30 rounded-full"
+          animate={{ y: [0, -40, 0], opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Floating color particles */}
-        {[
-          { top: "20%", left: "25%", size: 4, delay: 0, dur: 6, color: "gold" },
-          { top: "35%", left: "70%", size: 3, delay: 1, dur: 7, color: "gold" },
-          { top: "70%", left: "30%", size: 5, delay: 2, dur: 8, color: "gold" },
-          { top: "50%", left: "85%", size: 3, delay: 0.5, dur: 5, color: "primary" },
-          { top: "15%", left: "60%", size: 2, delay: 1.5, dur: 9, color: "gold" },
-          { top: "80%", left: "65%", size: 4, delay: 3, dur: 6, color: "primary" },
-        ].map((p, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full ${p.color === "gold" ? "bg-gold/25" : "bg-primary/20"}`}
-            style={{ top: p.top, left: p.left, width: p.size, height: p.size }}
-            animate={{
-              y: [0, -40, 0],
-              x: [0, 15, -15, 0],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.8, 1],
-            }}
-            transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
-          />
-        ))}
-
-        {/* Animated grid lines */}
         <motion.div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(44 60% 45% / 0.03) 1px, transparent 1px), linear-gradient(90deg, hsl(44 60% 45% / 0.03) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[30%] left-[20%] w-2 h-2 bg-gold/20 rounded-full"
+          animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Sweeping light streak */}
+        {/* Sweeping light */}
         <motion.div
           className="absolute top-0 left-0 w-[2px] h-full"
-          style={{
-            background: "linear-gradient(to bottom, transparent, hsl(44 60% 45% / 0.3), transparent)",
-          }}
+          style={{ background: "linear-gradient(to bottom, transparent, hsl(46 70% 47% / 0.3), transparent)" }}
           animate={{ x: ["-10%", "110vw"] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", repeatDelay: 4 }}
         />
       </div>
 
@@ -191,176 +97,146 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-          className="max-w-4xl mx-auto"
+          transition={{ duration: 0.3 }}
+          className="max-w-5xl mx-auto"
         >
-          {/* Badge with shimmer */}
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateX: -40 }}
-            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-            transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            style={{ perspective: "800px" }}
-            className="inline-block mb-6 px-8 py-3 border-2 border-gold/60 bg-gold/5 backdrop-blur-sm text-gold font-heading text-base lg:text-lg tracking-[0.35em] uppercase animate-pulse-glow relative overflow-hidden shadow-[0_0_30px_-5px_hsl(var(--gold)/0.25)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="inline-flex items-center gap-2 mb-8 px-5 py-2.5 rounded-full border border-gold/30 bg-gold/5 backdrop-blur-sm"
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/15 to-transparent"
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            />
-            <span className="relative z-10 font-bold" style={{ textShadow: "0 0 20px hsl(var(--gold) / 0.4), 0 2px 4px rgba(0,0,0,0.3)" }}>
-              ✦ Established 1952 ✦
+            <div className="w-2 h-2 rounded-full bg-gold animate-pulse-glow" />
+            <span className="text-gold text-sm font-semibold tracking-widest uppercase">
+              Established 1952 · 70+ Years of Trust
             </span>
           </motion.div>
 
-          {/* 3D Letter-by-letter headline */}
-          {/* Logo Image with premium animations */}
+          {/* Logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.7, y: 40 }}
+            initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mb-6 inline-block"
+            transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mb-8 inline-block"
           >
-            {/* Outer glow pulse */}
-            <motion.div
-              className="absolute inset-0 -m-4 rounded-sm"
-              animate={{
-                boxShadow: [
-                  "0 0 30px 5px rgba(212, 175, 55, 0.0)",
-                  "0 0 60px 15px rgba(212, 175, 55, 0.15)",
-                  "0 0 30px 5px rgba(212, 175, 55, 0.0)",
-                ],
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-            {/* Light sweep across the image */}
             <div className="relative overflow-hidden inline-block">
               <motion.div
                 className="absolute inset-0 z-10 pointer-events-none"
                 style={{
-                  background: "linear-gradient(105deg, transparent 40%, rgba(245, 230, 163, 0.25) 45%, rgba(245, 230, 163, 0.4) 50%, rgba(245, 230, 163, 0.25) 55%, transparent 60%)",
+                  background: "linear-gradient(105deg, transparent 40%, rgba(201, 162, 39, 0.2) 45%, rgba(201, 162, 39, 0.35) 50%, rgba(201, 162, 39, 0.2) 55%, transparent 60%)",
                 }}
                 animate={{ x: ["-150%", "250%"] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+                transition={{ duration: 3, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" }}
               />
-              <motion.img
+              <img
                 src={kotaLogoHero}
                 alt="Kota Associates - Trusted Financial Compliance Since 1952"
                 className="h-20 md:h-28 lg:h-36 xl:h-44 w-auto object-contain relative z-0"
                 style={{
-                  filter: "drop-shadow(0 4px 20px rgba(212, 175, 55, 0.4)) drop-shadow(0 8px 40px rgba(0, 0, 0, 0.3))",
+                  filter: "drop-shadow(0 4px 20px rgba(201, 162, 39, 0.35)) drop-shadow(0 8px 40px rgba(0, 0, 0, 0.3))",
                 }}
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
               />
             </div>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-primary-foreground mb-6 sr-only"
-          >
-            Kota Associates
-          </motion.h1>
+          <h1 className="sr-only">Kota Associates - Trusted Financial Compliance Since 1952</h1>
+
           {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-xl md:text-2xl lg:text-3xl mb-4"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 600,
-              fontStyle: "italic",
-              letterSpacing: "0.04em",
-              color: "#D4AF37",
-              textShadow: "0 2px 20px rgba(212, 175, 55, 0.3)",
-            }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="font-heading text-xl md:text-2xl lg:text-3xl font-semibold mb-4 text-gold tracking-tight"
           >
             Trusted Financial Compliance Since 1952
           </motion.p>
 
-          {/* Subtitle with typewriter-like reveal */}
+          {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, filter: "blur(10px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ delay: 0.7, duration: 0.4 }}
-            className="font-body text-lg md:text-xl text-primary-foreground/70 mb-12 tracking-wide"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
+            className="font-body text-lg md:text-xl text-primary-foreground/60 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            Delivering Quality and Assured Services Across South India
+            Delivering quality and assured compliance, taxation, and advisory services across South India — 7 states, 1000+ clients.
           </motion.p>
 
-          {/* CTA buttons with 3D hover */}
+          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ delay: 0.8, duration: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
-            <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>
+            <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }}>
               <Link
                 to="/services"
-                className="block px-8 py-3.5 bg-accent text-accent-foreground font-semibold text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-xl hover:shadow-accent/30"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-accent-foreground font-semibold text-sm tracking-widest uppercase rounded-lg transition-all hover:shadow-lg hover:shadow-accent/25"
               >
+                <BarChart3 className="w-4 h-4" />
                 Explore Services
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>
+            <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }}>
               <Link
                 to="/portal"
-                className="block px-8 py-3.5 border border-primary-foreground/30 text-primary-foreground font-semibold text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-primary-foreground/10 hover:border-primary-foreground/50"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/25 text-primary-foreground font-semibold text-sm tracking-widest uppercase rounded-lg transition-all hover:bg-primary-foreground/10 hover:border-primary-foreground/40"
               >
+                <Shield className="w-4 h-4" />
                 Client Portal
               </Link>
             </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.08, y: -4 }}
-              whileTap={{ scale: 0.95 }}
-              animate={{
-                boxShadow: [
-                  "0 0 0px hsl(44 60% 45% / 0)",
-                  "0 0 20px hsl(44 60% 45% / 0.3)",
-                  "0 0 0px hsl(44 60% 45% / 0)",
-                ],
-              }}
-              transition={{
-                boxShadow: { duration: 2, repeat: Infinity },
-              }}
-            >
+            <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.97 }}>
               <Link
                 to="/tools"
-                className="block px-8 py-3.5 bg-gradient-to-r from-accent via-accent/80 to-accent text-accent-foreground font-bold text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-2xl hover:shadow-accent/40 relative overflow-hidden"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground/10 backdrop-blur text-gold font-bold text-sm tracking-widest uppercase rounded-lg border border-gold/20 transition-all hover:bg-gold/10 hover:border-gold/40 hover:shadow-lg hover:shadow-gold/15"
               >
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  animate={{ x: ["-100%", "200%"] }}
-                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2 }}
-                />
-                <span className="relative z-10">⚡ Free Compliance Tools</span>
+                <Zap className="w-4 h-4" />
+                Free Tools
               </Link>
             </motion.div>
           </motion.div>
+
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
+            className="flex flex-wrap justify-center gap-8 md:gap-12"
+          >
+            {[
+              { value: "70+", label: "Years" },
+              { value: "7", label: "States" },
+              { value: "1000+", label: "Clients" },
+              { value: "50+", label: "Partners" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.3 + i * 0.1 }}
+                className="text-center"
+              >
+                <p className="font-heading text-2xl md:text-3xl font-bold text-gold">{stat.value}</p>
+                <p className="text-xs text-primary-foreground/40 uppercase tracking-widest mt-1">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
-        {/* Scroll indicator with color pulse */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{
-              y: [0, 8, 0],
-              boxShadow: [
-                "0 0 8px hsl(44 60% 45% / 0.2)",
-                "0 0 20px hsl(44 60% 45% / 0.5)",
-                "0 0 8px hsl(44 60% 45% / 0.2)",
-              ],
-            }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-px h-16 bg-gradient-to-b from-gold/60 to-transparent"
+            className="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent"
           />
         </motion.div>
       </div>
