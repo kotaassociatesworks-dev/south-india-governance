@@ -42,7 +42,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
             style={{ background: "linear-gradient(90deg, hsl(44 60% 45%), hsl(44 45% 65%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 5, ease: "easeInOut" }}
           />
         </div>
       </motion.div>
