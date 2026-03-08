@@ -228,7 +228,7 @@ const HeroSection = () => {
               }}
               initial={{ opacity: 0, y: 30, rotateX: -30 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.5, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               Trusted Financial Compliance Since 1952
             </motion.span>
