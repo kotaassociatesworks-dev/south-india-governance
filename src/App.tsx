@@ -37,6 +37,9 @@ import ComplianceHealthPage from "./pages/ComplianceHealthPage";
 import TaxAssistantPage from "./pages/TaxAssistantPage";
 import TaxNewsRadarPage from "./pages/TaxNewsRadarPage";
 import DocumentAnalyzerPage from "./pages/DocumentAnalyzerPage";
+import TaxUpdatesPage from "./pages/TaxUpdatesPage";
+import ComplianceDashboardPage from "./pages/ComplianceDashboardPage";
+import ComplianceTwinPage from "./pages/ComplianceTwinPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
