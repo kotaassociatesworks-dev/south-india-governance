@@ -27,6 +27,8 @@ const navStructure = [
       { label: "Compliance Calendar", href: "/compliance-calendar", isRoute: true, desc: "Never miss a filing deadline" },
       { label: "Document Vault", href: "/document-vault", isRoute: true, desc: "Secure document storage" },
       { label: "Litigation Tracker", href: "/litigation-tracker", isRoute: true, desc: "Track tax dispute status" },
+      { label: "Document Analyzer", href: "/document-analyzer", isRoute: true, desc: "AI-powered document analysis" },
+      { label: "Tax News Radar", href: "/tax-news", isRoute: true, desc: "Real-time tax updates" },
     ],
   },
   {

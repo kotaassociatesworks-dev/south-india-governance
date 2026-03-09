@@ -8,6 +8,8 @@ import TopClientsSection from "@/components/TopClientsSection";
 import SuccessStoriesSection from "@/components/SuccessStoriesSection";
 import PartnershipSection from "@/components/PartnershipSection";
 import IndustriesSection from "@/components/IndustriesSection";
+import ThoughtLeadershipSection from "@/components/ThoughtLeadershipSection";
+import TeamExpertiseSection from "@/components/TeamExpertiseSection";
 import TimelineSection from "@/components/TimelineSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import CTABanner from "@/components/CTABanner";
@@ -24,8 +26,10 @@ const Index = () => {
       <OurGoalSection />
       <CapabilitiesSection />
       <ServicesSection />
+      <ThoughtLeadershipSection />
       <TopClientsSection />
       <SuccessStoriesSection />
+      <TeamExpertiseSection />
       <PartnershipSection />
       <IndustriesSection />
       <TimelineSection />
