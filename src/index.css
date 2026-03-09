@@ -6,41 +6,25 @@
 
 @layer base {
   :root {
-    /* Enterprise Color System */
-    /* Deep Navy: #0A2540 → hsl(210, 72%, 15%) */
-    /* Royal Blue: #1E3A8A → hsl(224, 64%, 33%) */
-    /* Gold: #C9A227 → hsl(46, 70%, 47%) */
-    /* Soft Gray: #F5F7FA → hsl(216, 33%, 97%) */
-    /* Charcoal: #1F2937 → hsl(215, 28%, 17%) */
-
     --background: 216 33% 97%;
     --foreground: 215 28% 17%;
-
     --card: 220 20% 95%;
     --card-foreground: 215 28% 17%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 215 28% 17%;
-
     --primary: 210 72% 15%;
     --primary-foreground: 216 33% 97%;
-
     --secondary: 216 20% 93%;
     --secondary-foreground: 215 28% 17%;
-
     --muted: 216 18% 90%;
     --muted-foreground: 215 15% 48%;
-
     --accent: 46 70% 47%;
     --accent-foreground: 210 72% 10%;
-
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 216 18% 88%;
     --input: 216 18% 88%;
     --ring: 224 64% 33%;
-
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
@@ -66,6 +50,8 @@
     --gradient-gold: linear-gradient(135deg, hsl(46 70% 47%) 0%, hsl(46 50% 62%) 100%);
     --shadow-corporate: 0 25px 60px -15px hsl(210 72% 15% / 0.2);
     --shadow-gold: 0 15px 40px -10px hsl(46 70% 47% / 0.25);
+    --shadow-premium: 0 30px 80px -20px hsl(210 72% 15% / 0.18);
+    --shadow-gold-glow: 0 20px 60px -15px hsl(46 70% 47% / 0.35);
   }
 
   .dark {
@@ -93,14 +79,12 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
@@ -114,12 +98,12 @@
 }
 
 @layer components {
-  /* Enterprise spacing scale */
+  /* Premium section spacing */
   .section-pad {
-    @apply py-24 lg:py-32;
+    @apply py-28 lg:py-40;
   }
 
-  /* Floating particles for 3D effect */
+  /* Premium keyframes */
   @keyframes float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(5deg); }
@@ -140,30 +124,62 @@
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+  @keyframes reveal-up {
+    0% { opacity: 0; transform: translateY(40px); filter: blur(8px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  @keyframes line-draw {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+  @keyframes line-draw-v {
+    0% { height: 0; }
+    100% { height: 100%; }
+  }
+  @keyframes text-reveal {
+    0% { clip-path: inset(100% 0 0 0); opacity: 0; }
+    100% { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+  @keyframes particle-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    25% { transform: translate(15px, -25px) scale(1.2); opacity: 0.6; }
+    50% { transform: translate(-10px, -50px) scale(0.8); opacity: 0.4; }
+    75% { transform: translate(20px, -30px) scale(1.1); opacity: 0.5; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes ring-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  .animate-float-reverse {
-    animation: float-reverse 8s ease-in-out infinite;
-  }
-  .animate-pulse-glow {
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-  .animate-shimmer {
-    background-size: 200% auto;
-    animation: shimmer 3s linear infinite;
-  }
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient-shift 8s ease infinite;
-  }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-reverse { animation: float-reverse 8s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-shimmer { background-size: 200% auto; animation: shimmer 3s linear infinite; }
+  .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
+  .animate-reveal-up { animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .animate-text-reveal { animation: text-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+  .animate-ring-pulse { animation: ring-pulse 2s ease-out infinite; }
 
   /* Premium glass card */
   .glass-card {
     background: hsl(var(--background) / 0.7);
     backdrop-filter: blur(20px) saturate(1.2);
     border: 1px solid hsl(var(--border) / 0.4);
+  }
+
+  /* Premium card with gold glow */
+  .premium-card {
+    @apply bg-background border border-border rounded-xl transition-all duration-500;
+    &:hover {
+      border-color: hsl(var(--accent) / 0.5);
+      box-shadow: 0 25px 60px -15px hsl(var(--navy-deep) / 0.15), 0 0 30px -10px hsl(var(--accent) / 0.12);
+      transform: translateY(-8px);
+    }
   }
 
   /* Enterprise gradient text */
@@ -173,7 +189,6 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .gradient-text-royal {
     background: linear-gradient(135deg, hsl(var(--navy-medium)) 0%, hsl(var(--royal)) 50%, hsl(var(--navy-medium)) 100%);
     -webkit-background-clip: text;
@@ -181,20 +196,31 @@
     background-clip: text;
   }
 
+  /* Gold line separator */
+  .gold-line {
+    @apply h-[2px] mx-auto;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+
   /* Premium section divider */
   .section-divider {
-    @apply w-16 h-1 mx-auto;
+    @apply w-20 h-[2px] mx-auto;
     background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold-light)));
   }
 
   /* Enterprise card */
   .enterprise-card {
-    @apply bg-background border border-border p-8 transition-all duration-300;
+    @apply bg-background border border-border p-8 transition-all duration-500;
     &:hover {
       border-color: hsl(var(--accent) / 0.4);
-      box-shadow: 0 20px 50px -15px hsl(var(--navy-deep) / 0.12);
-      transform: translateY(-4px);
+      box-shadow: 0 25px 60px -15px hsl(var(--navy-deep) / 0.12), 0 0 20px -8px hsl(var(--accent) / 0.08);
+      transform: translateY(-6px);
     }
+  }
+
+  /* Vignette overlay */
+  .vignette {
+    box-shadow: inset 0 0 150px 60px hsl(210 72% 8% / 0.4);
   }
 }
 
