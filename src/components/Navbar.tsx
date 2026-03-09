@@ -29,6 +29,7 @@ const navStructure = [
       { label: "Litigation Tracker", href: "/litigation-tracker", isRoute: true, desc: "Dispute tracking" },
       { label: "Doc Analyzer", href: "/document-analyzer", isRoute: true, desc: "AI document analysis" },
       { label: "Tax News", href: "/tax-news", isRoute: true, desc: "Real-time updates" },
+      { label: "HSN Code Finder", href: "/hsn-code-finder", isRoute: true, desc: "GST code lookup" },
     ],
   },
   {
