@@ -35,7 +35,7 @@ const particles = Array.from({ length: 24 }, (_, i) => ({
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
       {/* Deep animated gradient */}
       <motion.div
         className="absolute inset-0"
