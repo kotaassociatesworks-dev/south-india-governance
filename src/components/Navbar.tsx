@@ -29,6 +29,7 @@ const navStructure = [
       { label: "Litigation Tracker", href: "/litigation-tracker", isRoute: true, desc: "Dispute tracking" },
       { label: "Doc Analyzer", href: "/document-analyzer", isRoute: true, desc: "AI document analysis" },
       { label: "Tax News", href: "/tax-news", isRoute: true, desc: "Real-time updates" },
+      { label: "HSN Code Finder", href: "/hsn-code-finder", isRoute: true, desc: "GST code lookup" },
     ],
   },
   {
@@ -50,6 +51,9 @@ const navStructure = [
       { label: "Command Center", href: "/compliance-dashboard", isRoute: true, desc: "Compliance dashboard" },
       { label: "Compliance Twin", href: "/compliance-twin", isRoute: true, desc: "Smart monitoring" },
       { label: "Tax OS", href: "/tax-operating-system", isRoute: true, desc: "Centralized tax platform" },
+      { label: "Strategy Simulator", href: "/tax-strategy-simulator", isRoute: true, desc: "Regime comparison" },
+      { label: "Compliance Heatmap", href: "/compliance-heatmap", isRoute: true, desc: "Visual risk map" },
+      { label: "Ecosystem Hub", href: "/ecosystem", isRoute: true, desc: "Full platform overview" },
       { label: "Partnership", href: "/partnership", isRoute: true, desc: "Join our network" },
     ],
   },
