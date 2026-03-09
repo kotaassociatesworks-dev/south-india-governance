@@ -16,10 +16,13 @@ import CTABanner from "@/components/CTABanner";
 import ContactSection from "@/components/ContactSection";
 import FloatingContact from "@/components/FloatingContact";
 import Footer from "@/components/Footer";
+import TrustBadgeBar from "@/components/TrustBadgeBar";
+import LatestTaxUpdatesFeed from "@/components/LatestTaxUpdatesFeed";
 
 const Index = () => {
   return (
     <main>
+      <TrustBadgeBar />
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -34,6 +37,7 @@ const Index = () => {
       <IndustriesSection />
       <TimelineSection />
       <WhyChooseUs />
+      <LatestTaxUpdatesFeed />
       <CTABanner />
       <ContactSection />
       <FloatingContact />

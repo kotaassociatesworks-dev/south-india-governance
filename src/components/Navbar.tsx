@@ -42,7 +42,15 @@ const navStructure = [
       { label: "Tools", href: "/tools", isRoute: true, desc: "Calculators & utilities" },
     ],
   },
-  { label: "Partnership", href: "/partnership", isRoute: true },
+  {
+    label: "Solutions",
+    children: [
+      { label: "Latest Updates", href: "/tax-updates", isRoute: true, desc: "GST & IT updates" },
+      { label: "Command Center", href: "/compliance-dashboard", isRoute: true, desc: "Compliance dashboard" },
+      { label: "Compliance Twin", href: "/compliance-twin", isRoute: true, desc: "Smart monitoring" },
+      { label: "Partnership", href: "/partnership", isRoute: true, desc: "Join our network" },
+    ],
+  },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -188,7 +196,7 @@ const Navbar = () => {
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-9 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-background/90 backdrop-blur-2xl border-b border-border/50 shadow-lg shadow-primary/5"
           : "bg-transparent border-b border-transparent"
