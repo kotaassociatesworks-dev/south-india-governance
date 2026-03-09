@@ -42,6 +42,10 @@ import ComplianceDashboardPage from "./pages/ComplianceDashboardPage";
 import ComplianceTwinPage from "./pages/ComplianceTwinPage";
 import TaxIntelligenceRadarPage from "./pages/TaxIntelligenceRadarPage";
 import TaxOperatingSystemPage from "./pages/TaxOperatingSystemPage";
+import EcosystemHubPage from "./pages/EcosystemHubPage";
+import HSNCodeFinderPage from "./pages/HSNCodeFinderPage";
+import TaxStrategySimulatorPage from "./pages/TaxStrategySimulatorPage";
+import ComplianceHeatmapPage from "./pages/ComplianceHeatmapPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
