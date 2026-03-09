@@ -17,37 +17,37 @@ const CapabilitiesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 bg-background">
+    <section ref={ref} className="py-28 lg:py-40 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-14"
+          className="text-center mb-16"
         >
-          <p className="text-sm font-semibold tracking-[0.25em] uppercase text-accent mb-3">What We Do</p>
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-3 tracking-tight">Our Capabilities</h2>
-          <div className="w-12 h-0.5 bg-accent mx-auto mt-3 mb-4" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">Comprehensive tax and compliance solutions built on decades of expertise.</p>
+          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-accent mb-4">What We Do</p>
+          <h2 className="font-heading text-3xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">Our Capabilities</h2>
+          <div className="section-divider mt-4 mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Comprehensive tax and compliance solutions built on decades of expertise.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-6xl mx-auto" style={{ perspective: "1000px" }}>
           {capabilities.map((cap, i) => {
             const Icon = cap.icon;
             return (
               <motion.div
                 key={cap.title}
-                initial={{ opacity: 0, y: 25 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.08 }}
+                initial={{ opacity: 0, y: 35, rotateX: 8 }}
+                animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Link
                   to={cap.href}
-                  className="block bg-secondary border border-border rounded-xl p-7 hover:border-accent/40 hover:shadow-lg transition-all group h-full"
+                  className="premium-card block p-8 group h-full"
                 >
-                  <div className="w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                    <Icon className="w-5 h-5 text-accent" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 group-hover:scale-110 transition-all duration-300">
+                    <Icon className="w-6 h-6 text-accent" />
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-2">{cap.title}</h3>
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-3 group-hover:text-accent transition-colors">{cap.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{cap.desc}</p>
                 </Link>
               </motion.div>
