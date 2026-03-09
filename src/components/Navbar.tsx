@@ -49,6 +49,7 @@ const navStructure = [
       { label: "Intelligence Radar", href: "/tax-intelligence-radar", isRoute: true, desc: "Impact analysis" },
       { label: "Command Center", href: "/compliance-dashboard", isRoute: true, desc: "Compliance dashboard" },
       { label: "Compliance Twin", href: "/compliance-twin", isRoute: true, desc: "Smart monitoring" },
+      { label: "Tax OS", href: "/tax-operating-system", isRoute: true, desc: "Centralized tax platform" },
       { label: "Partnership", href: "/partnership", isRoute: true, desc: "Join our network" },
     ],
   },
