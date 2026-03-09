@@ -42,7 +42,15 @@ const navStructure = [
       { label: "Tools", href: "/tools", isRoute: true, desc: "Calculators & utilities" },
     ],
   },
-  { label: "Partnership", href: "/partnership", isRoute: true },
+  {
+    label: "Solutions",
+    children: [
+      { label: "Latest Updates", href: "/tax-updates", isRoute: true, desc: "GST & IT updates" },
+      { label: "Command Center", href: "/compliance-dashboard", isRoute: true, desc: "Compliance dashboard" },
+      { label: "Compliance Twin", href: "/compliance-twin", isRoute: true, desc: "Smart monitoring" },
+      { label: "Partnership", href: "/partnership", isRoute: true, desc: "Join our network" },
+    ],
+  },
   { label: "Contact", href: "/#contact" },
 ];
 

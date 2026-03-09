@@ -37,6 +37,7 @@ const Index = () => {
       <IndustriesSection />
       <TimelineSection />
       <WhyChooseUs />
+      <LatestTaxUpdatesFeed />
       <CTABanner />
       <ContactSection />
       <FloatingContact />
