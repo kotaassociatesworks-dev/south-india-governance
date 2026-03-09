@@ -89,6 +89,7 @@ const AnimatedRoutes = () => {
         <Route path="/tax-updates" element={<PageTransition><TaxUpdatesPage /></PageTransition>} />
         <Route path="/compliance-dashboard" element={<PageTransition><ComplianceDashboardPage /></PageTransition>} />
         <Route path="/compliance-twin" element={<PageTransition><ComplianceTwinPage /></PageTransition>} />
+        <Route path="/tax-intelligence-radar" element={<PageTransition><TaxIntelligenceRadarPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
