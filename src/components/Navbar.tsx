@@ -46,28 +46,28 @@ const navStructure = [
   { label: "Contact", href: "/#contact" },
 ];
 
-const DropdownMenu = ({ items, onClose }: { items: any[]; onClose: () => void }) => (
+const DropdownMenu = ({ items, onClose, isPlatform }: { items: any[]; onClose: () => void; isPlatform?: boolean }) => (
   <motion.div
-    initial={{ opacity: 0, y: 10 }}
+    initial={{ opacity: 0, y: 8 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: 10 }}
+    exit={{ opacity: 0, y: 8 }}
     transition={{ duration: 0.2 }}
-    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
+    className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50"
   >
-    <div className="bg-popover backdrop-blur-xl border border-border rounded-lg shadow-xl min-w-[280px] overflow-hidden">
-      <div className="py-1">
-        {items.map((item, i) => (
+    <div className={`bg-popover/95 backdrop-blur-2xl border border-border/60 rounded-xl shadow-2xl overflow-hidden ${isPlatform ? 'min-w-[560px]' : 'min-w-[300px]'}`}>
+      <div className={`py-2 ${isPlatform ? 'grid grid-cols-2 gap-0' : ''}`}>
+        {items.map((item) => (
           <Link
             key={item.href}
             to={item.href}
             onClick={onClose}
-            className="flex flex-col px-5 py-3 hover:bg-accent/5 transition-colors group"
+            className="flex flex-col px-5 py-3.5 hover:bg-accent/5 transition-all group"
           >
             <span className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
               {item.label}
             </span>
             {item.desc && (
-              <span className="text-xs text-muted-foreground mt-0.5">{item.desc}</span>
+              <span className="text-xs text-muted-foreground mt-0.5 group-hover:text-muted-foreground/80 transition-colors">{item.desc}</span>
             )}
           </Link>
         ))}
@@ -102,6 +102,8 @@ const Navbar = () => {
     dropdownTimeout.current = setTimeout(() => setActiveDropdown(null), 150);
   };
 
+  const isActive = (href: string) => location.pathname === href;
+
   const renderDesktopItem = (item: any) => {
     if (item.children) {
       return (
@@ -111,22 +113,27 @@ const Navbar = () => {
           onMouseEnter={() => handleMouseEnter(item.label)}
           onMouseLeave={handleMouseLeave}
         >
-          <button className="flex items-center gap-1 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors tracking-wide uppercase">
+          <button className={`flex items-center gap-1 text-sm font-medium transition-colors tracking-wide uppercase ${activeDropdown === item.label ? 'text-accent' : 'text-foreground/65 hover:text-foreground'}`}>
             {item.label}
             <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === item.label ? "rotate-180" : ""}`} />
           </button>
           <AnimatePresence>
             {activeDropdown === item.label && (
-              <DropdownMenu items={item.children} onClose={() => setActiveDropdown(null)} />
+              <DropdownMenu items={item.children} onClose={() => setActiveDropdown(null)} isPlatform={item.label === "Platform"} />
             )}
           </AnimatePresence>
         </div>
       );
     }
 
-    const cls = "text-sm font-medium text-foreground/70 hover:text-foreground transition-colors tracking-wide uppercase";
+    const active = item.isRoute && isActive(item.href);
+    const cls = `text-sm font-medium transition-colors tracking-wide uppercase relative ${active ? 'text-accent' : 'text-foreground/65 hover:text-foreground'}`;
+    
     return item.isRoute ? (
-      <Link key={item.href} to={item.href} className={cls}>{item.label}</Link>
+      <Link key={item.href} to={item.href} className={cls}>
+        {item.label}
+        {active && <motion.div layoutId="nav-indicator" className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent rounded-full" />}
+      </Link>
     ) : (
       <a key={item.href} href={item.href} className={cls}>{item.label}</a>
     );
@@ -138,7 +145,7 @@ const Navbar = () => {
         <div key={item.label}>
           <button
             onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-            className="w-full flex items-center justify-between text-sm font-medium text-foreground/70 hover:text-foreground transition-colors tracking-wide uppercase py-2"
+            className="w-full flex items-center justify-between text-sm font-medium text-foreground/70 hover:text-foreground transition-colors tracking-wide uppercase py-2.5"
           >
             {item.label}
             <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} />
@@ -156,7 +163,7 @@ const Navbar = () => {
                     key={child.href}
                     to={child.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
+                    className="block py-2.5 text-sm text-muted-foreground hover:text-accent transition-colors"
                   >
                     {child.label}
                   </Link>
@@ -168,7 +175,7 @@ const Navbar = () => {
       );
     }
 
-    const cls = "text-sm font-medium text-foreground/70 hover:text-foreground transition-colors tracking-wide uppercase py-2 block";
+    const cls = "text-sm font-medium text-foreground/70 hover:text-foreground transition-colors tracking-wide uppercase py-2.5 block";
     return item.isRoute ? (
       <Link key={item.href} to={item.href} onClick={() => setOpen(false)} className={cls}>{item.label}</Link>
     ) : (
@@ -177,14 +184,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <motion.nav
+      initial={{ y: -10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-sm"
+          ? "bg-background/90 backdrop-blur-2xl border-b border-border/50 shadow-lg shadow-primary/5"
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
+      {/* Gold accent line when scrolled */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-[2px]"
+        style={{ background: "linear-gradient(90deg, transparent, hsl(46 70% 47% / 0.4), transparent)" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: scrolled ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      <div className="container mx-auto flex items-center justify-between h-20 px-4 lg:px-8">
         <Link to="/" className="font-heading text-xl font-bold tracking-tight text-foreground">
           Kota <span className="text-accent">Associates</span>
         </Link>
@@ -194,7 +213,11 @@ const Navbar = () => {
           {navStructure.map((item) => renderDesktopItem(item))}
           <Link
             to="/login"
-            className="ml-2 px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold tracking-wide uppercase rounded-lg hover:bg-primary/90 transition-colors"
+            className="ml-3 px-6 py-2.5 font-semibold text-sm tracking-wide uppercase rounded-lg transition-all"
+            style={{
+              background: "linear-gradient(135deg, hsl(46 70% 47%), hsl(46 50% 55%))",
+              color: "hsl(210 72% 10%)",
+            }}
           >
             Login
           </Link>
@@ -217,14 +240,18 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-b border-border overflow-hidden"
+            className="lg:hidden bg-background/95 backdrop-blur-2xl border-b border-border overflow-hidden"
           >
-            <div className="flex flex-col px-6 py-4 gap-1">
+            <div className="flex flex-col px-6 py-5 gap-1">
               {navStructure.map((item, i) => renderMobileItem(item, i))}
               <Link
                 to="/login"
                 onClick={() => setOpen(false)}
-                className="mt-3 block px-5 py-2.5 bg-primary text-primary-foreground text-sm font-semibold tracking-wide uppercase text-center rounded-lg"
+                className="mt-4 block px-5 py-3 font-semibold text-sm tracking-wide uppercase text-center rounded-lg"
+                style={{
+                  background: "linear-gradient(135deg, hsl(46 70% 47%), hsl(46 50% 55%))",
+                  color: "hsl(210 72% 10%)",
+                }}
               >
                 Login
               </Link>
@@ -232,7 +259,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
