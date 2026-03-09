@@ -161,19 +161,6 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="max-w-5xl mx-auto"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 mb-10 px-6 py-3 rounded-full border border-gold/25 bg-gold/5 backdrop-blur-md"
-          >
-            <div className="w-2 h-2 rounded-full bg-gold animate-pulse-glow" />
-            <span className="text-gold text-sm font-semibold tracking-[0.2em] uppercase">
-              Established 1952 · 70+ Years of Trust
-            </span>
-          </motion.div>
-
           {/* Gold line above headline */}
           <motion.div
             initial={{ width: 0 }}
