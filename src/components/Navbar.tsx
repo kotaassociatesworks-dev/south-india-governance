@@ -209,7 +209,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-5">
           {navStructure.map((item) => renderDesktopItem(item))}
           <Link
             to="/login"
