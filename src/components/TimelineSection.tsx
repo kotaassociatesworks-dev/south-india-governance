@@ -6,7 +6,7 @@ const milestones = [
   { year: "1985", title: "Expanded Advisory Services", desc: "Added comprehensive tax planning and compliance consulting to the service portfolio." },
   { year: "2005", title: "Multi-State Operations", desc: "Extended operations across 7 states in South India including Karnataka and Tamil Nadu." },
   { year: "2018", title: "GST Era Leadership", desc: "Became a regional leader in GST compliance advisory, serving 500+ businesses through the transition." },
-  { year: "2024", title: "Digital Platform Launch", desc: "Launched the Kota Associates Tax Technology Platform — combining expertise with digital tools." },
+  { year: "2026", title: "Digital Platform Launch", desc: "Launched the Kota Associates Tax Technology Platform — combining expertise with digital tools." },
 ];
 
 const TimelineSection = () => {
