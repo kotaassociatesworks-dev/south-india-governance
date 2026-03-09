@@ -41,6 +41,7 @@ import TaxUpdatesPage from "./pages/TaxUpdatesPage";
 import ComplianceDashboardPage from "./pages/ComplianceDashboardPage";
 import ComplianceTwinPage from "./pages/ComplianceTwinPage";
 import TaxIntelligenceRadarPage from "./pages/TaxIntelligenceRadarPage";
+import TaxOperatingSystemPage from "./pages/TaxOperatingSystemPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
