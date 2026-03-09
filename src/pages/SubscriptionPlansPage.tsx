@@ -6,60 +6,60 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 
 const plans = [
-  {
-    name: "Starter Compliance",
-    icon: Zap,
-    price: "₹2,999",
-    period: "/month",
-    desc: "Essential compliance for small businesses and sole proprietors.",
-    features: [
-      "Monthly GST return filing (GSTR-1 & 3B)",
-      "Basic tax advisory (email support)",
-      "ITC reconciliation alerts",
-      "Filing deadline reminders",
-      "Digital document storage",
-    ],
-    cta: "Get Started",
-    popular: false,
-  },
-  {
-    name: "Business Compliance",
-    icon: Star,
-    price: "₹6,999",
-    period: "/month",
-    desc: "Complete compliance suite for growing businesses.",
-    features: [
-      "Everything in Starter plan",
-      "Professional bookkeeping",
-      "Tax advisory (phone + email)",
-      "TDS/TCS return filing",
-      "Quarterly compliance review",
-      "Dedicated relationship manager",
-      "Notice handling support",
-    ],
-    cta: "Choose Business",
-    popular: true,
-  },
-  {
-    name: "Premium Advisory",
-    icon: Crown,
-    price: "₹14,999",
-    period: "/month",
-    desc: "Full-service compliance and strategic tax planning.",
-    features: [
-      "Everything in Business plan",
-      "Full compliance management",
-      "Strategic tax planning",
-      "Income tax return filing",
-      "Financial statement preparation",
-      "Audit support & representation",
-      "Priority notice resolution",
-      "Unlimited consultations",
-    ],
-    cta: "Go Premium",
-    popular: false,
-  },
-];
+{
+  name: "Starter Compliance",
+  icon: Zap,
+  price: "₹2,999",
+  period: "/month",
+  desc: "Essential compliance for small businesses and sole proprietors.",
+  features: [
+  "Monthly GST return filing (GSTR-1 & 3B)",
+  "Basic tax advisory (email support)",
+  "ITC reconciliation alerts",
+  "Filing deadline reminders",
+  "Digital document storage"],
+
+  cta: "Get Started",
+  popular: false
+},
+{
+  name: "Business Compliance",
+  icon: Star,
+  price: "₹6,999",
+  period: "/month",
+  desc: "Complete compliance suite for growing businesses.",
+  features: [
+  "Everything in Starter plan",
+  "Professional bookkeeping",
+  "Tax advisory (phone + email)",
+  "TDS/TCS return filing",
+  "Quarterly compliance review",
+  "Dedicated relationship manager",
+  "Notice handling support"],
+
+  cta: "Choose Business",
+  popular: true
+},
+{
+  name: "Premium Advisory",
+  icon: Crown,
+  price: "₹14,999",
+  period: "/month",
+  desc: "Full-service compliance and strategic tax planning.",
+  features: [
+  "Everything in Business plan",
+  "Full compliance management",
+  "Strategic tax planning",
+  "Income tax return filing",
+  "Financial statement preparation",
+  "Audit support & representation",
+  "Priority notice resolution",
+  "Unlimited consultations"],
+
+  cta: "Go Premium",
+  popular: false
+}];
+
 
 const SubscriptionPlansPage = () => {
   const [billing, setBilling] = useState("monthly");
@@ -82,8 +82,8 @@ const SubscriptionPlansPage = () => {
               <span className={`text-sm font-medium ${billing === "monthly" ? "text-foreground" : "text-muted-foreground"}`}>Monthly</span>
               <button
                 onClick={() => setBilling(billing === "monthly" ? "annual" : "monthly")}
-                className={`relative w-14 h-7 rounded-full transition-colors ${billing === "annual" ? "bg-accent" : "bg-border"}`}
-              >
+                className={`relative w-14 h-7 rounded-full transition-colors ${billing === "annual" ? "bg-accent" : "bg-border"}`}>
+                
                 <div className={`absolute top-0.5 w-6 h-6 rounded-full bg-background shadow transition-transform ${billing === "annual" ? "translate-x-7" : "translate-x-0.5"}`} />
               </button>
               <span className={`text-sm font-medium ${billing === "annual" ? "text-foreground" : "text-muted-foreground"}`}>
@@ -96,9 +96,9 @@ const SubscriptionPlansPage = () => {
             {plans.map((plan, i) => {
               const Icon = plan.icon;
               const monthlyPrice = parseInt(plan.price.replace(/[₹,]/g, ""));
-              const displayPrice = billing === "annual"
-                ? `₹${Math.round(monthlyPrice * 0.8).toLocaleString("en-IN")}`
-                : plan.price;
+              const displayPrice = billing === "annual" ?
+              `₹${Math.round(monthlyPrice * 0.8).toLocaleString("en-IN")}` :
+              plan.price;
 
               return (
                 <motion.div
@@ -107,14 +107,14 @@ const SubscriptionPlansPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   className={`relative bg-background border-2 rounded-xl p-8 flex flex-col ${
-                    plan.popular ? "border-accent shadow-xl scale-[1.02]" : "border-border"
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground text-xs font-bold px-4 py-1 rounded-full">
+                  plan.popular ? "border-accent shadow-xl scale-[1.02]" : "border-border"}`
+                  }>
+                  
+                  {plan.popular &&
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground text-xs font-bold px-4 py-1 rounded-full">
                       Most Popular
                     </div>
-                  )}
+                  }
                   <div className="mb-6">
                     <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                       <Icon className="w-6 h-6 text-accent" />
@@ -122,32 +122,32 @@ const SubscriptionPlansPage = () => {
                     <h3 className="font-heading text-xl font-bold text-foreground">{plan.name}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{plan.desc}</p>
                   </div>
-                  <div className="mb-6">
-                    <span className="font-heading text-4xl font-bold text-foreground">{displayPrice}</span>
-                    <span className="text-muted-foreground text-sm">{plan.period}</span>
-                    {billing === "annual" && (
-                      <p className="text-xs text-accent mt-1">Billed annually</p>
-                    )}
-                  </div>
+                  
+
+
+
+
+
+                  
                   <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-foreground">
+                    {plan.features.map((f) =>
+                    <li key={f} className="flex items-start gap-2 text-sm text-foreground">
                         <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                         {f}
                       </li>
-                    ))}
+                    )}
                   </ul>
                   <a
                     href={`https://wa.me/919052878779?text=I'm%20interested%20in%20the%20${encodeURIComponent(plan.name)}%20plan%20(${billing}).`}
                     target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                    rel="noopener noreferrer">
+                    
                     <Button className={`w-full ${plan.popular ? "" : "variant-outline"}`} variant={plan.popular ? "default" : "outline"}>
                       <MessageCircle className="w-4 h-4 mr-1" /> {plan.cta}
                     </Button>
                   </a>
-                </motion.div>
-              );
+                </motion.div>);
+
             })}
           </div>
 
@@ -157,8 +157,8 @@ const SubscriptionPlansPage = () => {
         </div>
       </section>
       <Footer />
-    </main>
-  );
+    </main>);
+
 };
 
 export default SubscriptionPlansPage;
