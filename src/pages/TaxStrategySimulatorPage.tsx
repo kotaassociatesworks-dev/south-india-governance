@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   TrendingUp, Calculator, ArrowRight, BarChart3, Shield, Zap, CheckCircle2
@@ -8,7 +8,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
+  PieChart, Pie, Legend
+} from "recharts";
 import Navbar from "@/components/Navbar";
 import TrustBadgeBar from "@/components/TrustBadgeBar";
 import Footer from "@/components/Footer";
@@ -42,6 +45,22 @@ const calcTax = (income: number, slabs: typeof regimeSlabs.old) => {
   return Math.round(tax);
 };
 
+const calcSlabBreakdown = (income: number, slabs: typeof regimeSlabs.old) => {
+  const breakdown: { slab: string; tax: number }[] = [];
+  let prev = 0;
+  for (const s of slabs) {
+    if (income <= prev) break;
+    const taxable = Math.min(income, s.limit) - prev;
+    const tax = Math.round(taxable * (s.rate / 100));
+    if (tax > 0) {
+      const upper = s.limit === Infinity ? "Above" : `₹${(s.limit / 100000).toFixed(1)}L`;
+      breakdown.push({ slab: `${s.rate}% (${upper})`, tax });
+    }
+    prev = s.limit;
+  }
+  return breakdown;
+};
+
 const strategies = [
   { name: "Section 80C", desc: "ELSS, PPF, LIC, NSC, Tuition fees", max: 150000 },
   { name: "Section 80D", desc: "Health insurance premiums", max: 75000 },
@@ -49,6 +68,8 @@ const strategies = [
   { name: "NPS (80CCD)", desc: "National Pension System additional", max: 50000 },
   { name: "Home Loan (24b)", desc: "Interest on housing loan", max: 200000 },
 ];
+
+const COLORS = ["hsl(var(--accent))", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#06b6d4"];
 
 const TaxStrategySimulatorPage = () => {
   const [income, setIncome] = useState("");
@@ -63,6 +84,23 @@ const TaxStrategySimulatorPage = () => {
   const savings = newTax - oldTax;
   const betterRegime = oldTax <= newTax ? "Old Regime" : "New Regime";
   const betterTax = Math.min(oldTax, newTax);
+
+  const comparisonData = [
+    { name: "Old Regime", tax: oldTax, fill: "hsl(var(--accent))" },
+    { name: "New Regime", tax: newTax, fill: "#10b981" },
+  ];
+
+  const oldBreakdown = useMemo(() => calcSlabBreakdown(taxableOld, regimeSlabs.old), [taxableOld]);
+  const newBreakdown = useMemo(() => calcSlabBreakdown(grossIncome, regimeSlabs.new), [grossIncome]);
+
+  const pieData = useMemo(() => {
+    if (!grossIncome) return [];
+    return [
+      { name: "Tax (Best)", value: betterTax },
+      { name: "Deductions", value: totalDeductions },
+      { name: "Take Home", value: Math.max(0, grossIncome - betterTax - totalDeductions) },
+    ].filter(d => d.value > 0);
+  }, [grossIncome, betterTax, totalDeductions]);
 
   return (
     <main className="min-h-screen bg-background">
@@ -141,7 +179,77 @@ const TaxStrategySimulatorPage = () => {
                     </Card>
                   </motion.div>
 
-                  {/* Comparison */}
+                  {/* Regime Comparison Bar Chart */}
+                  <Card className="premium-card">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm flex items-center gap-2"><BarChart3 className="w-4 h-4 text-accent" /> Regime Comparison</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ResponsiveContainer width="100%" height={200}>
+                        <BarChart data={comparisonData} margin={{ top: 5, right: 20, bottom: 5, left: -10 }}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                          <XAxis dataKey="name" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                          <YAxis tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} />
+                          <Tooltip
+                            contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 12 }}
+                            formatter={(value: number) => [`₹${value.toLocaleString("en-IN")}`, "Tax"]}
+                          />
+                          <Bar dataKey="tax" radius={[6, 6, 0, 0]}>
+                            {comparisonData.map((entry, index) => (
+                              <Cell key={index} fill={entry.fill} />
+                            ))}
+                          </Bar>
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </CardContent>
+                  </Card>
+
+                  {/* Pie Chart + Slab Breakdown */}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <Card className="premium-card">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm">Income Allocation</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ResponsiveContainer width="100%" height={200}>
+                          <PieChart>
+                            <Pie data={pieData} cx="50%" cy="50%" innerRadius={45} outerRadius={75} dataKey="value" paddingAngle={3}>
+                              {pieData.map((_, index) => (
+                                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                              ))}
+                            </Pie>
+                            <Legend iconSize={8} wrapperStyle={{ fontSize: 10 }} />
+                            <Tooltip
+                              contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 11 }}
+                              formatter={(value: number) => [`₹${value.toLocaleString("en-IN")}`, ""]}
+                            />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="premium-card">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm">Slab-wise Tax ({betterRegime})</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ResponsiveContainer width="100%" height={200}>
+                          <BarChart data={betterRegime === "Old Regime" ? oldBreakdown : newBreakdown} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                            <XAxis type="number" tick={{ fontSize: 9, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} />
+                            <YAxis dataKey="slab" type="category" tick={{ fontSize: 9, fill: "hsl(var(--muted-foreground))" }} width={90} />
+                            <Tooltip
+                              contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 11 }}
+                              formatter={(value: number) => [`₹${value.toLocaleString("en-IN")}`, "Tax"]}
+                            />
+                            <Bar dataKey="tax" fill="hsl(var(--accent))" radius={[0, 4, 4, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Comparison Cards */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <Card className={`premium-card ${betterRegime === "Old Regime" ? "border-accent/30" : ""}`}>
                       <CardContent className="pt-5 pb-4">
