@@ -125,8 +125,8 @@ const AnimatedRoutes = () => {
         <Route path="/hsn-code-finder" element={<LazyPage><HSNCodeFinderPage /></LazyPage>} />
         <Route path="/tax-strategy-simulator" element={<LazyPage><TaxStrategySimulatorPage /></LazyPage>} />
         <Route path="/compliance-heatmap" element={<LazyPage><ComplianceHeatmapPage /></LazyPage>} />
-        <Route path="/command-center" element={<LazyPage><FinancialCommandCenterPage /></LazyPage>} />
-        <Route path="/ai-cfo" element={<LazyPage><AICFOSystemPage /></LazyPage>} />
+        {/* <Route path="/command-center" element={<LazyPage><FinancialCommandCenterPage /></LazyPage>} /> */}
+        {/* <Route path="/ai-cfo" element={<LazyPage><AICFOSystemPage /></LazyPage>} /> */}
         <Route path="*" element={<LazyPage><NotFound /></LazyPage>} />
       </Routes>
     </AnimatePresence>
