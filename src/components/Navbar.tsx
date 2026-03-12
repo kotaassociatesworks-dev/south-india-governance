@@ -19,6 +19,8 @@ const navStructure = [
   {
     label: "Platform",
     children: [
+      { label: "Command Center", href: "/command-center", isRoute: true, desc: "Financial SaaS dashboard" },
+      { label: "AI CFO", href: "/ai-cfo", isRoute: true, desc: "Virtual Chief Financial Officer" },
       { label: "Tax Risk Analyzer", href: "/tax-risk-analyzer", isRoute: true, desc: "Compliance risk score" },
       { label: "Compliance Health", href: "/compliance-health", isRoute: true, desc: "Health dashboard" },
       { label: "Tax Assistant", href: "/tax-assistant", isRoute: true, desc: "Ask tax questions" },
@@ -33,6 +35,17 @@ const navStructure = [
     ],
   },
   {
+    label: "Calculators",
+    children: [
+      { label: "Income Tax", href: "/income-tax-calculator", isRoute: true, desc: "FY 2024-25 old & new regime" },
+      { label: "GST Suite", href: "/gst-calculator", isRoute: true, desc: "Invoice & return estimator" },
+      { label: "Capital Gains", href: "/capital-gains-calculator", isRoute: true, desc: "STCG/LTCG with indexation" },
+      { label: "Payroll Engine", href: "/payroll-calculator", isRoute: true, desc: "Salary, TDS & net pay" },
+      { label: "Growth Simulator", href: "/growth-simulator", isRoute: true, desc: "Business projections" },
+      { label: "Tools", href: "/tools", isRoute: true, desc: "All calculators & utilities" },
+    ],
+  },
+  {
     label: "Insights",
     children: [
       { label: "Know Your Rights", href: "/know-your-rights", isRoute: true, desc: "Taxpayer rights" },
@@ -40,7 +53,6 @@ const navStructure = [
       { label: "Tax Notice Help", href: "/tax-notice-help", isRoute: true, desc: "Notice guidance" },
       { label: "Blog", href: "/blog", isRoute: true, desc: "Articles & tips" },
       { label: "Industry Guides", href: "/industry-guides", isRoute: true, desc: "Compliance by industry" },
-      { label: "Tools", href: "/tools", isRoute: true, desc: "Calculators & utilities" },
     ],
   },
   {
@@ -48,7 +60,7 @@ const navStructure = [
     children: [
       { label: "Latest Updates", href: "/tax-updates", isRoute: true, desc: "GST & IT updates" },
       { label: "Intelligence Radar", href: "/tax-intelligence-radar", isRoute: true, desc: "Impact analysis" },
-      { label: "Command Center", href: "/compliance-dashboard", isRoute: true, desc: "Compliance dashboard" },
+      { label: "Compliance Dashboard", href: "/compliance-dashboard", isRoute: true, desc: "Compliance overview" },
       { label: "Compliance Twin", href: "/compliance-twin", isRoute: true, desc: "Smart monitoring" },
       { label: "Tax OS", href: "/tax-operating-system", isRoute: true, desc: "Centralized tax platform" },
       { label: "Strategy Simulator", href: "/tax-strategy-simulator", isRoute: true, desc: "Regime comparison" },

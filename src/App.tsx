@@ -52,9 +52,13 @@ const EcosystemHubPage = lazy(() => import("./pages/EcosystemHubPage"));
 const HSNCodeFinderPage = lazy(() => import("./pages/HSNCodeFinderPage"));
 const TaxStrategySimulatorPage = lazy(() => import("./pages/TaxStrategySimulatorPage"));
 const ComplianceHeatmapPage = lazy(() => import("./pages/ComplianceHeatmapPage"));
-// Future pages - uncomment when created
-// const FinancialCommandCenterPage = lazy(() => import("./pages/FinancialCommandCenterPage"));
-// const AICFOSystemPage = lazy(() => import("./pages/AICFOSystemPage"));
+const FinancialCommandCenterPage = lazy(() => import("./pages/FinancialCommandCenterPage"));
+const AICFOSystemPage = lazy(() => import("./pages/AICFOSystemPage"));
+const IncomeTaxCalculatorPage = lazy(() => import("./pages/IncomeTaxCalculatorPage"));
+const GSTCalculatorPage = lazy(() => import("./pages/GSTCalculatorPage"));
+const CapitalGainsCalculatorPage = lazy(() => import("./pages/CapitalGainsCalculatorPage"));
+const PayrollCalculatorPage = lazy(() => import("./pages/PayrollCalculatorPage"));
+const BusinessGrowthSimulatorPage = lazy(() => import("./pages/BusinessGrowthSimulatorPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -125,8 +129,13 @@ const AnimatedRoutes = () => {
         <Route path="/hsn-code-finder" element={<LazyPage><HSNCodeFinderPage /></LazyPage>} />
         <Route path="/tax-strategy-simulator" element={<LazyPage><TaxStrategySimulatorPage /></LazyPage>} />
         <Route path="/compliance-heatmap" element={<LazyPage><ComplianceHeatmapPage /></LazyPage>} />
-        {/* <Route path="/command-center" element={<LazyPage><FinancialCommandCenterPage /></LazyPage>} /> */}
-        {/* <Route path="/ai-cfo" element={<LazyPage><AICFOSystemPage /></LazyPage>} /> */}
+        <Route path="/command-center" element={<LazyPage><FinancialCommandCenterPage /></LazyPage>} />
+        <Route path="/ai-cfo" element={<LazyPage><AICFOSystemPage /></LazyPage>} />
+        <Route path="/income-tax-calculator" element={<LazyPage><IncomeTaxCalculatorPage /></LazyPage>} />
+        <Route path="/gst-calculator" element={<LazyPage><GSTCalculatorPage /></LazyPage>} />
+        <Route path="/capital-gains-calculator" element={<LazyPage><CapitalGainsCalculatorPage /></LazyPage>} />
+        <Route path="/payroll-calculator" element={<LazyPage><PayrollCalculatorPage /></LazyPage>} />
+        <Route path="/growth-simulator" element={<LazyPage><BusinessGrowthSimulatorPage /></LazyPage>} />
         <Route path="*" element={<LazyPage><NotFound /></LazyPage>} />
       </Routes>
     </AnimatePresence>
