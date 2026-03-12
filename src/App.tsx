@@ -52,8 +52,9 @@ const EcosystemHubPage = lazy(() => import("./pages/EcosystemHubPage"));
 const HSNCodeFinderPage = lazy(() => import("./pages/HSNCodeFinderPage"));
 const TaxStrategySimulatorPage = lazy(() => import("./pages/TaxStrategySimulatorPage"));
 const ComplianceHeatmapPage = lazy(() => import("./pages/ComplianceHeatmapPage"));
-const FinancialCommandCenterPage = lazy(() => import("./pages/FinancialCommandCenterPage"));
-const AICFOSystemPage = lazy(() => import("./pages/AICFOSystemPage"));
+// Future pages - uncomment when created
+// const FinancialCommandCenterPage = lazy(() => import("./pages/FinancialCommandCenterPage"));
+// const AICFOSystemPage = lazy(() => import("./pages/AICFOSystemPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
