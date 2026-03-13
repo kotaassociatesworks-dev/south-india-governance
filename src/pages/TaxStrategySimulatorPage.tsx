@@ -411,7 +411,7 @@ const TaxStrategySimulatorPage = () => {
         </div>
       </section>
 
-      <LeadCapturePopup open={showPopup} onClose={() => setShowPopup(false)} />
+      <LeadCapturePopup show={showPopup} onClose={() => setShowPopup(false)} toolName="Tax Strategy Engine" />
       <Footer />
     </main>
   );
