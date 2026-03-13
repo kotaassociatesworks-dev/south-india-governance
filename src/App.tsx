@@ -59,6 +59,8 @@ const GSTCalculatorPage = lazy(() => import("./pages/GSTCalculatorPage"));
 const CapitalGainsCalculatorPage = lazy(() => import("./pages/CapitalGainsCalculatorPage"));
 const PayrollCalculatorPage = lazy(() => import("./pages/PayrollCalculatorPage"));
 const BusinessGrowthSimulatorPage = lazy(() => import("./pages/BusinessGrowthSimulatorPage"));
+const ProfitLossTrackerPage = lazy(() => import("./pages/ProfitLossTrackerPage"));
+const BankruptcyRiskPage = lazy(() => import("./pages/BankruptcyRiskPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
