@@ -42,6 +42,8 @@ const navStructure = [
       { label: "Capital Gains", href: "/capital-gains-calculator", isRoute: true, desc: "STCG/LTCG with indexation" },
       { label: "Payroll Engine", href: "/payroll-calculator", isRoute: true, desc: "Salary, TDS & net pay" },
       { label: "Growth Simulator", href: "/growth-simulator", isRoute: true, desc: "Business projections" },
+      { label: "Profit/Loss Tracker", href: "/profit-loss-tracker", isRoute: true, desc: "Financial performance analysis" },
+      { label: "Bankruptcy Risk", href: "/bankruptcy-risk", isRoute: true, desc: "Altman Z-Score analysis" },
       { label: "Tools", href: "/tools", isRoute: true, desc: "All calculators & utilities" },
     ],
   },

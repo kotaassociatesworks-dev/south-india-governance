@@ -138,6 +138,8 @@ const AnimatedRoutes = () => {
         <Route path="/capital-gains-calculator" element={<LazyPage><CapitalGainsCalculatorPage /></LazyPage>} />
         <Route path="/payroll-calculator" element={<LazyPage><PayrollCalculatorPage /></LazyPage>} />
         <Route path="/growth-simulator" element={<LazyPage><BusinessGrowthSimulatorPage /></LazyPage>} />
+        <Route path="/profit-loss-tracker" element={<LazyPage><ProfitLossTrackerPage /></LazyPage>} />
+        <Route path="/bankruptcy-risk" element={<LazyPage><BankruptcyRiskPage /></LazyPage>} />
         <Route path="*" element={<LazyPage><NotFound /></LazyPage>} />
       </Routes>
     </AnimatePresence>
