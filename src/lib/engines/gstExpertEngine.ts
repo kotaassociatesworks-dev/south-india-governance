@@ -9,7 +9,6 @@ export interface GSTResponse {
   practicalInterpretation: string;
   implementationSteps: string[];
   risksAndNotes: string[];
-  category: string;
 }
 
 interface GSTKnowledgeEntry {

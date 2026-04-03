@@ -201,7 +201,7 @@ const TaxAssistantPage = () => {
         </div>
       </section>
       <Footer />
-      <LeadCapturePopup isOpen={showLead} onClose={() => setShowLead(false)} />
+      <LeadCapturePopup show={showLead} onClose={() => setShowLead(false)} toolName="GST Expert System" />
     </main>
   );
 };
