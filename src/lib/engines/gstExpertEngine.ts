@@ -616,10 +616,9 @@ const defaultResponse: GSTResponse = {
   ]
 };
 
-export function getGSTExpertResponse(input: string): GSTResponse {
+export function getGSTExpertResponse(input: string): GSTResponse & { category: string } {
   const lower = input.toLowerCase().trim();
   
-  // Score each entry by keyword matches
   let bestMatch: GSTKnowledgeEntry | null = null;
   let bestScore = 0;
 
@@ -627,7 +626,7 @@ export function getGSTExpertResponse(input: string): GSTResponse {
     let score = 0;
     for (const keyword of entry.keywords) {
       if (lower.includes(keyword)) {
-        score += keyword.split(" ").length; // multi-word keywords score higher
+        score += keyword.split(" ").length;
       }
     }
     if (score > bestScore) {
@@ -637,9 +636,9 @@ export function getGSTExpertResponse(input: string): GSTResponse {
   }
 
   if (bestMatch && bestScore > 0) {
-    return bestMatch.response;
+    return { ...bestMatch.response, category: bestMatch.category };
   }
-  return defaultResponse;
+  return { ...defaultResponse, category: "General" };
 }
 
 export function formatGSTResponse(res: GSTResponse): string {
