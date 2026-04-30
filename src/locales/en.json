@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "compliance": "Compliance Guide",
+    "eway": "E-Way Bills",
+    "calculators": "Calculators",
+    "contact": "Contact",
+    "book": "Book Consultation",
+    "themeLight": "Switch to light mode",
+    "themeDark": "Switch to dark mode"
+  },
+  "compliance": {
+    "label": "Tailored for Every Business",
+    "title": "Compliance Guide",
+    "subtitle": "Select your business type to view mandatory filings, key deadlines, and Kota Associates' advisory notes — updated for FY 2025–26.",
+    "tabs": {
+      "legacy": "Legacy Firm",
+      "msme": "MSME",
+      "mnc": "MNC",
+      "startup": "Startup"
+    },
+    "checklistTitle": "Compliance Checklist",
+    "thresholdsTitle": "Key Thresholds",
+    "advisoryTitle": "Advisory Note",
+    "calendarTitle": "FY 2025–26 Compliance Calendar",
+    "calendarSub": "Critical dates for GST, TDS, Income Tax, ROC, and FEMA. Filtered by your selected business type.",
+    "ewbNote": "E-Way Bill is a rolling, transaction-level obligation — not a monthly filing. Every movement of goods exceeding ₹50,000 in value requires a fresh E-Way Bill. Minimum penalty for non-compliance is ₹10,000 per consignment."
+  },
+  "eway": {
+    "label": "Bulk E-Way Bill Generation",
+    "title": "E-Way Bill Centre",
+    "subtitle": "Complete e-way bill services for Legacy firms, MSMEs, MNCs, and logistics operators — with eligibility checker, penalty estimator, and step-by-step generation guide.",
+    "thresholdTitle": "General Threshold",
+    "exemptTitle": "Exemptions",
+    "validityTitle": "E-Way Bill Validity Table",
+    "checkerTitle": "E-Way Bill Eligibility Checker",
+    "penaltyTitle": "Penalty Estimator — Section 129 & 122 CGST",
+    "guideTitle": "How to Generate an E-Way Bill",
+    "structureTitle": "E-Way Bill Structure",
+    "packagesTitle": "Our Packages",
+    "packagesSub": "All packages include Part A + Part B filing, vehicle number updates, cancellation support, and bulk Excel upload.",
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "common": {
+    "viewGuide": "View compliance guide",
+    "viewPackages": "View Packages",
+    "bookConsult": "Book a Consultation",
+    "learnMore": "Learn More",
+    "required": "REQUIRED",
+    "notRequired": "NOT Required",
+    "exempt": "Likely Exempt"
+  }
+}
