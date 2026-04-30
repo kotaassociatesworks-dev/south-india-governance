@@ -6,9 +6,9 @@
 
 @layer base {
   :root {
-    /* Kota Associates palette */
-    --background: 40 25% 97%;        /* #f8f7f4 */
-    --foreground: 240 25% 14%;       /* #1a1a2e */
+    /* Kota Associates — Light (Legal Advisory Ivory) */
+    --background: 40 25% 97%;        /* #f8f7f4 ivory */
+    --foreground: 240 25% 14%;       /* deep ink */
 
     --card: 0 0% 100%;
     --card-foreground: 240 25% 14%;
@@ -31,6 +31,10 @@
     --destructive: 0 70% 45%;
     --destructive-foreground: 0 0% 100%;
 
+    --success: 142 55% 36%;
+    --warning: 38 92% 50%;
+    --info: 215 70% 45%;
+
     --border: 40 15% 86%;
     --input: 40 15% 86%;
     --ring: 42 64% 44%;
@@ -43,6 +47,46 @@
 
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Dark — Legal chamber: charcoal/black + warm gold + ivory text */
+  .dark {
+    --background: 222 18% 8%;        /* near-black charcoal */
+    --foreground: 40 20% 92%;        /* warm ivory text */
+
+    --card: 222 16% 11%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 222 16% 11%;
+    --popover-foreground: 40 20% 92%;
+
+    --primary: 42 50% 55%;           /* warm gold becomes primary in dark */
+    --primary-foreground: 222 30% 8%;
+
+    --secondary: 222 14% 14%;
+    --secondary-foreground: 40 20% 92%;
+
+    --muted: 222 12% 18%;
+    --muted-foreground: 40 10% 65%;
+
+    --accent: 42 60% 55%;            /* slightly brighter gold */
+    --accent-foreground: 222 30% 8%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 40 20% 95%;
+
+    --success: 142 45% 55%;
+    --warning: 38 90% 60%;
+    --info: 215 70% 65%;
+
+    --border: 222 12% 20%;
+    --input: 222 12% 20%;
+    --ring: 42 60% 55%;
+
+    --navy: 222 30% 18%;
+    --navy-soft: 222 25% 28%;
+    --gold: 42 60% 55%;
+    --gold-soft: 42 50% 70%;
   }
 }
 
@@ -65,9 +109,7 @@
   .container-narrow { @apply max-w-6xl mx-auto px-6 md:px-8; }
   .section { @apply py-20 md:py-28; }
 
-  .gold-divider {
-    @apply h-[2px] w-16 bg-accent;
-  }
+  .gold-divider { @apply h-[2px] w-16 bg-accent; }
 
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium tracking-wide transition-all hover:bg-[hsl(var(--navy-soft))] rounded;
@@ -93,12 +135,15 @@
   .nav-link {
     @apply relative text-sm font-medium text-foreground/80 hover:text-primary transition-colors;
   }
-  .nav-link.active {
-    @apply text-primary;
-  }
+  .nav-link.active { @apply text-primary; }
   .nav-link.active::after {
     content: '';
     @apply absolute -bottom-2 left-0 right-0 h-[2px] bg-accent;
+  }
+
+  /* Skip-link */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded;
   }
 }
 
