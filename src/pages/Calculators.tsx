@@ -1,19 +1,28 @@
 import Layout from "@/components/Layout";
 import { useState } from "react";
+import EWayEligibilityChecker from "@/components/EWayEligibilityChecker";
+import EWayPenaltyEstimator from "@/components/EWayPenaltyEstimator";
+import { trackEvent } from "@/lib/analytics";
 
-type Tab = "gst" | "tax" | "eway";
+type Tab = "gst" | "tax" | "tds" | "eway";
 
 // ---------- GST ----------
 const GSTCalc = () => {
   const [amount, setAmount] = useState(10000);
   const [rate, setRate] = useState(18);
   const [type, setType] = useState<"intra" | "inter">("intra");
+  const [turnoverCr, setTurnoverCr] = useState(1.0);
+  const [composition, setComposition] = useState<"trader" | "manufacturer" | "restaurant">("trader");
 
   const gst = (amount * rate) / 100;
   const cgst = type === "intra" ? gst / 2 : 0;
   const sgst = type === "intra" ? gst / 2 : 0;
   const igst = type === "inter" ? gst : 0;
   const total = amount + gst;
+
+  const compRate = composition === "restaurant" ? 5 : composition === "manufacturer" ? 1 : 1;
+  const compEligible = composition === "restaurant" ? turnoverCr <= 0.75 : turnoverCr <= 1.5;
+  const compTax = compEligible ? (amount * compRate) / 100 : null;
 
   return (
     <div className="grid md:grid-cols-2 gap-10">
@@ -40,6 +49,23 @@ const GSTCalc = () => {
               className={`flex-1 px-4 py-2 rounded text-sm border ${type === "inter" ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border"}`}>Inter-State</button>
           </div>
         </div>
+        <div className="pt-3 border-t border-border space-y-3">
+          <p className="text-xs uppercase tracking-widest text-accent">Composition Scheme Check</p>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="label-clean">Annual Turnover (₹ Cr)</label>
+              <input type="number" step="0.1" min={0} className="input-clean" value={turnoverCr} onChange={(e) => setTurnoverCr(+e.target.value || 0)} />
+            </div>
+            <div>
+              <label className="label-clean">Business Type</label>
+              <select className="input-clean" value={composition} onChange={(e) => setComposition(e.target.value as typeof composition)}>
+                <option value="trader">Trader (1%)</option>
+                <option value="manufacturer">Manufacturer (1%)</option>
+                <option value="restaurant">Restaurant (5%)</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="bg-secondary/50 rounded p-6 border border-border">
@@ -56,6 +82,18 @@ const GSTCalc = () => {
         <Row label="Total GST" val={gst} />
         <div className="border-t border-border my-3" />
         <Row label="Invoice Value" val={total} bold />
+
+        <div className="mt-5 p-4 rounded bg-card border border-accent/30">
+          <p className="text-xs uppercase tracking-widest text-accent mb-1">Composition Scheme Tax</p>
+          {compTax !== null ? (
+            <>
+              <p className="font-heading text-xl text-primary">₹{Math.round(compTax).toLocaleString("en-IN")} <span className="text-sm text-muted-foreground">@ {compRate}%</span></p>
+              <p className="text-xs text-muted-foreground mt-1">Composition dealers cannot issue tax invoices or collect GST from customers. Must issue Bill of Supply.</p>
+            </>
+          ) : (
+            <p className="text-sm text-muted-foreground">Not eligible — turnover exceeds composition limit ({composition === "restaurant" ? "₹75 L" : "₹1.5 Cr"}).</p>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -109,6 +147,7 @@ const IncomeTaxCalc = () => {
 
   const active = regime === "new" ? { taxable: newTaxable, calc: newCalc, total: newTotal } : { taxable: oldTaxable, calc: oldCalc, total: oldTotal };
   const better = newTotal <= oldTotal ? "new" : "old";
+  const savings = Math.abs(newTotal - oldTotal);
   const effective = active.taxable > 0 ? (active.total / income) * 100 : 0;
 
   return (
@@ -165,47 +204,163 @@ const IncomeTaxCalc = () => {
         <Row label="Effective Rate" val={`${effective.toFixed(2)}%`} />
 
         <div className="mt-5 p-4 rounded bg-card border border-accent/40">
-          <p className="text-xs uppercase tracking-widest text-accent mb-1">Comparison</p>
-          <div className="text-sm">New Regime: <strong>₹{Math.round(newTotal).toLocaleString("en-IN")}</strong></div>
-          <div className="text-sm">Old Regime: <strong>₹{Math.round(oldTotal).toLocaleString("en-IN")}</strong></div>
-          <div className="mt-2 text-sm text-primary font-medium">→ {better === "new" ? "New" : "Old"} regime saves ₹{Math.round(Math.abs(newTotal - oldTotal)).toLocaleString("en-IN")}</div>
+          <p className="text-xs uppercase tracking-widest text-accent mb-2">Compare Regimes</p>
+          <div className="grid grid-cols-2 gap-3">
+            <div className={`p-3 rounded border ${better === "new" ? "border-emerald-500/50 bg-emerald-500/5" : "border-border"}`}>
+              <p className="text-xs text-muted-foreground flex items-center gap-1">New Regime {better === "new" && <span className="text-[9px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded">RECOMMENDED</span>}</p>
+              <p className="font-heading text-lg text-primary">₹{Math.round(newTotal).toLocaleString("en-IN")}</p>
+            </div>
+            <div className={`p-3 rounded border ${better === "old" ? "border-emerald-500/50 bg-emerald-500/5" : "border-border"}`}>
+              <p className="text-xs text-muted-foreground flex items-center gap-1">Old Regime {better === "old" && <span className="text-[9px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded">RECOMMENDED</span>}</p>
+              <p className="font-heading text-lg text-primary">₹{Math.round(oldTotal).toLocaleString("en-IN")}</p>
+            </div>
+          </div>
+          <p className="mt-3 text-sm text-primary font-medium">→ {better === "new" ? "New" : "Old"} regime saves ₹{Math.round(savings).toLocaleString("en-IN")}</p>
         </div>
       </div>
     </div>
   );
 };
 
-// ---------- E-Way Bill ----------
-const ewayPkgs = [
-  { count: 10, price: 160 },
-  { count: 25, price: 400 },
-  { count: 50, price: 750 },
-  { count: 100, price: 1400 },
-];
-const EwayCalc = () => {
-  const [pkg, setPkg] = useState(ewayPkgs[1]);
-  const perBill = pkg.price / pkg.count;
-  const waLink = `https://wa.me/919052878779?text=${encodeURIComponent(`Hello Kota Associates, I'd like the ${pkg.count} E-Way Bills package (₹${pkg.price}).`)}`;
+// ---------- TDS ----------
+const tdsRules = {
+  salary:       { rate: -1, section: "192",   form: "Form 24Q", label: "Salary",                     noPan: 20 },
+  contractor_i: { rate: 1,  section: "194C",  form: "Form 26Q", label: "Contractor — Individual",    noPan: 20 },
+  contractor_c: { rate: 2,  section: "194C",  form: "Form 26Q", label: "Contractor — Company",       noPan: 20 },
+  rent_pm:      { rate: 2,  section: "194I",  form: "Form 26Q", label: "Rent — Plant / Machinery",   noPan: 20 },
+  rent_lb:      { rate: 10, section: "194I",  form: "Form 26Q", label: "Rent — Land / Building",     noPan: 20 },
+  commission:   { rate: 5,  section: "194H",  form: "Form 26Q", label: "Commission / Brokerage",     noPan: 20 },
+  professional: { rate: 10, section: "194J",  form: "Form 26Q", label: "Professional Fees",          noPan: 20 },
+  interest:     { rate: 10, section: "194A",  form: "Form 26Q", label: "Interest (other than secs)", noPan: 20 },
+  property:     { rate: 1,  section: "194IA", form: "Form 26QB",label: "Property Purchase (>₹50L)",  noPan: 20 },
+} as const;
+
+type TdsKey = keyof typeof tdsRules;
+
+const TDSCalc = () => {
+  const [type, setType] = useState<TdsKey>("contractor_i");
+  const [amount, setAmount] = useState(100000);
+  const [hasPan, setHasPan] = useState(true);
+
+  const rule = tdsRules[type];
+  let rate: number;
+  let note = "";
+  if (rule.rate === -1) {
+    // Salary — slab-based, give an indicative effective rate using new regime
+    const taxable = Math.max(0, amount * 12 - 75000);
+    const calc = calcSlabTax(taxable, newSlabs);
+    const annualTax = calc.tax * 1.04;
+    rate = amount > 0 ? (annualTax / 12 / amount) * 100 : 0;
+    note = `Salary TDS is computed on annual projected income at slab rates. Indicative monthly TDS shown.`;
+  } else if (!hasPan) {
+    rate = rule.noPan;
+    note = "PAN not provided — higher TDS rate (Sec 206AA) applied.";
+  } else {
+    rate = rule.rate;
+  }
+  if (type === "property" && amount <= 5000000 && hasPan) {
+    rate = 0;
+    note = "Threshold not met (≤ ₹50 L). No TDS under Sec 194-IA.";
+  }
+
+  const tds = (amount * rate) / 100;
+
   return (
     <div className="grid md:grid-cols-2 gap-10">
-      <div>
-        <label className="label-clean mb-3">Choose a Package</label>
-        <div className="grid grid-cols-2 gap-3">
-          {ewayPkgs.map((p) => (
-            <button key={p.count} onClick={() => setPkg(p)} className={`p-5 rounded border text-left transition ${pkg.count === p.count ? "border-accent bg-card" : "border-border bg-card hover:border-accent/50"}`}>
-              <div className="font-heading text-2xl text-primary">{p.count} <span className="text-sm text-muted-foreground">bills</span></div>
-              <div className="text-accent font-medium mt-1">₹{p.price}</div>
-            </button>
-          ))}
+      <div className="space-y-5">
+        <div>
+          <label className="label-clean">Payment Type</label>
+          <select className="input-clean" value={type} onChange={(e) => setType(e.target.value as TdsKey)}>
+            {Object.entries(tdsRules).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
+          </select>
+        </div>
+        <div>
+          <label className="label-clean">Payment Amount (₹)</label>
+          <input type="number" min={0} className="input-clean" value={amount} onChange={(e) => setAmount(+e.target.value || 0)} />
+        </div>
+        <div>
+          <label className="label-clean">PAN Provided?</label>
+          <div className="flex gap-2">
+            <button onClick={() => setHasPan(true)}
+              className={`flex-1 px-4 py-2 rounded text-sm border ${hasPan ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border"}`}>Yes</button>
+            <button onClick={() => setHasPan(false)}
+              className={`flex-1 px-4 py-2 rounded text-sm border ${!hasPan ? "bg-destructive text-destructive-foreground border-destructive" : "bg-card border-border"}`}>No</button>
+          </div>
         </div>
       </div>
+
       <div className="bg-secondary/50 rounded p-6 border border-border">
-        <h3 className="font-heading text-xl text-primary mb-4">Selected Package</h3>
-        <Row label="Bills Included" val={pkg.count.toString()} />
-        <Row label="Per Bill Cost" val={`₹${perBill.toFixed(2)}`} />
-        <Row label="Total" val={pkg.price} bold />
-        <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-gold w-full mt-6">Order via WhatsApp</a>
+        <h3 className="font-heading text-xl text-primary mb-4">TDS Liability</h3>
+        <Row label="Section" val={`Sec ${rule.section}`} />
+        <Row label="Effective Rate" val={`${rate.toFixed(2)}%`} />
+        <div className="border-t border-border my-3" />
+        <Row label="TDS Amount" val={tds} bold />
+        <Row label="Net Payment" val={amount - tds} />
+        <div className="mt-5 space-y-2 text-xs">
+          <p><span className="text-muted-foreground">Return Form: </span><strong>{rule.form}</strong></p>
+          <p><span className="text-muted-foreground">Deposit Due: </span><strong>7th of following month (30 Apr for March)</strong></p>
+          {note && <p className="text-amber-700 dark:text-amber-400 mt-3">{note}</p>}
+        </div>
       </div>
+    </div>
+  );
+};
+
+// ---------- E-Way Bill (sub-tabs) ----------
+type EwayTab = "checker" | "penalty" | "validity";
+const EWayTab = () => {
+  const [sub, setSub] = useState<EwayTab>("checker");
+  const [distance, setDistance] = useState(250);
+  const [odc, setOdc] = useState(false);
+  const [departure, setDeparture] = useState("");
+
+  const days = (() => {
+    if (distance <= 100) return 1;
+    if (distance <= 300) return 3;
+    if (distance <= 500) return 5;
+    if (distance <= 1000) return 10;
+    return 15;
+  })() * (odc ? 2 : 1);
+
+  const expiry = departure ? (() => {
+    const d = new Date(departure);
+    d.setDate(d.getDate() + days);
+    return d.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+  })() : null;
+
+  return (
+    <div>
+      <div className="flex flex-wrap gap-2 mb-6 pb-4 border-b border-border">
+        {([["checker", "Threshold Checker"], ["penalty", "Penalty Calculator"], ["validity", "Validity Calculator"]] as const).map(([k, label]) => (
+          <button key={k} onClick={() => setSub(k)}
+            className={`px-4 py-2 text-sm rounded border ${sub === k ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border hover:border-accent"}`}>{label}</button>
+        ))}
+      </div>
+      {sub === "checker" && <EWayEligibilityChecker />}
+      {sub === "penalty" && <EWayPenaltyEstimator />}
+      {sub === "validity" && (
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-5">
+            <div>
+              <label className="label-clean">Distance (km)</label>
+              <input type="number" min={0} className="input-clean" value={distance} onChange={(e) => setDistance(+e.target.value || 0)} />
+            </div>
+            <label className="flex items-center gap-2 text-sm">
+              <input type="checkbox" checked={odc} onChange={(e) => setOdc(e.target.checked)} className="accent-accent" />
+              Over-Dimensional Cargo (ODC)
+            </label>
+            <div>
+              <label className="label-clean">Departure (optional)</label>
+              <input type="datetime-local" className="input-clean" value={departure} onChange={(e) => setDeparture(e.target.value)} />
+            </div>
+          </div>
+          <div className="bg-secondary/50 rounded p-6 border border-border">
+            <h3 className="font-heading text-xl text-primary mb-4">Validity</h3>
+            <Row label="Validity Days" val={`${days} day${days !== 1 ? "s" : ""}`} bold />
+            {expiry && <Row label="Expires At" val={expiry} />}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -219,6 +374,8 @@ const Row = ({ label, val, bold = false }: { label: string; val: number | string
 
 const Calculators = () => {
   const [tab, setTab] = useState<Tab>("gst");
+  const onChange = (t: Tab) => { setTab(t); trackEvent("calculator", "calculator_used", t); };
+
   return (
     <Layout>
       <section className="bg-primary text-primary-foreground">
@@ -231,13 +388,14 @@ const Calculators = () => {
 
       <section className="section bg-background">
         <div className="container-narrow">
-          <div className="flex border-b border-border mb-10">
+          <div className="flex flex-wrap border-b border-border mb-10">
             {([
               ["gst", "GST Calculator"],
               ["tax", "Income Tax (FY 2024-25)"],
-              ["eway", "E-Way Bill Packages"],
+              ["tds", "TDS Calculator"],
+              ["eway", "E-Way Bill Tools"],
             ] as const).map(([k, label]) => (
-              <button key={k} onClick={() => setTab(k)}
+              <button key={k} onClick={() => onChange(k)}
                 className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition ${tab === k ? "border-accent text-primary" : "border-transparent text-muted-foreground hover:text-primary"}`}>
                 {label}
               </button>
@@ -247,7 +405,8 @@ const Calculators = () => {
           <div className="bg-card border border-border rounded p-6 md:p-10">
             {tab === "gst" && <GSTCalc />}
             {tab === "tax" && <IncomeTaxCalc />}
-            {tab === "eway" && <EwayCalc />}
+            {tab === "tds" && <TDSCalc />}
+            {tab === "eway" && <EWayTab />}
           </div>
         </div>
       </section>

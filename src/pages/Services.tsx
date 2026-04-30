@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 
 const groups = [
   {
@@ -18,13 +19,26 @@ const groups = [
     title: "Direct Tax",
     items: ["Income Tax Return (ITR) Filing", "TDS / TCS Compliance", "Balance Sheet Preparation"],
   },
+  {
+    title: "Business Services",
+    items: [
+      "Company / LLP Incorporation (SPICe+)",
+      "ROC Annual Filings (AOC-4, MGT-7)",
+      "Udyam (MSME) Registration",
+      "DPIIT Startup Recognition",
+      "FEMA & RBI Compliance",
+      "Transfer Pricing Documentation",
+      "Secretarial Audit (MR-3)",
+      "Professional Tax Registration",
+    ],
+  },
 ];
 
 const ewayPackages = [
-  { count: 10, price: 160 },
-  { count: 25, price: 400 },
-  { count: 50, price: 750 },
-  { count: 100, price: 1400 },
+  { count: 10,  price: 160,  perBill: 16, tag: null },
+  { count: 25,  price: 400,  perBill: 16, tag: null },
+  { count: 50,  price: 750,  perBill: 15, tag: "Most Popular" },
+  { count: 100, price: 1400, perBill: 14, tag: null },
 ];
 
 const Services = () => (
@@ -60,20 +74,33 @@ const Services = () => (
           <div>
             <h2 className="font-heading text-3xl text-primary mb-4">E-Way Bill Packages</h2>
             <div className="gold-divider mb-4" />
-            <p className="text-sm text-muted-foreground">Reliable bulk e-way bill generation for businesses and logistics operators.</p>
+            <p className="text-sm text-muted-foreground mb-3">Reliable bulk e-way bill generation for businesses and logistics operators.</p>
+            <Link to="/eway-bills" className="text-sm text-accent font-medium hover:underline">Learn More →</Link>
           </div>
           <div className="md:col-span-2 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {ewayPackages.map((p) => (
-              <div key={p.count} className="card-clean text-center !p-6">
+              <div key={p.count}
+                onClick={() => trackEvent("services", "eway_package_view", String(p.count))}
+                className={`relative bg-card rounded p-5 text-center transition hover:-translate-y-1 ${p.tag ? "border-2 border-accent shadow-md" : "border border-border hover:border-accent/40"}`}>
+                {p.tag && <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-accent text-accent-foreground text-[10px] font-semibold tracking-wider rounded-full">{p.tag.toUpperCase()}</span>}
                 <div className="font-heading text-3xl text-accent mb-1">{p.count}</div>
                 <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Bills</div>
                 <div className="font-heading text-xl text-primary">₹{p.price}</div>
+                <div className="text-xs text-muted-foreground mt-1">₹{p.perBill}/bill</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-center pt-8">
+        <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto">
+          Custom packages for 200+ bills/month. All packages include Part A + Part B filing, vehicle updates, cancellation, and bulk upload support.
+        </p>
+
+        <div className="text-center pt-4 space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Not sure which services apply to your business type?{" "}
+            <Link to="/compliance" className="text-accent font-medium hover:underline">View our tailored compliance guide →</Link>
+          </p>
           <Link to="/contact#booking" className="btn-gold">Book a Consultation</Link>
         </div>
       </div>
