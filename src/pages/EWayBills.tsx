@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import EWayEligibilityChecker from "@/components/EWayEligibilityChecker";
@@ -86,6 +87,21 @@ const EWayBills = () => {
 
   return (
     <Layout>
+      <PageSEO
+        title="E-Way Bill Generation Service — From ₹16/bill"
+        description="Bulk e-way bill generation packages starting ₹16/bill. Same-day processing. Part A + Part B filing. Threshold checker, penalty estimator, validity calculator. Serving logistics across South India."
+        canonical="/eway-bills"
+        breadcrumbs={[{ name: "Home", url: "/" }, { name: "E-Way Bills", url: "/eway-bills" }]}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }}
+      />
       {/* Hero */}
       <section className="bg-primary text-primary-foreground">
         <div className="container-narrow py-24 text-center">
