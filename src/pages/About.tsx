@@ -5,7 +5,8 @@ const milestones = [
   { year: "1952", title: "Foundation", desc: "Kota Associates is established in Andhra Pradesh as a chartered accountancy practice." },
   { year: "1970s", title: "Regional Expansion", desc: "Practice extends to neighbouring districts and industrial clientele." },
   { year: "1990s", title: "Second Generation", desc: "Modern accounting standards and computerised practice introduced." },
-  { year: "2010s", title: "GST & Digital Era", desc: "Adoption of digital filing systems and full GST compliance services." },
+  { year: "2010s", title: "Digital Transformation", desc: "Firm-wide adoption of computerised accounting, e-filing and digital client management systems." },
+  { year: "2017",  title: "GST Era", desc: "Kota Associates was a full-service GST practice from Day 1 of the GST regime — guiding every client through registration, transition and ongoing compliance." },
   { year: "Today", title: "Seven-State Practice", desc: "Trusted advisor to over a thousand clients across South India." },
 ];
 
