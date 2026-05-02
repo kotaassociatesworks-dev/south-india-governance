@@ -303,7 +303,12 @@ const ComplianceGuide = () => {
           {/* Main checklist */}
           {profile.checklist.length > 0 && (
             <div className="mb-10">
-              <h3 className="font-heading text-2xl text-primary mb-4">{t("compliance.checklistTitle")}</h3>
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h3 className="font-heading text-2xl text-primary">{t("compliance.checklistTitle")}</h3>
+                <button onClick={handlePrintChecklist} className="btn-outline !py-2 !px-4 text-sm inline-flex items-center gap-2">
+                  <Printer className="w-4 h-4" /> Download Checklist (PDF)
+                </button>
+              </div>
               <div className="gold-divider mb-6" />
               <div className="grid sm:grid-cols-2 gap-3">
                 {profile.checklist.map((c) => (
