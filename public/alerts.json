@@ -1,5 +1,7 @@
 {
   "enabled": false,
-  "message": "Sample: GSTR-3B due date extended to 22nd this month.",
-  "href": ""
+  "tag": "Budget Update",
+  "message": "Budget 2025: New income tax slabs effective AY 2026–27. Rebate limit raised to ₹12L under new regime.",
+  "href": "https://incometaxindia.gov.in",
+  "expires": "2026-03-31"
 }
