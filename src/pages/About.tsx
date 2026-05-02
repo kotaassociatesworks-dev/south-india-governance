@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import { Calculator, ShieldCheck, TrendingUp, ScrollText } from "lucide-react";
 
 const milestones = [
@@ -26,6 +27,12 @@ const team = [
 
 const About = () => (
   <Layout>
+    <PageSEO
+      title="About Kota Associates — Est. 1952, South India"
+      description="Three generations of chartered accountancy practice. Serving 1000+ clients across 7 states. Integrity, excellence, continuity. Established 1952."
+      canonical="/about"
+      breadcrumbs={[{ name: "Home", url: "/" }, { name: "About", url: "/about" }]}
+    />
     <section className="bg-primary text-primary-foreground">
       <div className="container-narrow py-24 text-center">
         <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Our Story</p>

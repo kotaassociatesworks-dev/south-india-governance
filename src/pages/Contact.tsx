@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -244,6 +245,12 @@ const Contact = () => {
   }, []);
   return (
     <Layout>
+      <PageSEO
+        title="Contact Kota Associates — Andhra Pradesh"
+        description="Contact our chartered accountancy firm in Gudur, Andhra Pradesh. Book a consultation, send an enquiry, or WhatsApp us directly. Phone: +91 90528 78779."
+        canonical="/contact"
+        breadcrumbs={[{ name: "Home", url: "/" }, { name: "Contact", url: "/contact" }]}
+      />
       <section className="bg-primary text-primary-foreground">
         <div className="container-narrow py-24 text-center">
           <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Get in Touch</p>
