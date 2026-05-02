@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import DeadlineTypeBadge from "@/components/DeadlineTypeBadge";
 import ComplianceTypeBadge from "@/components/ComplianceTypeBadge";
 import { businessProfiles } from "@/data/businessProfiles";
 import { deadlines, type BusinessType } from "@/data/complianceCalendar";
 import { trackEvent } from "@/lib/analytics";
-import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Printer } from "lucide-react";
 
 const TABS: BusinessType[] = ["legacy", "msme", "mnc", "startup"];
 
