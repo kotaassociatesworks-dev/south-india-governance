@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import { Lock, FileLock2, Bell } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -16,6 +17,11 @@ const Portal = () => {
 
   return (
     <Layout>
+      <PageSEO
+        title="Client Portal — Kota Associates"
+        description="Secure client login for document management, filing status, and direct communication with your Kota Associates advisor."
+        canonical="/portal"
+      />
       <section className="bg-primary text-primary-foreground">
         <div className="container-narrow py-24 text-center">
           <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">For Existing Clients</p>

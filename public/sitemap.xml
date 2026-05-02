@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://kotaassociates.in/</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://kotaassociates.in/about</loc><priority>0.8</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://kotaassociates.in/services</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://kotaassociates.in/services?industry=logistics</loc><priority>0.7</priority></url>
+  <url><loc>https://kotaassociates.in/services?industry=manufacturing</loc><priority>0.7</priority></url>
+  <url><loc>https://kotaassociates.in/services?industry=retail</loc><priority>0.7</priority></url>
+  <url><loc>https://kotaassociates.in/services?industry=construction</loc><priority>0.7</priority></url>
+  <url><loc>https://kotaassociates.in/compliance</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://kotaassociates.in/compliance?type=msme</loc><priority>0.8</priority></url>
+  <url><loc>https://kotaassociates.in/compliance?type=mnc</loc><priority>0.8</priority></url>
+  <url><loc>https://kotaassociates.in/compliance?type=startup</loc><priority>0.8</priority></url>
+  <url><loc>https://kotaassociates.in/eway-bills</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://kotaassociates.in/calculators</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://kotaassociates.in/contact</loc><priority>0.9</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://kotaassociates.in/blog</loc><priority>0.6</priority><changefreq>weekly</changefreq></url>
+</urlset>

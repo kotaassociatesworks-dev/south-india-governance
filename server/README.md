@@ -56,3 +56,23 @@ Pass `x-api-key: <ADMIN_API_KEY>` header for admin routes.
 ## Production
 
 Use a managed Postgres (RDS, Neon, etc.), set `NODE_ENV=production`, and run behind a reverse proxy (nginx / Caddy). Use a process manager such as `pm2` or `systemd`.
+
+---
+
+## Compliance Alert Banner (`public/alerts.json`)
+
+The compliance alert banner at the top of every page is driven by `public/alerts.json`. To post an alert without redeploying the frontend, edit this file:
+
+```json
+{
+  "enabled": true,
+  "tag": "Budget Update",
+  "message": "Your alert text here.",
+  "href": "https://relevant-link.in",
+  "expires": "2026-03-31"
+}
+```
+
+- `enabled: false` hides the banner. Default is `false` so the firm explicitly turns it on.
+- `expires` is auto-checked: alerts past their expiry date are hidden automatically (no need to flip `enabled` back to false).
+- `tag` shows as a coloured prefix label.

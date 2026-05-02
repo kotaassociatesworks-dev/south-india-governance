@@ -1,10 +1,12 @@
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
+import ComplianceHealthScore from "@/components/ComplianceHealthScore";
 import { useState } from "react";
 import EWayEligibilityChecker from "@/components/EWayEligibilityChecker";
 import EWayPenaltyEstimator from "@/components/EWayPenaltyEstimator";
 import { trackEvent } from "@/lib/analytics";
 
-type Tab = "gst" | "tax" | "tds" | "eway";
+type Tab = "gst" | "tax" | "tds" | "eway" | "health";
 
 // ---------- GST ----------
 const GSTCalc = () => {
@@ -184,38 +186,47 @@ const IncomeTaxCalc = () => {
         {regime === "new" && <p className="text-xs text-muted-foreground">Standard Deduction ₹75,000 applied automatically.</p>}
       </div>
 
-      <div className="bg-secondary/50 rounded p-6 border border-border">
-        <h3 className="font-heading text-xl text-primary mb-4">Result — {regime === "new" ? "New" : "Old"} Regime</h3>
-        <Row label="Taxable Income" val={active.taxable} />
-        <div className="my-3 border-t border-border" />
-        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Slab Breakdown</p>
-        <div className="space-y-1 mb-3 text-sm">
-          {active.calc.breakdown.map((b, i) => (
-            <div key={i} className="flex justify-between text-foreground/80">
-              <span>{b.range} <span className="text-muted-foreground">({b.rate})</span></span>
-              <span>₹{Math.round(b.tax).toLocaleString("en-IN")}</span>
+      {/* Always-visible side-by-side comparison */}
+      <div className="md:col-span-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { key: "new", title: "New Regime", taxable: newTaxable, calc: newCalc, total: newTotal, std: stdNew },
+          { key: "old", title: "Old Regime", taxable: oldTaxable, calc: oldCalc, total: oldTotal, std: stdOld },
+        ].map((r) => {
+          const isBetter = better === r.key;
+          return (
+            <div key={r.key} className={`rounded p-5 border-2 transition ${isBetter ? "border-emerald-500/60 bg-emerald-500/5 shadow-md" : "border-border bg-secondary/50"}`}>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-heading text-lg text-primary">{r.title}</h3>
+                {isBetter && <span className="text-[10px] px-2 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded font-semibold tracking-wider">RECOMMENDED ✓</span>}
+              </div>
+              <Row label="Std Deduction" val={r.std} />
+              <Row label="Taxable Income" val={r.taxable} />
+              <div className="my-2 border-t border-border" />
+              <Row label="Tax (slab)" val={r.calc.tax} />
+              <Row label="Cess (4%)" val={r.calc.tax * 0.04} />
+              <div className="my-2 border-t border-border" />
+              <Row label="Total Payable" val={r.total} bold />
             </div>
-          ))}
+          );
+        })}
+        <div className="sm:col-span-2 mt-2 p-4 rounded bg-card border border-accent/40 text-center">
+          <p className="font-heading text-lg text-primary">
+            You save <span className="text-accent">₹{Math.round(savings).toLocaleString("en-IN")}</span> by choosing the {better === "new" ? "New" : "Old"} Regime
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">Active regime in slab breakdown: <strong>{regime === "new" ? "New" : "Old"}</strong> · Effective rate {effective.toFixed(2)}%</p>
         </div>
-        <Row label="Tax Before Cess" val={active.calc.tax} />
-        <Row label="Health & Edu Cess (4%)" val={active.calc.tax * 0.04} />
-        <div className="border-t border-border my-3" />
-        <Row label="Total Tax Payable" val={active.total} bold />
-        <Row label="Effective Rate" val={`${effective.toFixed(2)}%`} />
 
-        <div className="mt-5 p-4 rounded bg-card border border-accent/40">
-          <p className="text-xs uppercase tracking-widest text-accent mb-2">Compare Regimes</p>
-          <div className="grid grid-cols-2 gap-3">
-            <div className={`p-3 rounded border ${better === "new" ? "border-emerald-500/50 bg-emerald-500/5" : "border-border"}`}>
-              <p className="text-xs text-muted-foreground flex items-center gap-1">New Regime {better === "new" && <span className="text-[9px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded">RECOMMENDED</span>}</p>
-              <p className="font-heading text-lg text-primary">₹{Math.round(newTotal).toLocaleString("en-IN")}</p>
-            </div>
-            <div className={`p-3 rounded border ${better === "old" ? "border-emerald-500/50 bg-emerald-500/5" : "border-border"}`}>
-              <p className="text-xs text-muted-foreground flex items-center gap-1">Old Regime {better === "old" && <span className="text-[9px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 rounded">RECOMMENDED</span>}</p>
-              <p className="font-heading text-lg text-primary">₹{Math.round(oldTotal).toLocaleString("en-IN")}</p>
-            </div>
+        {/* Slab breakdown for selected regime */}
+        <div className="sm:col-span-2 bg-card rounded p-4 border border-border">
+          <p className="text-xs uppercase tracking-widest text-accent mb-2">Slab Breakdown — {regime === "new" ? "New" : "Old"} Regime</p>
+          <div className="space-y-1 text-sm">
+            {active.calc.breakdown.map((b, i) => (
+              <div key={i} className="flex justify-between text-foreground/80">
+                <span>{b.range} <span className="text-muted-foreground">({b.rate})</span></span>
+                <span>₹{Math.round(b.tax).toLocaleString("en-IN")}</span>
+              </div>
+            ))}
           </div>
-          <p className="mt-3 text-sm text-primary font-medium">→ {better === "new" ? "New" : "Old"} regime saves ₹{Math.round(savings).toLocaleString("en-IN")}</p>
         </div>
       </div>
     </div>
@@ -378,6 +389,12 @@ const Calculators = () => {
 
   return (
     <Layout>
+      <PageSEO
+        title="Free GST, Income Tax & TDS Calculators"
+        description="Calculate your GST liability, compare new vs old income tax regime, estimate TDS deductions, check e-way bill validity, and assess your compliance health score online."
+        canonical="/calculators"
+        breadcrumbs={[{ name: "Home", url: "/" }, { name: "Calculators", url: "/calculators" }]}
+      />
       <section className="bg-primary text-primary-foreground">
         <div className="container-narrow py-24 text-center">
           <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Tools</p>
@@ -390,10 +407,11 @@ const Calculators = () => {
         <div className="container-narrow">
           <div className="flex flex-wrap border-b border-border mb-10">
             {([
-              ["gst", "GST Calculator"],
-              ["tax", "Income Tax (FY 2024-25)"],
-              ["tds", "TDS Calculator"],
-              ["eway", "E-Way Bill Tools"],
+              ["gst",    "GST Calculator"],
+              ["tax",    "Income Tax (FY 2024-25)"],
+              ["tds",    "TDS Calculator"],
+              ["eway",   "E-Way Bill Tools"],
+              ["health", "Health Score"],
             ] as const).map(([k, label]) => (
               <button key={k} onClick={() => onChange(k)}
                 className={`px-5 py-3 text-sm font-medium border-b-2 -mb-px transition ${tab === k ? "border-accent text-primary" : "border-transparent text-muted-foreground hover:text-primary"}`}>
@@ -403,10 +421,11 @@ const Calculators = () => {
           </div>
 
           <div className="bg-card border border-border rounded p-6 md:p-10">
-            {tab === "gst" && <GSTCalc />}
-            {tab === "tax" && <IncomeTaxCalc />}
-            {tab === "tds" && <TDSCalc />}
-            {tab === "eway" && <EWayTab />}
+            {tab === "gst"    && <GSTCalc />}
+            {tab === "tax"    && <IncomeTaxCalc />}
+            {tab === "tds"    && <TDSCalc />}
+            {tab === "eway"   && <EWayTab />}
+            {tab === "health" && <ComplianceHealthScore />}
           </div>
         </div>
       </section>

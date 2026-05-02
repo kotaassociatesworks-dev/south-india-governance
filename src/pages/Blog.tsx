@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import { Mail, BookOpen, CheckCircle2 } from "lucide-react";
 
 const Blog = () => {
@@ -24,6 +25,12 @@ const Blog = () => {
 
   return (
     <Layout>
+      <PageSEO
+        title="Tax & GST Insights — Kota Associates"
+        description="GST circulars, budget analysis, compliance checklists and case studies from the chartered accountants at Kota Associates."
+        canonical="/blog"
+        breadcrumbs={[{ name: "Home", url: "/" }, { name: "Insights", url: "/blog" }]}
+      />
       <section className="bg-primary text-primary-foreground">
         <div className="container-narrow py-24 text-center">
           <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Knowledge</p>

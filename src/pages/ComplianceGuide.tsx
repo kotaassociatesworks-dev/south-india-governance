@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
+import PageSEO from "@/components/PageSEO";
 import DeadlineTypeBadge from "@/components/DeadlineTypeBadge";
 import ComplianceTypeBadge from "@/components/ComplianceTypeBadge";
 import { businessProfiles } from "@/data/businessProfiles";
 import { deadlines, type BusinessType } from "@/data/complianceCalendar";
 import { trackEvent } from "@/lib/analytics";
-import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Printer } from "lucide-react";
 
 const TABS: BusinessType[] = ["legacy", "msme", "mnc", "startup"];
 
@@ -84,8 +85,52 @@ const ComplianceGuide = () => {
     return m;
   }, [filteredDeadlines]);
 
+  const handlePrintChecklist = () => {
+    trackEvent("compliance", "checklist_print", tab);
+    const items = [
+      ...(profile.checklist || []),
+      ...(profile.specific || []),
+      ...(profile.domestic || []),
+    ];
+    const html = `<!doctype html><html><head><meta charset="utf-8"/><title>FY 2025-26 Compliance Checklist for ${profile.label} — Kota Associates</title>
+      <style>
+        body{font-family:Georgia,serif;max-width:780px;margin:32px auto;padding:0 24px;color:#0f1e3d}
+        h1{font-size:28px;margin:0 0 4px;color:#0f1e3d}
+        h2{font-size:18px;margin:24px 0 8px;color:#b8922a;border-bottom:1px solid #b8922a;padding-bottom:4px}
+        .sub{color:#666;font-size:13px;margin-bottom:24px}
+        ul{padding-left:0;list-style:none}
+        li{padding:8px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;gap:16px;font-size:14px}
+        li span.f{color:#b8922a;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+        .adv{margin-top:24px;padding:14px;border-left:4px solid #b8922a;background:#fafaf6;font-size:13px}
+        footer{margin-top:48px;padding-top:16px;border-top:1px solid #ddd;font-size:11px;color:#666;text-align:center;line-height:1.6}
+        @media print{button{display:none}}
+        button{background:#b8922a;color:#fff;border:0;padding:10px 18px;cursor:pointer;border-radius:4px;font-size:13px}
+      </style></head><body>
+      <h1>FY 2025–26 Compliance Checklist</h1>
+      <p class="sub">For ${profile.label} · Prepared by Kota Associates</p>
+      <h2>Compliance Items</h2>
+      <ul>${items.map((c) => `<li><span>${c.name}</span><span class="f">${c.freq}</span></li>`).join("")}</ul>
+      <div class="adv"><strong>Advisory:</strong> ${profile.advisory}</div>
+      <p style="text-align:center;margin-top:24px"><button onclick="window.print()">Save / Print as PDF</button></p>
+      <footer>
+        <strong>Kota Associates</strong> · Est. 1952<br/>
+        5/134 Patel Street, Near Alaganadhaswamy Temple, East Gudur Rural, Gudur, Andhra Pradesh 524101<br/>
+        +91 90528 78779 · kotaassociatesworks@gmail.com · kotaassociates.in
+      </footer>
+      <script>window.onload=()=>setTimeout(()=>window.print(),300)</script>
+      </body></html>`;
+    const w = window.open("", "_blank", "noopener,width=900,height=900");
+    if (w) { w.document.write(html); w.document.close(); }
+  };
+
   return (
     <Layout>
+      <PageSEO
+        title="Business Compliance Guide — Legacy, MSME, MNC, Startup"
+        description="Tailored GST, TDS and ROC compliance checklists for Legacy firms, MSMEs, MNCs and Startups. Updated for FY 2025–26 with downloadable checklist."
+        canonical="/compliance"
+        breadcrumbs={[{ name: "Home", url: "/" }, { name: "Compliance Guide", url: "/compliance" }]}
+      />
       {/* Hero */}
       <section className="bg-primary text-primary-foreground">
         <div className="container-narrow py-24 text-center">
@@ -258,7 +303,12 @@ const ComplianceGuide = () => {
           {/* Main checklist */}
           {profile.checklist.length > 0 && (
             <div className="mb-10">
-              <h3 className="font-heading text-2xl text-primary mb-4">{t("compliance.checklistTitle")}</h3>
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h3 className="font-heading text-2xl text-primary">{t("compliance.checklistTitle")}</h3>
+                <button onClick={handlePrintChecklist} className="btn-outline !py-2 !px-4 text-sm inline-flex items-center gap-2">
+                  <Printer className="w-4 h-4" /> Download Checklist (PDF)
+                </button>
+              </div>
               <div className="gold-divider mb-6" />
               <div className="grid sm:grid-cols-2 gap-3">
                 {profile.checklist.map((c) => (
