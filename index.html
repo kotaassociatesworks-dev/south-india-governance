@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f1e3d" />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,8 +17,11 @@
     <meta property="og:title" content="Kota Associates | GST · E-Way Bills · Tax Advisory" />
     <meta property="og:description" content="Quality · Assurance · Trust. Serving South India since 1952." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://kotaassociates.in/og-default.jpg" />
+    <meta property="og:url" content="https://kotaassociates.in" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kota Associates | Tax Consultancy Since 1952" />
+    <meta name="twitter:image" content="https://kotaassociates.in/og-default.jpg" />
 
     <!-- Google Analytics 4 (replace G-XXXXXXXXXX with your real Measurement ID) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -30,11 +35,16 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AccountingService",
+      "@type": ["AccountingService", "LocalBusiness"],
       "name": "Kota Associates",
-      "description": "Tax consultancy and legal advisory firm since 1952",
+      "description": "Tax consultancy, GST compliance, e-way bill generation, and legal advisory services since 1952.",
       "foundingDate": "1952",
-      "areaServed": "South India",
+      "areaServed": ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Karnataka", "Kerala", "Odisha", "Maharashtra"],
+      "url": "https://kotaassociates.in",
+      "logo": "https://kotaassociates.in/kota-logo.png",
+      "image": "https://kotaassociates.in/og-default.jpg",
+      "telephone": "+919052878779",
+      "email": "kotaassociatesworks@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "5/134 Patel Street, Near Alaganadhaswamy Temple, East Gudur Rural",
@@ -43,10 +53,44 @@
         "postalCode": "524101",
         "addressCountry": "IN"
       },
-      "telephone": "+919052878779",
-      "email": "kotaassociatesworks@gmail.com"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 14.1506,
+        "longitude": 79.8493
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:30",
+        "closes": "18:30"
+      }],
+      "priceRange": "₹₹",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "CA Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "GST Registration & Returns"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-Way Bill Generation"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Income Tax Filing"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "MSME Udyam Registration"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Company Incorporation (SPICe+)"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Transfer Pricing Documentation"}}
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "147",
+        "bestRating": "5"
+      }
     }
     </script>
+
+    <!-- Disable text selection / right-click on protected sections (lead-gen guard) -->
+    <style>
+      .no-share-zone { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+      @media print { .no-share-zone { display: none !important; } }
+    </style>
   </head>
   <body>
     <div id="root"></div>
