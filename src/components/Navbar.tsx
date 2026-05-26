@@ -71,6 +71,9 @@ const Navbar = () => {
                 {l.label}
               </NavLink>
             ))}
+            <a href="/presentation/" target="_blank" rel="noopener noreferrer" className="text-base font-medium text-accent">
+              GST Briefing ↗
+            </a>
             <Link to="/contact#booking" className="btn-gold mt-4">{t("nav.book")}</Link>
           </div>
         </aside>
