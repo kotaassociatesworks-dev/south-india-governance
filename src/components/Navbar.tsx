@@ -42,6 +42,9 @@ const Navbar = () => {
               {l.label}
             </NavLink>
           ))}
+          <a href="/presentation/" target="_blank" rel="noopener noreferrer" className="nav-link text-accent">
+            GST Briefing ↗
+          </a>
           <ThemeToggle />
           <Link to="/contact#booking" className="btn-gold !py-2.5 !px-5 text-sm">{t("nav.book")}</Link>
         </div>
