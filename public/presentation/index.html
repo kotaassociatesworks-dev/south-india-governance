@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kota Associates — GST & Legal Compliance Advisory</title>
+<meta name="description" content="A premium interactive presentation by Kota Associates — Tax Consultants, Legal Advisors & GST Compliance Experts. Before, during and after GST registration." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy:   { 950:'#070e22', 900:'#0a1430', 800:'#0f1e3d', 700:'#152a55', 600:'#1f3a73' },
+          gold:   { 50:'#fbf7ec', 100:'#f4ead0', 300:'#dcc170', 400:'#cca94a', 500:'#b8922a', 600:'#9a7a1f' },
+          ivory:  '#f7f3ea',
+        },
+        fontFamily: {
+          heading: ['"Playfair Display"','serif'],
+          sans:    ['Inter','system-ui','sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background:#070e22; color:#e7e2d3; }
+  .font-heading { font-family:'Playfair Display', serif; }
+
+  /* Hairline */
+  .gold-divider { height:2px; width:60px; background:linear-gradient(90deg,#b8922a,transparent); }
+
+  /* Glass card */
+  .glass {
+    background: linear-gradient(180deg, rgba(21,42,85,.55), rgba(10,20,48,.55));
+    border: 1px solid rgba(184,146,42,.18);
+    backdrop-filter: blur(10px);
+  }
+  .glass:hover { border-color: rgba(184,146,42,.45); }
+
+  /* Watermark */
+  .watermark::before {
+    content:"K"; position:absolute; inset:auto -3rem -4rem auto;
+    font-family:'Playfair Display',serif; font-size:22rem; line-height:1;
+    color:rgba(184,146,42,.04); pointer-events:none;
+  }
+
+  /* Scroll progress */
+  #progress { position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg,#b8922a,#dcc170); z-index:60; transition:width .15s; }
+
+  /* Sidebar links */
+  .side-link { color:#b9b3a0; }
+  .side-link.active { color:#dcc170; }
+  .side-link.active span.dot { background:#dcc170; box-shadow:0 0 0 4px rgba(220,193,112,.18); }
+
+  /* Accordion */
+  details > summary { list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker { display:none; }
+  details[open] .chev { transform:rotate(180deg); }
+  .chev { transition: transform .25s; }
+
+  /* Workflow connector */
+  .step-line { background: linear-gradient(90deg, rgba(184,146,42,.6), rgba(184,146,42,.1)); }
+
+  /* Floating CTA */
+  .fab { box-shadow: 0 12px 30px -10px rgba(184,146,42,.6); }
+
+  /* Reveal */
+  .reveal { opacity:0; transform:translateY(20px); }
+
+  /* Light mode */
+  body.light { background:#f7f3ea; color:#0a1430; }
+  body.light .glass { background:linear-gradient(180deg,#ffffff,rgba(255,255,255,.7)); border-color:rgba(15,30,61,.08); color:#0a1430; }
+  body.light header.topbar { background:rgba(247,243,234,.9); color:#0a1430; }
+  body.light aside.sidebar { background:rgba(247,243,234,.95); color:#0a1430; }
+  body.light .side-link { color:#4a4632; }
+  body.light .text-ivory\/70, body.light .text-ivory\/60, body.light .text-ivory\/80 { color:rgba(10,20,48,.7) !important; }
+  body.light .bg-navy-950, body.light .bg-navy-900 { background:#ffffff !important; }
+  body.light .bg-navy-800 { background:#f7f3ea !important; }
+  body.light .border-gold-500\/20 { border-color:rgba(15,30,61,.1) !important; }
+</style>
+</head>
+<body class="antialiased">
+
+<div id="progress"></div>
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+<header class="topbar fixed top-0 left-0 right-0 z-50 bg-navy-950/85 backdrop-blur border-b border-gold-500/15">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="#hero" class="flex flex-col leading-tight">
+      <span class="font-heading text-xl md:text-2xl text-gold-400 tracking-wide">Kota Associates</span>
+      <span class="text-[10px] tracking-[0.3em] uppercase text-ivory/60">Tax · Legal · GST Advisory</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-ivory/80">
+      <a href="#about"      class="hover:text-gold-400 transition">About</a>
+      <a href="#services"   class="hover:text-gold-400 transition">Services</a>
+      <a href="#lifecycle"  class="hover:text-gold-400 transition">GST Lifecycle</a>
+      <a href="#system"     class="hover:text-gold-400 transition">Compliance</a>
+      <a href="#risk"       class="hover:text-gold-400 transition">Risk</a>
+      <a href="#onboarding" class="hover:text-gold-400 transition">Onboarding</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="themeBtn" aria-label="Toggle theme" class="w-9 h-9 rounded-full border border-gold-500/30 text-gold-400 hover:bg-gold-500/10 transition">
+        <i class="fa-solid fa-moon text-sm"></i>
+      </button>
+      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-navy-950 px-4 py-2 rounded text-sm font-semibold transition">
+        <i class="fa-solid fa-phone text-xs"></i> Book Consultation
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     LAYOUT: SIDEBAR + MAIN
+========================================================= -->
+<div class="pt-16 max-w-[1400px] mx-auto flex">
+
+  <!-- Sticky Sidebar -->
+  <aside class="sidebar hidden lg:block w-60 shrink-0 sticky top-16 self-start h-[calc(100vh-4rem)] border-r border-gold-500/10 px-6 py-10">
+    <p class="text-[10px] tracking-[0.3em] uppercase text-gold-400 mb-6">Navigate</p>
+    <ul class="space-y-4 text-sm">
+      <li><a href="#hero"       class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>Overview</a></li>
+      <li><a href="#about"      class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>About the Firm</a></li>
+      <li><a href="#services"   class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>Our Services</a></li>
+      <li><a href="#lifecycle"  class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>GST Lifecycle</a></li>
+      <li><a href="#system"     class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>Compliance System</a></li>
+      <li><a href="#risk"       class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>Legal Risk</a></li>
+      <li><a href="#onboarding" class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>Onboarding</a></li>
+      <li><a href="#faq"        class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>FAQs</a></li>
+      <li><a href="#contact"    class="side-link flex items-center gap-3 hover:text-gold-400"><span class="dot w-1.5 h-1.5 rounded-full bg-gold-500/40"></span>Contact</a></li>
+    </ul>
+    <div class="mt-12 p-4 rounded-lg border border-gold-500/20 bg-navy-900/60">
+      <p class="text-[10px] tracking-[0.25em] uppercase text-gold-400 mb-2">Helpline</p>
+      <p class="text-sm text-ivory">+91 99999 99999</p>
+      <p class="text-xs text-ivory/60 mt-1">Mon–Sat · 9:30–7:00</p>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 min-w-0">
+
+    <!-- =========== HERO =========== -->
+    <section id="hero" class="relative watermark overflow-hidden px-6 lg:px-12 pt-16 pb-24">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(184,146,42,.12),transparent_60%)]"></div>
+      <p class="reveal text-[11px] tracking-[0.4em] uppercase text-gold-400 mb-6">Est. 1952 · Andhra Pradesh</p>
+      <h1 class="reveal font-heading text-5xl md:text-7xl leading-[1.05] text-ivory max-w-4xl">
+        GST, Tax & Legal Compliance — <span class="text-gold-400">demystified</span> for serious businesses.
+      </h1>
+      <div class="reveal gold-divider my-8"></div>
+      <p class="reveal text-lg text-ivory/75 max-w-2xl leading-relaxed">
+        An interactive briefing by <strong class="text-ivory">Kota Associates</strong> — Tax Consultants,
+        Legal Advisors and GST Compliance Experts guiding founders, MSMEs and MNCs across South India.
+      </p>
+
+      <div class="reveal flex flex-wrap gap-3 mt-9">
+        <a href="#lifecycle" class="bg-gold-500 hover:bg-gold-400 text-navy-950 px-6 py-3 rounded font-semibold inline-flex items-center gap-2 transition">
+          Start the briefing <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <a href="#contact" class="border border-gold-500/50 text-gold-400 hover:bg-gold-500/10 px-6 py-3 rounded font-semibold transition">
+          Talk to an advisor
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-px mt-16 bg-gold-500/15 rounded-lg overflow-hidden border border-gold-500/20 max-w-3xl">
+        <div class="bg-navy-900 p-6 text-center"><div class="font-heading text-3xl text-gold-400" data-count="70">0</div><div class="text-[10px] tracking-widest uppercase text-ivory/60 mt-1">Years legacy</div></div>
+        <div class="bg-navy-900 p-6 text-center"><div class="font-heading text-3xl text-gold-400" data-count="7">0</div><div class="text-[10px] tracking-widest uppercase text-ivory/60 mt-1">States</div></div>
+        <div class="bg-navy-900 p-6 text-center"><div class="font-heading text-3xl text-gold-400" data-count="1000" data-suffix="+">0</div><div class="text-[10px] tracking-widest uppercase text-ivory/60 mt-1">Businesses</div></div>
+        <div class="bg-navy-900 p-6 text-center"><div class="font-heading text-3xl text-gold-400" data-count="50" data-suffix="+">0</div><div class="text-[10px] tracking-widest uppercase text-ivory/60 mt-1">Specialists</div></div>
+      </div>
+    </section>
+
+    <!-- =========== ABOUT =========== -->
+    <section id="about" class="px-6 lg:px-12 py-24 border-t border-gold-500/10">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">About the Firm</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory max-w-3xl">Tax & Legal advisory, the way it should be practiced.</h2>
+      <div class="gold-divider my-6"></div>
+
+      <div class="grid md:grid-cols-2 gap-10 mt-10">
+        <p class="text-ivory/75 leading-relaxed">
+          We are <strong class="text-ivory">Tax Consultants, Legal Advisors and GST Compliance Experts</strong>
+          — not an accounting back-office. For over seven decades we have advised legacy enterprises,
+          MSMEs, MNCs and ambitious startups on the laws that govern their growth.
+        </p>
+        <p class="text-ivory/75 leading-relaxed">
+          Our practice combines courtroom-grade legal reasoning with deep regulatory fluency in GST,
+          Income Tax, Companies Act and FEMA. The result: businesses that scale without nasty surprises.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mt-12">
+        <div class="glass rounded-xl p-6">
+          <i class="fa-solid fa-scale-balanced text-gold-400 text-2xl"></i>
+          <h3 class="font-heading text-xl text-ivory mt-4 mb-2">Legal-first thinking</h3>
+          <p class="text-sm text-ivory/70 leading-relaxed">Every position we take is defensible in front of an officer, a tribunal or a board.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <i class="fa-solid fa-shield-halved text-gold-400 text-2xl"></i>
+          <h3 class="font-heading text-xl text-ivory mt-4 mb-2">Compliance as protection</h3>
+          <p class="text-sm text-ivory/70 leading-relaxed">We design documentation that protects the business when scrutiny arrives — not after.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <i class="fa-solid fa-handshake text-gold-400 text-2xl"></i>
+          <h3 class="font-heading text-xl text-ivory mt-4 mb-2">Partner, not vendor</h3>
+          <p class="text-sm text-ivory/70 leading-relaxed">Senior advisors stay on every engagement. You will never be handed off to a junior.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== SERVICES =========== -->
+    <section id="services" class="px-6 lg:px-12 py-24 border-t border-gold-500/10 bg-navy-900/40">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">Our Services</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory">What we handle end-to-end.</h2>
+      <div class="gold-divider my-6"></div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10" id="servicesGrid">
+        <!-- cards injected -->
+      </div>
+    </section>
+
+    <!-- =========== GST LIFECYCLE =========== -->
+    <section id="lifecycle" class="px-6 lg:px-12 py-24 border-t border-gold-500/10">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">The GST Lifecycle</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory">Before · During · After</h2>
+      <div class="gold-divider my-6"></div>
+      <p class="text-ivory/70 max-w-2xl leading-relaxed">
+        The mistakes that cost businesses the most happen at the boundaries. Here is what a compliant
+        operator does at every stage — and where most firms quietly slip.
+      </p>
+
+      <!-- Three pillars -->
+      <div class="grid lg:grid-cols-3 gap-6 mt-12">
+        <!-- BEFORE -->
+        <div class="glass rounded-2xl p-7 relative overflow-hidden">
+          <span class="absolute top-4 right-4 text-[10px] tracking-[0.25em] uppercase text-gold-400">Stage 01</span>
+          <i class="fa-solid fa-magnifying-glass text-gold-400 text-2xl"></i>
+          <h3 class="font-heading text-2xl text-ivory mt-4">Before Registration</h3>
+          <ul class="mt-5 space-y-2.5 text-sm text-ivory/80">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Choosing the right business structure</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> PAN, Aadhaar, address & activity proofs</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> HSN / SAC classification strategy</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Composition vs regular scheme analysis</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> State-wise place-of-supply mapping</li>
+          </ul>
+        </div>
+
+        <!-- DURING -->
+        <div class="glass rounded-2xl p-7 relative overflow-hidden">
+          <span class="absolute top-4 right-4 text-[10px] tracking-[0.25em] uppercase text-gold-400">Stage 02</span>
+          <i class="fa-solid fa-file-signature text-gold-400 text-2xl"></i>
+          <h3 class="font-heading text-2xl text-ivory mt-4">During Registration</h3>
+          <ul class="mt-5 space-y-2.5 text-sm text-ivory/80">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> GST portal application & ARN generation</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Officer verification & query handling</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Avoiding the common rejection reasons</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Authorised signatory & DSC mapping</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> GSTIN issuance & certificate vault</li>
+          </ul>
+        </div>
+
+        <!-- AFTER -->
+        <div class="glass rounded-2xl p-7 relative overflow-hidden">
+          <span class="absolute top-4 right-4 text-[10px] tracking-[0.25em] uppercase text-gold-400">Stage 03</span>
+          <i class="fa-solid fa-gauge-high text-gold-400 text-2xl"></i>
+          <h3 class="font-heading text-2xl text-ivory mt-4">After Registration</h3>
+          <ul class="mt-5 space-y-2.5 text-sm text-ivory/80">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Tax-invoice system & numbering policy</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Monthly GSTR-1, GSTR-3B & IFF</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> ITC reconciliation with 2A / 2B</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> E-Way Bills, E-Invoicing thresholds</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-gold-400 mt-1 text-xs"></i> Annual return, audit readiness, notices</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== COMPLIANCE SYSTEM =========== -->
+    <section id="system" class="px-6 lg:px-12 py-24 border-t border-gold-500/10 bg-navy-900/40">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">Compliance System</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory">How a serious business runs GST.</h2>
+      <div class="gold-divider my-6"></div>
+
+      <!-- Workflow -->
+      <div class="mt-12 grid md:grid-cols-6 gap-4 items-start">
+        <!-- step -->
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400"><i class="fa-solid fa-file-invoice"></i></div>
+          <p class="text-xs text-ivory/80 mt-3 font-semibold">Invoice issued</p>
+          <p class="text-[11px] text-ivory/55 mt-1">Compliant tax invoice with correct HSN / GSTIN.</p>
+        </div>
+        <div class="hidden md:flex h-1 step-line mt-7 rounded-full"></div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400"><i class="fa-solid fa-book"></i></div>
+          <p class="text-xs text-ivory/80 mt-3 font-semibold">Books updated</p>
+          <p class="text-[11px] text-ivory/55 mt-1">Sales, purchases, ITC & RCM ledgers maintained.</p>
+        </div>
+        <div class="hidden md:flex h-1 step-line mt-7 rounded-full"></div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400"><i class="fa-solid fa-arrows-rotate"></i></div>
+          <p class="text-xs text-ivory/80 mt-3 font-semibold">2B reconciliation</p>
+          <p class="text-[11px] text-ivory/55 mt-1">Match purchases with GSTR-2B to protect ITC.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-6 gap-4 items-start">
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400"><i class="fa-solid fa-paper-plane"></i></div>
+          <p class="text-xs text-ivory/80 mt-3 font-semibold">Returns filed</p>
+          <p class="text-[11px] text-ivory/55 mt-1">GSTR-1 by 11th · GSTR-3B by 20th, every month.</p>
+        </div>
+        <div class="hidden md:flex h-1 step-line mt-7 rounded-full"></div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400"><i class="fa-solid fa-vault"></i></div>
+          <p class="text-xs text-ivory/80 mt-3 font-semibold">Records archived</p>
+          <p class="text-[11px] text-ivory/55 mt-1">Six-year legal retention, retrievable on demand.</p>
+        </div>
+        <div class="hidden md:flex h-1 step-line mt-7 rounded-full"></div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400"><i class="fa-solid fa-shield-check"></i></div>
+          <p class="text-xs text-ivory/80 mt-3 font-semibold">Audit ready</p>
+          <p class="text-[11px] text-ivory/55 mt-1">Any notice answered with documents — not panic.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== LEGAL RISK =========== -->
+    <section id="risk" class="px-6 lg:px-12 py-24 border-t border-gold-500/10">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">Legal Risk Management</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory">The risks we make disappear.</h2>
+      <div class="gold-divider my-6"></div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10" id="riskGrid"></div>
+    </section>
+
+    <!-- =========== ONBOARDING =========== -->
+    <section id="onboarding" class="px-6 lg:px-12 py-24 border-t border-gold-500/10 bg-navy-900/40">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">Client Onboarding</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory">A calm, structured first 30 days.</h2>
+      <div class="gold-divider my-6"></div>
+
+      <ol class="relative mt-12 border-l border-gold-500/30 ml-3 space-y-8" id="timeline">
+        <!-- injected -->
+      </ol>
+    </section>
+
+    <!-- =========== FAQ =========== -->
+    <section id="faq" class="px-6 lg:px-12 py-24 border-t border-gold-500/10">
+      <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">Frequently Asked</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-ivory">Questions clients ask first.</h2>
+      <div class="gold-divider my-6"></div>
+
+      <div class="mt-10 space-y-3 max-w-3xl" id="faqList"></div>
+    </section>
+
+    <!-- =========== CONTACT =========== -->
+    <section id="contact" class="px-6 lg:px-12 py-24 border-t border-gold-500/10 bg-gradient-to-br from-navy-900 to-navy-950">
+      <div class="max-w-3xl">
+        <p class="text-[11px] tracking-[0.3em] uppercase text-gold-400 mb-4">Speak with an advisor</p>
+        <h2 class="font-heading text-4xl md:text-5xl text-ivory">Begin a quiet, professional engagement.</h2>
+        <div class="gold-divider my-6"></div>
+        <p class="text-ivory/75 leading-relaxed">
+          Share a few details about your business. A senior advisor will respond within one working day
+          with a confidential note on next steps.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-4 mt-10">
+          <a href="tel:+919999999999" class="glass rounded-xl p-5 hover:-translate-y-0.5 transition">
+            <i class="fa-solid fa-phone text-gold-400"></i>
+            <p class="text-xs uppercase tracking-widest text-ivory/60 mt-3">Phone</p>
+            <p class="text-ivory mt-1">+91 99999 99999</p>
+          </a>
+          <a href="mailto:contact@kotaassociates.in" class="glass rounded-xl p-5 hover:-translate-y-0.5 transition">
+            <i class="fa-solid fa-envelope text-gold-400"></i>
+            <p class="text-xs uppercase tracking-widest text-ivory/60 mt-3">Email</p>
+            <p class="text-ivory mt-1 break-all">contact@kotaassociates.in</p>
+          </a>
+          <a href="https://wa.me/919999999999" class="glass rounded-xl p-5 hover:-translate-y-0.5 transition">
+            <i class="fa-brands fa-whatsapp text-gold-400"></i>
+            <p class="text-xs uppercase tracking-widest text-ivory/60 mt-3">WhatsApp</p>
+            <p class="text-ivory mt-1">Chat now</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== FOOTER =========== -->
+    <footer class="px-6 lg:px-12 py-10 border-t border-gold-500/10 text-sm text-ivory/55 flex flex-wrap items-center justify-between gap-3">
+      <p>© <span id="yr"></span> Kota Associates · Tax Consultants · Legal Advisors · GST Compliance.</p>
+      <p>Andhra Pradesh, India · Est. 1952</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919999999999" class="fab fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gold-500 hover:bg-gold-400 text-navy-950 flex items-center justify-center text-xl transition" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ---- Services data ----
+  const services = [
+    { i:'fa-id-card',         t:'GST Registration',        d:'New GSTINs, additional places, voluntary registrations and rectifications.' },
+    { i:'fa-file-invoice',    t:'GST Return Filing',       d:'Monthly GSTR-1, IFF, GSTR-3B, CMP-08 and the annual GSTR-9 / 9C.' },
+    { i:'fa-arrows-rotate',   t:'ITC Reconciliation',      d:'Vendor-wise matching with GSTR-2B to protect every rupee of input credit.' },
+    { i:'fa-scale-balanced',  t:'GST Notice Handling',     d:'DRC-01, ASMT-10, REV-03 replies prepared within 48 hours, defensibly.' },
+    { i:'fa-truck-fast',      t:'E-Way Bill Support',      d:'Bulk generation, validity extensions and consolidated EWBs for fleets.' },
+    { i:'fa-file-circle-check', t:'E-Invoicing Setup',     d:'IRP integration for turnover thresholds, with QR-coded invoice templates.' },
+    { i:'fa-briefcase',       t:'Business Registration',   d:'Proprietorship, LLP, Pvt Ltd, MSME (Udyam) and DPIIT recognition.' },
+    { i:'fa-chart-line',      t:'Tax Planning Advisory',   d:'Direct and indirect tax structuring for promoters, families and groups.' },
+    { i:'fa-clipboard-list',  t:'Compliance Monitoring',   d:'Calendar-driven oversight: nothing is filed late, nothing is ever missed.' },
+  ];
+  document.getElementById('servicesGrid').innerHTML = services.map(s => `
+    <div class="glass rounded-xl p-6 transition hover:-translate-y-0.5">
+      <i class="fa-solid ${s.i} text-gold-400 text-xl"></i>
+      <h3 class="font-heading text-lg text-ivory mt-4 mb-2">${s.t}</h3>
+      <p class="text-sm text-ivory/70 leading-relaxed">${s.d}</p>
+    </div>
+  `).join('');
+
+  // ---- Risk grid ----
+  const risks = [
+    { lvl:'High',     col:'text-red-400 border-red-400/30',    t:'ITC mismatch with 2B', d:'Officer disallows credit; demand + interest + penalty under Sec 74.' },
+    { lvl:'High',     col:'text-red-400 border-red-400/30',    t:'Fake / inactive vendor', d:'Reversal of ITC plus prosecution risk under Sec 132 of CGST Act.' },
+    { lvl:'High',     col:'text-red-400 border-red-400/30',    t:'E-Way Bill non-compliance', d:'Detention under Sec 129 — tax + 100% penalty before release of goods.' },
+    { lvl:'Medium',   col:'text-amber-400 border-amber-400/30',t:'Late GSTR filings',    d:'Late fee per day, interest at 18% p.a. and blocked e-way bills after 2 months.' },
+    { lvl:'Medium',   col:'text-amber-400 border-amber-400/30',t:'Wrong HSN / SAC',      d:'Re-classification demand, differential tax and penalty up to ₹50,000.' },
+    { lvl:'Watch',    col:'text-gold-400 border-gold-400/30',  t:'Weak documentation',   d:'Loses the case before it begins. We design archive systems that hold up.' },
+  ];
+  document.getElementById('riskGrid').innerHTML = risks.map(r => `
+    <div class="glass rounded-xl p-6">
+      <div class="flex items-center justify-between mb-3">
+        <i class="fa-solid fa-triangle-exclamation text-gold-400"></i>
+        <span class="text-[10px] uppercase tracking-widest px-2 py-1 rounded border ${r.col}">${r.lvl} risk</span>
+      </div>
+      <h3 class="font-heading text-lg text-ivory mb-2">${r.t}</h3>
+      <p class="text-sm text-ivory/70 leading-relaxed">${r.d}</p>
+    </div>
+  `).join('');
+
+  // ---- Timeline ----
+  const steps = [
+    { t:'Day 0 · Inquiry',          d:'A senior advisor takes your call and assesses the engagement scope.' },
+    { t:'Day 1–3 · Document review', d:'Constitution, PAN, books and existing filings are audited for gaps.' },
+    { t:'Day 4–7 · Verification',    d:'KYC, address proofs and stakeholder validation against GSTN records.' },
+    { t:'Day 7–10 · Registrations',  d:'GST, MSME, Shops & Establishment and any sectoral registrations filed.' },
+    { t:'Day 10–20 · Compliance setup', d:'Invoice formats, ledgers, ITC tracker and reminder calendar deployed.' },
+    { t:'Day 20–30 · First close',   d:'First filing cycle executed under our supervision; handover briefing.' },
+    { t:'Ongoing · Advisory retainer', d:'Monthly reviews, notice protection and strategic tax planning.' },
+  ];
+  document.getElementById('timeline').innerHTML = steps.map((s,i) => `
+    <li class="pl-6 relative">
+      <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-gold-500 ring-4 ring-navy-900"></span>
+      <p class="text-[11px] tracking-widest uppercase text-gold-400">Step ${String(i+1).padStart(2,'0')}</p>
+      <h3 class="font-heading text-xl text-ivory mt-1">${s.t}</h3>
+      <p class="text-sm text-ivory/70 mt-1 leading-relaxed">${s.d}</p>
+    </li>
+  `).join('');
+
+  // ---- FAQ ----
+  const faqs = [
+    { q:'Do we need GST registration if turnover is below ₹40 lakh?', a:'Not always — but inter-state supply, e-commerce sales, RCM liability and certain notified services require registration from rupee one. We map your facts to the threshold rules.' },
+    { q:'Is composition scheme right for our business?', a:'It lowers compliance but blocks ITC and inter-state outward supply. We model both regimes against your margin profile before recommending.' },
+    { q:'A GST notice has arrived. How fast can you respond?', a:'A draft reply within 48 hours, supported by case law and your own records, filed well within the statutory window.' },
+    { q:'Do you serve businesses outside Andhra Pradesh?', a:'Yes. We advise clients across seven South Indian states and several MNC subsidiaries, both remotely and on-site.' },
+    { q:'Will a senior partner stay on our engagement?', a:'Yes. Every retainer is anchored by a senior advisor. Juniors execute; partners decide.' },
+  ];
+  document.getElementById('faqList').innerHTML = faqs.map(f => `
+    <details class="glass rounded-lg p-5 group">
+      <summary class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ivory">${f.q}</span>
+        <i class="fa-solid fa-chevron-down chev text-gold-400 text-sm"></i>
+      </summary>
+      <p class="text-sm text-ivory/70 leading-relaxed mt-3">${f.a}</p>
+    </details>
+  `).join('');
+
+  // ---- Scroll progress ----
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = pct + '%';
+  });
+
+  // ---- Scrollspy ----
+  const links = document.querySelectorAll('.side-link');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  const spy = () => {
+    const y = window.scrollY + 140;
+    let idx = 0;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === idx));
+  };
+  window.addEventListener('scroll', spy); spy();
+
+  // ---- Counters ----
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const to = +el.dataset.count, suffix = el.dataset.suffix || '';
+    let start; const dur = 1400;
+    const tick = (t) => {
+      if (!start) start = t;
+      const p = Math.min(1, (t - start) / dur);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString('en-IN') + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    new IntersectionObserver((ents, obs) => {
+      ents.forEach(e => { if (e.isIntersecting) { requestAnimationFrame(tick); obs.disconnect(); } });
+    }).observe(el);
+  });
+
+  // ---- Reveal (GSAP) ----
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.reveal').forEach(el => {
+    gsap.to(el, { opacity:1, y:0, duration:.8, ease:'power2.out',
+      scrollTrigger:{ trigger:el, start:'top 85%' } });
+  });
+  gsap.utils.toArray('section').forEach(sec => {
+    gsap.from(sec.querySelectorAll('h2, .gold-divider, p, .glass, ol li, details'), {
+      opacity:0, y:24, duration:.6, stagger:.05, ease:'power2.out',
+      scrollTrigger:{ trigger:sec, start:'top 75%' }
+    });
+  });
+
+  // ---- Theme toggle ----
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    const icon = themeBtn.querySelector('i');
+    icon.className = document.body.classList.contains('light') ? 'fa-solid fa-sun text-sm' : 'fa-solid fa-moon text-sm';
+  });
+</script>
+</body>
+</html>
