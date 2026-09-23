@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-primary text-primary-foreground mt-24">
+  <footer className="bg-primary text-primary-foreground">
     <div className="container-narrow py-16 grid md:grid-cols-4 gap-12">
       <div className="md:col-span-2">
         <h3 className="font-heading text-2xl text-accent mb-2">Kota Associates</h3>
