@@ -8,9 +8,9 @@ export default {
     container: { center: true, padding: "1.5rem", screens: { "2xl": "1280px" } },
     extend: {
       fontFamily: {
-        heading: ['Playfair Display', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        heading: ['Libre Baskerville', 'Playfair Display', 'Georgia', 'serif'],
+        body: ['IBM Plex Sans', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Libre Baskerville', 'Playfair Display', 'Georgia', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -27,6 +27,7 @@ export default {
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
         navy: { DEFAULT: "hsl(var(--navy))", soft: "hsl(var(--navy-soft))" },
         gold: { DEFAULT: "hsl(var(--gold))", soft: "hsl(var(--gold-soft))" },
+        whatsapp: "hsl(var(--whatsapp))",
       },
       borderRadius: {
         lg: "var(--radius)",

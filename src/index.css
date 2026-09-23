@@ -41,12 +41,13 @@
     --radius: 0.375rem;
 
     --navy: 222 60% 15%;
-    --navy-soft: 222 40% 25%;
-    --gold: 42 64% 44%;
+    --navy-soft: 218 46% 19%;
+    --gold: 43 52% 53%;
     --gold-soft: 42 50% 60%;
+    --whatsapp: 142 70% 38%;
 
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-heading: 'Libre Baskerville', 'Playfair Display', Georgia, serif;
+    --font-body: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
   }
 
   /* Dark — Legal chamber: charcoal/black + warm gold + ivory text */
@@ -87,6 +88,7 @@
     --navy-soft: 222 25% 28%;
     --gold: 42 60% 55%;
     --gold-soft: 42 50% 70%;
+    --whatsapp: 142 58% 46%;
   }
 }
 
@@ -100,7 +102,7 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     font-weight: 600;
   }
 }
@@ -112,10 +114,10 @@
   .gold-divider { @apply h-[2px] w-16 bg-accent; }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium tracking-wide transition-all hover:bg-[hsl(var(--navy-soft))] rounded;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium tracking-wide transition-all hover:bg-[hsl(var(--navy-soft))] rounded shadow-sm hover:-translate-y-0.5;
   }
   .btn-gold {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground font-medium tracking-wide transition-all hover:opacity-90 rounded;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground font-medium tracking-wide transition-all hover:opacity-90 rounded shadow-sm hover:-translate-y-0.5;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium tracking-wide transition-all hover:bg-primary hover:text-primary-foreground rounded;
@@ -148,3 +150,8 @@
 }
 
 html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

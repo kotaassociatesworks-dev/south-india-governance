@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
@@ -11,13 +11,11 @@ const Navbar = () => {
   const location = useLocation();
 
   const links = [
-    { to: "/",            label: t("nav.home") },
-    { to: "/about",       label: t("nav.about") },
     { to: "/services",    label: t("nav.services") },
+    { to: "/about",       label: t("nav.about") },
     { to: "/compliance",  label: t("nav.compliance") },
     { to: "/eway-bills",  label: t("nav.eway") },
     { to: "/calculators", label: t("nav.calculators") },
-    { to: "/contact",     label: t("nav.contact") },
   ];
 
   useEffect(() => {
@@ -31,12 +29,15 @@ const Navbar = () => {
   return (
     <header className={`sticky top-0 z-40 bg-background/95 backdrop-blur transition-shadow ${scrolled ? "shadow-sm" : ""}`}>
       <nav className="container-narrow flex items-center justify-between h-20">
-        <Link to="/" className="flex flex-col leading-tight">
-          <span className="font-heading text-2xl md:text-[26px] text-accent tracking-wide">Kota Associates</span>
-          <span className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Est. 1952</span>
+        <Link to="/" className="flex items-center gap-3 leading-tight" aria-label="Kota Associates home">
+          <span className="w-9 h-9 bg-primary text-primary-foreground rounded-sm grid place-items-center font-heading text-lg">K</span>
+          <span className="flex flex-col">
+            <span className="font-heading text-lg md:text-xl text-primary">Kota Associates</span>
+            <span className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground">Consulting since 1952</span>
+          </span>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === "/"} className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
               {l.label}
@@ -46,7 +47,10 @@ const Navbar = () => {
             GST Briefing ↗
           </a>
           <ThemeToggle />
-          <Link to="/contact#booking" className="btn-gold !py-2.5 !px-5 text-sm">{t("nav.book")}</Link>
+          <a href="tel:+919052878779" className="inline-flex items-center gap-2 text-sm font-semibold text-primary" aria-label="Call Kota Associates">
+            <Phone className="w-4 h-4 text-accent" /> +91 90528 78779
+          </a>
+          <Link to="/contact#booking" className="btn-gold !py-2.5 !px-5 text-sm">Speak to an Expert</Link>
         </div>
 
         <div className="flex lg:hidden items-center gap-1">
@@ -74,7 +78,8 @@ const Navbar = () => {
             <a href="/presentation/" target="_blank" rel="noopener noreferrer" className="text-base font-medium text-accent">
               GST Briefing ↗
             </a>
-            <Link to="/contact#booking" className="btn-gold mt-4">{t("nav.book")}</Link>
+            <a href="tel:+919052878779" className="flex items-center gap-2 font-semibold text-primary"><Phone className="w-4 h-4 text-accent" />+91 90528 78779</a>
+            <Link to="/contact#booking" className="btn-gold mt-4">Speak to an Expert</Link>
           </div>
         </aside>
       </div>
