@@ -33,7 +33,7 @@ const Navbar = () => {
           <span className="w-9 h-9 bg-primary text-primary-foreground rounded-sm grid place-items-center font-heading text-lg">K</span>
           <span className="flex flex-col">
             <span className="font-heading text-lg md:text-xl text-primary">Kota Associates</span>
-            <span className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground">Consulting since 1952</span>
+            <span className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground">Four generations · Est. 1952</span>
           </span>
         </Link>
 
@@ -50,7 +50,7 @@ const Navbar = () => {
           <a href="tel:+919052878779" className="inline-flex items-center gap-2 text-sm font-semibold text-primary" aria-label="Call Kota Associates">
             <Phone className="w-4 h-4 text-accent" /> +91 90528 78779
           </a>
-          <Link to="/contact#booking" className="btn-gold !py-2.5 !px-5 text-sm">Speak to an Expert</Link>
+          <Link to="/contact#booking" className="btn-gold !py-2.5 !px-5 text-sm">Request a Consultation</Link>
         </div>
 
         <div className="flex lg:hidden items-center gap-1">
@@ -79,7 +79,7 @@ const Navbar = () => {
               GST Briefing ↗
             </a>
             <a href="tel:+919052878779" className="flex items-center gap-2 font-semibold text-primary"><Phone className="w-4 h-4 text-accent" />+91 90528 78779</a>
-            <Link to="/contact#booking" className="btn-gold mt-4">Speak to an Expert</Link>
+            <Link to="/contact#booking" className="btn-gold mt-4">Request a Consultation</Link>
           </div>
         </aside>
       </div>
