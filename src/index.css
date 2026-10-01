@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -112,6 +110,12 @@
   .section { @apply py-20 md:py-28; }
 
   .gold-divider { @apply h-[2px] w-16 bg-accent; }
+
+  .legacy-rule { @apply flex items-center gap-4 text-accent; }
+  .legacy-rule::before, .legacy-rule::after {
+    content: '';
+    @apply h-px flex-1 bg-accent/40;
+  }
 
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium tracking-wide transition-all hover:bg-[hsl(var(--navy-soft))] rounded shadow-sm hover:-translate-y-0.5;

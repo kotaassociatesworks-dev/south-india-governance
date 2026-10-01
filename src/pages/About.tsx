@@ -3,12 +3,12 @@ import PageSEO from "@/components/PageSEO";
 import { Calculator, ShieldCheck, TrendingUp, ScrollText } from "lucide-react";
 
 const milestones = [
-  { year: "1952", title: "Foundation", desc: "Kota Associates is established in Andhra Pradesh as a chartered accountancy practice." },
-  { year: "1970s", title: "Regional Expansion", desc: "Practice extends to neighbouring districts and industrial clientele." },
-  { year: "1990s", title: "Second Generation", desc: "Modern accounting standards and computerised practice introduced." },
+  { year: "1952", title: "First Generation — Foundation", desc: "Kota Associates is established in Andhra Pradesh as a tax, accounts and business advisory practice." },
+  { year: "1970s", title: "Second Generation — Continuity", desc: "The practice extends to neighbouring districts and industrial clientele without losing its personal standard of service." },
+  { year: "1990s", title: "Third Generation — Modernisation", desc: "Modern accounting standards and computerised systems strengthen the firm's established professional judgement." },
   { year: "2010s", title: "Digital Transformation", desc: "Firm-wide adoption of computerised accounting, e-filing and digital client management systems." },
   { year: "2017",  title: "GST Era", desc: "Kota Associates was a full-service GST practice from Day 1 of the GST regime — guiding every client through registration, transition and ongoing compliance." },
-  { year: "Today", title: "Seven-State Practice", desc: "Trusted advisor to over a thousand clients across South India." },
+  { year: "Today", title: "Fourth Generation — The Practice Today", desc: "Four generations of experience now serve over a thousand clients across seven states in South India." },
 ];
 
 const values = [
@@ -29,7 +29,7 @@ const About = () => (
   <Layout>
     <PageSEO
       title="About Kota Associates — Est. 1952, South India"
-      description="Three generations of chartered accountancy practice. Serving 1000+ clients across 7 states. Integrity, excellence, continuity. Established 1952."
+      description="Four generations of continuous tax and business advisory practice. Serving 1,000+ clients across 7 states with integrity, excellence and discretion since 1952."
       canonical="/about"
       breadcrumbs={[{ name: "Home", url: "/" }, { name: "About", url: "/about" }]}
     />
@@ -71,7 +71,7 @@ const About = () => (
         <p className="text-muted-foreground leading-relaxed text-lg">
           To safeguard the financial wellbeing of our clients through diligent compliance, sound advisory
           and a commitment to the highest professional standards — preserving the legacy entrusted to us
-          by three generations of practice.
+          across four generations of continuous practice.
         </p>
       </div>
     </section>

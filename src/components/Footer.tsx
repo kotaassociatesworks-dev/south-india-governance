@@ -6,7 +6,8 @@ const Footer = () => (
     <div className="container-narrow py-16 grid md:grid-cols-4 gap-12">
       <div className="md:col-span-2">
         <h3 className="font-heading text-2xl text-accent mb-2">Kota Associates</h3>
-        <p className="text-sm text-primary-foreground/70 mb-6">Quality · Assurance · Trust. Serving South India since 1952.</p>
+        <p className="text-sm text-primary-foreground/70 mb-2">Four generations. One continuous standard of practice.</p>
+        <p className="text-xs uppercase tracking-[0.18em] text-accent mb-6">Established 1952 · South India</p>
         <ul className="space-y-3 text-sm">
           <li className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 text-accent shrink-0" /><span>5/134 Patel Street, East Gudur Rural, AP 524101</span></li>
           <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-accent" /><a href="tel:+919052878779">+91 90528 78779</a></li>
